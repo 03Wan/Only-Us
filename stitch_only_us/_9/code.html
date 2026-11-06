@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>心情选择 - 小小宇宙</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "primary": "#605487",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e5e0ec",
+            "surface-dim": "#ddd8e4",
+            "surface-bright": "#fdf8ff",
+            "tertiary": "#735724",
+            "on-primary-fixed": "#1f1342",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-primary-fixed-variant": "#4b3f70",
+            "secondary-fixed-dim": "#edb8ce",
+            "surface-container-high": "#ebe6f2",
+            "background": "#fdf8ff",
+            "surface": "#fdf8ff",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-primary-container": "#fffbff",
+            "surface-container-low": "#f7f1fe",
+            "secondary-fixed": "#ffd8e7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "surface-container": "#f1ecf8",
+            "inverse-primary": "#cdbef8",
+            "on-surface": "#1c1a23",
+            "on-secondary-fixed-variant": "#623b4d",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-container": "#8e703a",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#7b5164",
+            "surface-tint": "#63578a",
+            "inverse-on-surface": "#f4effb",
+            "secondary-container": "#ffc8df",
+            "primary-fixed-dim": "#cdbef8",
+            "inverse-surface": "#312f38",
+            "on-surface-variant": "#48454e",
+            "tertiary-fixed": "#ffdea9",
+            "secondary": "#7c5265",
+            "on-background": "#1c1a23",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e8deff",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e0ec",
+            "outline-variant": "#cac4cf",
+            "on-secondary-fixed": "#301021",
+            "primary-container": "#796da1",
+            "outline": "#79757f",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased flex justify-center items-center min-h-screen p-0 sm:p-4 select-none">
+<!-- Mobile Viewport Container (390 x 844 WeChat Frame) -->
+<div class="relative w-[390px] h-[844px] max-h-screen overflow-hidden bg-surface-container-low shadow-2xl rounded-[40px] border border-outline-variant/30 flex flex-col justify-between">
+<!-- Background Cabin Simulation Layer (Faux Underlay) -->
+<div class="absolute inset-0 z-0 pointer-events-none flex flex-col justify-between bg-surface-bright">
+<!-- WeChat Capsule Bar Area -->
+<div class="pt-10 px-margin flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">小小宇宙</span>
+</div>
+<!-- Mock Mini Program Capsule -->
+<div class="flex items-center bg-surface-container-lowest/80 border border-outline-variant/40 rounded-full py-1 px-2.5 space-x-3 backdrop-blur-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-base" data-icon="more_horiz">more_horiz</span>
+<div class="w-px h-3 bg-outline-variant/60"></div>
+<span class="material-symbols-outlined text-on-surface-variant text-base" data-icon="radio_button_checked">radio_button_checked</span>
+</div>
+</div>
+<!-- Faux Cabin Living Room Scene -->
+<div class="px-margin flex-1 flex flex-col space-y-4 pt-4">
+<!-- Dual Status Card (Shared Component Guidance) -->
+<div class="bg-surface-container-lowest rounded-[20px] p-4 border border-outline-variant/20 shadow-sm flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-semibold">她</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">上海 · 阴天 19°C</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">正在听歌 · 刚刚活跃</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary-container text-2xl" data-icon="headset">headset</span>
+</div>
+<!-- Faux Distance Tracker Card -->
+<div class="bg-primary text-on-primary-container rounded-[20px] p-5 shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm opacity-80">距离下次相见还有</span>
+<span class="font-label-md text-label-md text-tertiary-fixed font-semibold">12 天</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-bold">1,218 公里</div>
+<div class="font-body-sm text-body-sm opacity-70 mt-1">北京 ✈️ 上海 · 慢熬光阴</div>
+</div>
+<!-- Room Scene Placeholder Illustration -->
+<div class="flex-1 rounded-[24px] overflow-hidden relative shadow-inner">
+<img class="w-full h-full object-cover opacity-85" data-alt="A warm, dreamy aesthetic illustration of an intimate, softly lit bedroom cabin at twilight. A cozy plush rug, milk-tea colored cushions, ambient fairy lights, warm wooden nightstand with a steaming ceramic mug and a gentle moonbeam streaming through arched sheer curtained windows. Soft pastel purples, butter-cream tones, and gentle rose quartz glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0PHVbcRTJNpEU8LGUN0eoVEdQ4ZxFzivQHtHWUPKlrB8oCRIDA76jTMfCgaN3euWqQ2SzWyVeLsqSHkCTA6e7ZX5Tiu7TO604Htqc9Yv0EElO_myypA4i8JkB4JQCZ6-v-IxJX2jDu2Cmyy5AgIIuf4RfmfOXewuegWSn8Hca4Nqk8gDG8szLSDD-GM-54K-UbWqIn0P8UpX912Twy7f9Tbe8Da_gcZWWqUmZxo0">
+</div>
+</div>
+<!-- Faux Bottom Safe Padding -->
+<div class="h-20"></div>
+</div>
+<!-- Frosted Backdrop Blur Overlay -->
+<div class="absolute inset-0 z-10 bg-on-surface/40 backdrop-blur-[6px] transition-opacity duration-300"></div>
+<!-- Bottom Sheet Component (Interactive Half-Screen Drawer) -->
+<div class="relative z-20 w-full mt-auto bg-surface-container-lowest/95 backdrop-blur-2xl rounded-t-[32px] border-t border-outline-variant/30 shadow-[0_-12px_40px_rgba(48,55,82,0.18)] flex flex-col max-h-[750px] transition-transform">
+<!-- 1. Top Bar & Drag Handle -->
+<div class="pt-3 pb-2 px-margin flex flex-col items-center">
+<!-- Drawer Pill Handle -->
+<div class="w-10 h-1 bg-outline-variant/60 rounded-full mb-3"></div>
+<div class="w-full flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">今天我的心情如何？</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mt-0.5">选一张心绪卡，悄悄寄给屏幕另一端的TA</p>
+</div>
+<!-- Close Button -->
+<button aria-label="关闭" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Inner Content Area -->
+<div class="overflow-y-auto custom-scrollbar px-margin pt-2 pb-6 space-y-4">
+<!-- 2. Six Mood Cards Grid (2 cols x 3 rows) -->
+<div class="grid grid-cols-2 gap-2.5" id="mood-selector">
+<!-- Card 1: 开心 -->
+<div class="mood-card group cursor-pointer relative p-3 rounded-[18px] bg-[#FFFBF0] border border-[#F2CC8D]/30 transition-all duration-200 active:scale-[0.98] hover:border-tertiary-fixed-dim" data-mood="happy">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed/60 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-xl" data-icon="sentiment_very_satisfied" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
+</div>
+<span class="material-symbols-outlined text-sm text-tertiary-fixed-dim" data-icon="sparkles">arrow_back_ios_new</span>
+</div>
+<div class="mt-2.5">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">开心</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant/90 leading-tight mt-0.5">暖阳黄 · 活力充沛</div>
+</div>
+</div>
+<!-- Card 2: 平静 -->
+<div class="mood-card group cursor-pointer relative p-3 rounded-[18px] bg-[#F3F7FB] border border-[#C5D8EB]/40 transition-all duration-200 active:scale-[0.98] hover:border-[#8EAFCE]" data-mood="calm">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-[#DCEAF8] flex items-center justify-center text-[#4A729A]">
+<span class="material-symbols-outlined text-xl" data-icon="air">air</span>
+</div>
+<span class="material-symbols-outlined text-sm text-[#9BBAD8]" data-icon="cloud">cloud</span>
+</div>
+<div class="mt-2.5">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">平静</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant/90 leading-tight mt-0.5">淡天蓝 · 安宁放松</div>
+</div>
+</div>
+<!-- Card 3: 疲惫 -->
+<div class="mood-card group cursor-pointer relative p-3 rounded-[18px] bg-[#F5F2F7] border border-surface-container-highest/60 transition-all duration-200 active:scale-[0.98] hover:border-outline-variant" data-mood="tired">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="bedtime">bedtime</span>
+</div>
+<span class="material-symbols-outlined text-sm text-outline" data-icon="battery_2_bar">battery_2_bar</span>
+</div>
+<div class="mt-2.5">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">疲惫</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant/90 leading-tight mt-0.5">灰紫云 · 需要充电</div>
+</div>
+</div>
+<!-- Card 4: 想你 (ACTIVE / HIGHLIGHTED) -->
+<div class="mood-card active group cursor-pointer relative p-3 rounded-[18px] bg-[#FFF2F6] border-2 border-[#EAB5CB] shadow-[0_4px_16px_rgba(234,181,203,0.35)] transition-all duration-200 active:scale-[0.98]" data-mood="miss_you">
+<!-- Active Selected Badge -->
+<div class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+</div>
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl text-secondary animate-pulse" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="material-symbols-outlined text-sm text-secondary-fixed-dim" data-icon="flutter">flutter</span>
+</div>
+<div class="mt-2.5">
+<div class="flex items-center space-x-1">
+<span class="font-label-lg text-label-lg font-semibold text-secondary">想你</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim inline-block"></span>
+</div>
+<div class="font-body-sm text-body-sm text-secondary leading-tight mt-0.5 font-medium">扑通心跳 · 迫不及待见TA</div>
+</div>
+</div>
+<!-- Card 5: 需要抱抱 -->
+<div class="mood-card group cursor-pointer relative p-3 rounded-[18px] bg-[#FFF4EF] border border-[#FADBD0]/60 transition-all duration-200 active:scale-[0.98] hover:border-[#E8A590]" data-mood="hug">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-[#FFE4DC] flex items-center justify-center text-[#B05C43]">
+<span class="material-symbols-outlined text-xl" data-icon="diversity_1">diversity_1</span>
+</div>
+<span class="material-symbols-outlined text-sm text-[#E2957E]" data-icon="pan_tool">pan_tool</span>
+</div>
+<div class="mt-2.5">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">需要抱抱</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant/90 leading-tight mt-0.5">奶油珊瑚 · 求安慰</div>
+</div>
+</div>
+<!-- Card 6: 想独处 -->
+<div class="mood-card group cursor-pointer relative p-3 rounded-[18px] bg-[#F1F3F9] border border-[#CED4E5]/50 transition-all duration-200 active:scale-[0.98] hover:border-[#7A88B0]" data-mood="alone">
+<div class="flex items-start justify-between">
+<div class="w-9 h-9 rounded-full bg-[#DEE3F0] flex items-center justify-center text-[#3B486F]">
+<span class="material-symbols-outlined text-xl" data-icon="nightlight" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+</div>
+<span class="material-symbols-outlined text-sm text-[#8795BD]" data-icon="pets">pets</span>
+</div>
+<div class="mt-2.5">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">想独处</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant/90 leading-tight mt-0.5">月下猫咪 · 安静发呆</div>
+</div>
+</div>
+</div>
+<!-- 3. Expanded Whisper Note Input Box -->
+<div id="alone-mood-note" class="bg-[#F1F3F9] border border-[#CED4E5]/50 rounded-[18px] p-3 flex items-start space-x-2.5 transition-all"><span class="material-symbols-outlined text-[#3B486F] text-lg mt-0.5" data-icon="nightlight" style="font-variation-settings: 'FILL' 1;">nightlight</span><div class="flex-1"><div class="font-label-md text-label-md text-[#3B486F] font-semibold flex items-center space-x-1"><span class="">独处模式守护提示</span><span class="text-[11px] font-normal opacity-80">· 专属温柔文案</span></div><p class="font-body-sm text-body-sm text-[#3B486F]/90 mt-0.5 leading-relaxed">“给你属于自己的宁静时间，我不打扰，随时等你想聊。”——爱是靠近，也是懂得退后的温柔守候</p></div></div><div class="bg-surface-container-low rounded-[20px] p-3.5 border border-outline-variant/30 space-y-2 relative transition-all">
+<div class="flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="edit_note">edit_note</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">心情碎碎念 <span class="text-xs text-outline font-normal">(可选)</span></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">18 / 60 字</span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-lowest/80 border-0 rounded-[14px] p-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline/70 focus:ring-1 focus:ring-primary/40 resize-none transition-all" placeholder="写下一句悄悄话给TA...（例：今天喝到了好喝的奶茶，想分你一半）" rows="2">今天喝到了好喝的奶茶，第一反应就是拍照发给你。</textarea>
+</div>
+<!-- Micro Quick Tags for Romantic Context -->
+<div class="flex items-center space-x-1.5 pt-0.5 overflow-x-auto custom-scrollbar">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant text-[11px] font-medium border border-outline-variant/30 flex items-center space-x-1 whitespace-nowrap active:scale-95">
+<span class="">☕ 喝了甜水</span>
+</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-lowest text-on-surface-variant text-[11px] font-medium border border-outline-variant/30 flex items-center space-x-1 whitespace-nowrap active:scale-95">
+<span class="">🎧 听到了你的歌</span>
+</button>
+<button class="px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-secondary text-[11px] font-medium border border-secondary-fixed-dim/40 flex items-center space-x-1 whitespace-nowrap active:scale-95">
+<span class="">✨ 正在看黄昏</span>
+</button>
+</div>
+</div>
+<!-- 4. Toggle Option: Doorplate Sync Switch (Default ON) -->
+<div class="flex items-center justify-between py-1 px-1">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-base" data-icon="cottage">cottage</span>
+</div>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-medium">同步给TA看</div>
+<div class="font-body-sm text-body-sm text-outline">开启后将在小屋门牌实时同步展示你的心绪</div>
+</div>
+</div>
+<!-- iOS / WeChat Style Pill Toggle Switch (Active) -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- 5. Bottom Action Capsule Button -->
+<div class="pt-1">
+<button class="w-full h-12 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-label-lg text-label-lg font-semibold shadow-[0_6px_20px_rgba(96,84,135,0.30)] flex items-center justify-center space-x-2 active:scale-[0.98] transition-all hover:brightness-105" type="button"><span class="material-symbols-outlined text-lg" data-icon="check_circle">check_circle</span><span class="">确认保存</span></button>
+<!-- Bottom Indicator Bar (iOS Home Indicator Alignment) -->
+<div class="pt-3 pb-1 flex justify-center">
+<div class="w-32 h-1 bg-outline-variant/40 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.mood-card');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          cards.forEach(c => {
+            c.classList.remove('active', 'border-2', 'border-[#EAB5CB]', 'shadow-[0_4px_16px_rgba(234,181,203,0.35)]');
+            const badge = c.querySelector('.absolute.-top-1.5.-right-1.5');
+            if (badge) badge.remove();
+          });
+          card.classList.add('active', 'border-2', 'border-[#EAB5CB]', 'shadow-[0_4px_16px_rgba(234,181,203,0.35)]');
+          
+          const newBadge = document.createElement('div');
+          newBadge.className = 'absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm';
+          newBadge.innerHTML = '<span class="material-symbols-outlined text-xs" data-icon="check">check</span>';
+          card.appendChild(newBadge);
+        });
+      });
+    });
+  </script>
+
+
+</body></html>

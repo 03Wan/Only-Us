@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>我们的故事 - 小小宇宙</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e5e0ec",
+            "tertiary-fixed": "#ffdea9",
+            "secondary-fixed-dim": "#edb8ce",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#623b4d",
+            "surface": "#fdf8ff",
+            "on-background": "#1c1a23",
+            "on-error": "#ffffff",
+            "tertiary": "#735724",
+            "surface-tint": "#63578a",
+            "on-secondary-container": "#7b5164",
+            "on-surface": "#1c1a23",
+            "surface-container-low": "#f7f1fe",
+            "tertiary-container": "#8e703a",
+            "outline-variant": "#cac4cf",
+            "secondary-fixed": "#ffd8e7",
+            "surface-container": "#f1ecf8",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f4effb",
+            "on-tertiary-container": "#fffbff",
+            "on-secondary-fixed": "#301021",
+            "surface-variant": "#e5e0ec",
+            "on-primary-fixed-variant": "#4b3f70",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-surface-variant": "#48454e",
+            "primary": "#605487",
+            "surface-container-high": "#ebe6f2",
+            "inverse-primary": "#cdbef8",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "secondary": "#7c5265",
+            "on-primary-container": "#fffbff",
+            "on-primary-fixed": "#1f1342",
+            "primary-fixed-dim": "#cdbef8",
+            "surface-bright": "#fdf8ff",
+            "on-tertiary-fixed": "#271900",
+            "background": "#fdf8ff",
+            "primary-container": "#796da1",
+            "primary-fixed": "#e8deff",
+            "outline": "#79757f",
+            "error-container": "#ffdad6",
+            "surface-dim": "#ddd8e4",
+            "inverse-surface": "#312f38",
+            "error": "#ba1a1a",
+            "secondary-container": "#ffc8df"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #fdf8ff;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .timeline-stem::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 24px;
+      bottom: -28px;
+      width: 2px;
+      background: linear-gradient(180deg, #edb8ce 0%, #cac4cf 80%, rgba(202, 196, 207, 0.2) 100%);
+    }
+    .polaroid-tape {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58px;
+      height: 16px;
+      background: rgba(255, 235, 240, 0.75);
+      border: 1px dashed rgba(234, 181, 203, 0.6);
+      backdrop-filter: blur(2px);
+    }
+    .custom-scroll-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scroll-hidden {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Mobile Container Mockup (390px WeChat Mini Program viewport) -->
+<div class="w-full max-w-[412px] bg-background min-h-screen flex flex-col relative pb-28 shadow-2xl overflow-x-hidden">
+<!-- Top Navigation Anchor (Shared Component: TopAppBar) -->
+<header class="fixed top-0 left-0 w-full max-w-[412px] z-50 flex items-center justify-between px-space-md pt-space-xl pb-space-sm bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:opacity-80 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<span class="text-headline-sm font-headline-sm text-primary font-semibold tracking-wide">小小宇宙</span>
+</div>
+<!-- WeChat Capsule Simulation Area -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container/70 border border-outline-variant/30">
+<button class="text-on-surface-variant hover:opacity-80 active:scale-95 transition-transform p-0.5">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+<div class="w-[1px] h-3.5 bg-outline-variant/50"></div>
+<button class="text-on-surface-variant hover:opacity-80 active:scale-95 transition-transform p-0.5">
+<span class="material-symbols-outlined text-[16px]">trip_origin</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas (Scrollable Memories Journal) -->
+<main class="flex-1 px-margin pt-[92px] space-y-5">
+<!-- Hero Cover & Header -->
+<section class="relative rounded-3xl overflow-hidden bg-surface-container-lowest border border-outline-variant/20 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)]">
+<!-- Ambient Stars & Moon Decor -->
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A warm hand-drawn whimsical storybook illustration of an affectionate young couple sitting closely under a gentle violet twilight sky filled with delicate glowing moonbeams and twinkling warm stars. The aesthetic is dreamy, nostalgic, and quiet, painted with pastel watercolors in soft cream, lavender, and gentle dusty sakura pink tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGlBpOLYcNsJRcEnyTCu5KTt4rMMkZvyKy5YSZxsiTQhEMKax6lRRikL5Mqu2M_sKOQOlhK2pWrUPDkOpf3V7vTkK2c0WAMEf2DpBLlLAfwE0FaUfSGq9utrD98LKvYmVUsqnvfMYL7uHN6xyQqqy0XEgd3G4gyTsT5IzYisQSC7jox_i3hGqwignvhXRwOBGupLPI3QGX-vQLPoqov_0JPfXHjdp3Q_tYpoc5kIA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<!-- Floating Journal Badge -->
+<div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md border border-secondary-fixed/50 flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[14px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-label-sm font-label-sm text-secondary">私人手账 · 专属记忆</span>
+</div>
+<div class="absolute top-3.5 right-3.5 w-7 h-7 rounded-full bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[16px]">bookmark_heart</span>
+</div>
+</div>
+<div class="p-space-md pt-1">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim shadow-[0_0_8px_rgba(234,181,203,0.8)]"></span>
+<span class="text-label-md font-label-md text-primary tracking-widest">CHAPTER · OUR MEMORIES</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight">我们的故事</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">写在时光里的每一页，都是爱你的证明。</p>
+</div>
+</section>
+<!-- Core Anniversary Section: Bento Grid -->
+<section class="space-y-3">
+<!-- 520 Days Main Hero Card -->
+<div class="relative rounded-3xl p-5 bg-gradient-to-br from-[#303752] to-[#24283c] text-surface overflow-hidden shadow-[0_10px_28px_-4px_rgba(48,55,82,0.15)]">
+<!-- Background Atmospheric Glow -->
+<div class="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-secondary-fixed-dim/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-8 -left-8 w-36 h-36 rounded-full bg-primary-fixed-dim/20 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-2">
+<span class="material-symbols-outlined text-[14px] text-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-sm font-label-sm text-surface-container-highest tracking-wide">漫长岁月的刻度</span>
+</div>
+<h2 class="text-headline-sm font-headline-sm text-surface/90">相恋第</h2>
+<div class="flex items-baseline gap-2 my-1">
+<span class="text-[44px] font-display-lg text-tertiary-fixed tracking-tight leading-none drop-shadow-sm font-bold">520</span>
+<span class="text-body-lg font-body-lg text-surface-variant">天</span>
+</div>
+</div>
+<!-- Animated Soft Floating Seal -->
+<div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col items-center justify-center p-1.5 text-center shadow-inner">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-[10px] text-tertiary-fixed font-semibold tracking-tighter mt-0.5">FOREVER</span>
+</div>
+</div>
+<div class="relative z-10 pt-3 border-t border-white/10 flex items-center justify-between text-body-sm font-body-sm text-surface-variant/80">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary-fixed-dim">schedule</span>
+              距下一个年鉴还有 245 天
+            </span>
+<span class="text-tertiary-fixed text-label-sm font-label-sm tracking-wider">愿岁岁相伴 ✦</span>
+</div>
+</div>
+<!-- 4 Key Anniversaries Grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col justify-between hover:border-primary-fixed-dim transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant/80">初遇契机</span>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+</div>
+</div>
+<div>
+<div class="text-headline-sm font-headline-sm text-on-surface">初次相识</div>
+<div class="text-label-md font-label-md text-primary mt-0.5 tracking-tight">2023.11.17</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-secondary-fixed/40 shadow-sm flex flex-col justify-between hover:border-secondary transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-secondary">告白纪念</span>
+<div class="w-6 h-6 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div>
+<div class="text-headline-sm font-headline-sm text-on-surface">正式在一起</div>
+<div class="text-label-md font-label-md text-secondary mt-0.5 tracking-tight">2023.12.28</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col justify-between hover:border-primary-fixed-dim transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant/80">百日光阴</span>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">celebration</span>
+</div>
+</div>
+<div>
+<div class="text-headline-sm font-headline-sm text-on-surface">百天纪念</div>
+<div class="text-label-md font-label-md text-primary mt-0.5 tracking-tight">2024.04.06</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-3.5 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col justify-between hover:border-primary-fixed-dim transition-colors">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant/80">四季轮转</span>
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[14px]">cake</span>
+</div>
+</div>
+<div>
+<div class="text-headline-sm font-headline-sm text-on-surface">周岁年鉴</div>
+<div class="text-label-md font-label-md text-primary mt-0.5 tracking-tight">2024.12.28</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Scrapbook Timeline Divider Title -->
+<div class="pt-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface tracking-wide">时光胶囊 · 历历在目</h2>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70 bg-surface-container px-2.5 py-1 rounded-full">5 个专属篇章</span>
+</div>
+<!-- Core Content: Vertical Scrapbook Timeline -->
+<section class="relative space-y-6 pl-2 pr-1">
+<!-- TIMELINE ITEM 1: 初次相识 -->
+<article class="relative flex items-start gap-3.5 timeline-stem">
+<!-- Timeline Marker -->
+<div class="relative z-10 w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center shadow-sm flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+</div>
+<!-- Memory Scrapbook Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/25 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] relative">
+<div class="polaroid-tape"></div>
+<div class="flex items-center justify-between mt-1 mb-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-surface-container text-primary font-semibold">2023.11.17</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/60">晴 · 图书馆</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-1">初次相识</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3 leading-relaxed">
+              在图书馆三楼文学区的转角，我们同时伸手拿了那一本《小王子》。你微笑着说：“你先看吧”，那一刻午后的阳光刚好落在书页上。
+            </p>
+<!-- Vintage Film Polaroid Style Frame -->
+<div class="rounded-2xl p-2.5 bg-surface-container-low border border-outline-variant/30 shadow-inner">
+<div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A warm vintage film photography style shot of a cozy quiet university library aisle with tall wooden shelves of antique books, soft golden afternoon sunlight streaming through tall glass windows, creating dust motes in the air, nostalgic tranquil warm tones of cream, honey gold and soft amber." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDeE465P8kJmVytGMmv2-fJNLIlSH6Aif8C4m1djAF4Fc9xyIBJroNuGdq7cToXy3xSHT5_m3fBD7Sxbu1y2qBw1ziSbqA_nvGPR6sMKiA4J6vmiuGc2so99qLRCoh1XGORBPu53JIlY3y_YJieWvK7PvW8ffDCfjj1bOaSqPi88VaVHMd8pU-XYRPZa7JhTqlROl-oTzaV--5BsuJNyOabTXaZazMDMPGSHBpuFiE')"></div>
+<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-white text-[10px] tracking-widest font-mono">
+                  ’23 11 17
+                </div>
+</div>
+<div class="pt-2 px-1 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="italic font-serif">“借出的不仅是书，还有整颗心。”</span>
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+</div>
+</article>
+<!-- TIMELINE ITEM 2: 正式在一起 -->
+<article class="relative flex items-start gap-3.5 timeline-stem">
+<!-- Timeline Marker -->
+<div class="relative z-10 w-9 h-9 rounded-full bg-secondary-fixed border-2 border-secondary flex items-center justify-center shadow-sm flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<!-- Memory Scrapbook Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-3xl p-4 border border-secondary-fixed/50 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] relative">
+<div class="polaroid-tape"></div>
+<div class="flex items-center justify-between mt-1 mb-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed/60 text-secondary font-semibold">2023.12.28</span>
+<span class="text-label-sm font-label-sm text-secondary font-medium">冬夜 · 跨年江边</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-1">正式在一起</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3 leading-relaxed">
+              零点烟花在江面升起的瞬间，江风很冷，你把手放进了我的大衣口袋，转过头问我：“以后每个新年，都一起看烟花好不好？”
+            </p>
+<!-- Memory Photo & Warm Sticky Tag -->
+<div class="rounded-2xl p-2.5 bg-surface-container-low border border-outline-variant/30">
+<div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A romantic night photography shot capturing a couple hugging and smiling warmly against dazzling golden celebratory fireworks in the night sky over a sparkling river, glowing ambient sparklers, creamy warm cinematic lighting, intimate joy and soft lavender night colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJRyQ78GKRmd6kOtaG2sj0WY9Wpp5IBOeiySEXAsKMbZ1tZeSVEseaIF4nfpQ99PqbnG4ii85phjHG70nP18iSPbmyMx9OzvyuxicYTcNlcOJZ7-Q037VIOenICl0NlfS3RiEcviYnEjLADebHykkGQ_yIdJvwfWQ1Wuh0JToycTWLxoWqjuDrg7yDslUPPGMtqQecqckUxXDLUKt0IuHreuU31Z6TQXTi-4xAbOg')"></div>
+<!-- Yellow Memory Tag -->
+<div class="absolute top-2 left-2 bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-lg text-label-sm font-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_fire_department</span>
+<span>最暖的冬天</span>
+</div>
+</div>
+<div class="pt-2 px-1 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-secondary font-medium">心跳比烟花的声音还要响亮。</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/60">00:00 · 纪念日成立</span>
+</div>
+</div>
+</div>
+</article>
+<!-- TIMELINE ITEM 3: 第一次约会 -->
+<article class="relative flex items-start gap-3.5 timeline-stem">
+<!-- Timeline Marker -->
+<div class="relative z-10 w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center shadow-sm flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>
+</div>
+<!-- Memory Scrapbook Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/25 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] relative">
+<div class="polaroid-tape"></div>
+<div class="flex items-center justify-between mt-1 mb-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-surface-container text-primary font-semibold">2024.01.15</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/60">蔚蓝 · 极地海洋世界</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-1">第一次约会</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3 leading-relaxed">
+              在巨大的水母发光缸前静静站了半小时，荧光泛在你的眼睛里。我们悄悄保存好了这两张门票票根，夹在手账的第一页。
+            </p>
+<div class="rounded-2xl p-2.5 bg-surface-container-low border border-outline-variant/30 space-y-2">
+<!-- Blue Jellyfish Photo -->
+<div class="rounded-xl overflow-hidden aspect-[16/9] relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A dreamy atmospheric aquarium photo showing a silhouette of a couple holding hands in front of an immense deep ocean blue tank illuminated by floating ethereal translucent glowing jellyfish, tranquil deep indigo and soft bioluminescent cyan tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaOhlN0OkO8Ox2MFHeHIt8dbJM06CAzQ6f0TSjXvQPEapvk5sEaMFIkVAOrYLfyT8E0a2FAXp8pVIamkrjbifP7XXqkNmqNSAll83DlwtpHAizio6oWMZOXiOOk9Bu4ZlZVC5jZJvghV9XjBmK6hSttu7OFLxhxISWxAC7IwsE9BXxcjXxwxIl0AT4RnKD4GitpRBH0RiXPnVr0f7yoEPLMvR2fvu9gmqB8_Y-1-w')"></div>
+</div>
+<!-- Ticket Stubs Replica -->
+<div class="p-2.5 rounded-xl bg-surface-container-lowest border border-dashed border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">confirmation_number</span>
+<div>
+<div class="text-label-sm font-label-sm text-on-surface">极地水族馆情侣通票 ×2</div>
+<div class="text-[10px] text-on-surface-variant/70 font-mono">NO. 20240115-089A · 留存收藏</div>
+</div>
+</div>
+<div class="text-[11px] font-semibold text-primary px-2 py-1 rounded bg-surface-container">已验票 ♥</div>
+</div>
+</div>
+</div>
+</article>
+<!-- TIMELINE ITEM 4: 第一次长途旅行 -->
+<article class="relative flex items-start gap-3.5 timeline-stem">
+<!-- Timeline Marker -->
+<div class="relative z-10 w-9 h-9 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center shadow-sm flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]">pedal_bike</span>
+</div>
+<!-- Memory Scrapbook Card -->
+<div class="flex-1 bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/25 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] relative">
+<div class="polaroid-tape"></div>
+<div class="flex items-center justify-between mt-1 mb-2">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded-full bg-surface-container text-primary font-semibold">2024.08.12</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/60">晴空 · 大理双廊</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-1">第一次长途旅行</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-3 leading-relaxed">
+              租了一辆双人自行车环洱海骑行。下午六点的风带着水草的清香，夕阳把波光和影子拉得特别长，那一刻真想时光就此停住。
+            </p>
+<div class="rounded-2xl p-2.5 bg-surface-container-low border border-outline-variant/30">
+<div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="An editorial aesthetic travel photo of a couple cycling together along the scenic lakeside highway at Erhai Lake in Dali, golden hour sunset reflecting in shimmering water, rolling mountains in the distance, warm orange amber and lavender sky, romantic quiet peaceful atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBrE2pzKiEKBqo8U6FVK5GtaHq9VlfhAY7FgWjHCQOMN1t7j-WPCjpKLqUs_hKpXycSdWpdN_7SKxvOkgXJ5FhoKa3boSV7633K991Utca6b8kVcy0HYBc_C7njAAq8Ke9rfzVoyrHTTnqiG0OUsZWaLOntOAZJO9wmnU8uVzRrBOwQ9xZymcu0DcFptpadabNzc6Si5ZnXAAUR8oAY7vaPKur-CWTIJLUCLYgebA')"></div>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-black/40 backdrop-blur-sm text-white text-[10px]">
+                  云南 · 洱海生态廊道
+                </div>
+</div>
+<div class="pt-2 px-1 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>“风吹过洱海，也吹红了你的脸颊。”</span>
+<span class="material-symbols-outlined text-primary text-[16px]">explore</span>
+</div>
+</div>
+</div>
+</article>
+<!-- TIMELINE ITEM 5: 未来更多回忆 · 待续... -->
+<article class="relative flex items-start gap-3.5">
+<!-- Timeline Marker with Glowing Aura -->
+<div class="relative z-10 w-9 h-9 rounded-full bg-gradient-to-tr from-secondary-fixed to-primary-fixed border-2 border-primary-fixed-dim flex items-center justify-center shadow-[0_0_12px_rgba(234,181,203,0.7)] flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">door_open</span>
+</div>
+<!-- Lyrical Future Door Card -->
+<div class="flex-1 bg-gradient-to-b from-surface-container-lowest to-surface-container-low rounded-3xl p-5 border border-dashed border-secondary-fixed-dim shadow-[0_4px_24px_-2px_rgba(234,181,203,0.25)] relative overflow-hidden">
+<!-- Ambient Door Halo -->
+<div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="flex items-center gap-1.5 mb-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+<span class="text-label-sm font-label-sm text-secondary font-semibold uppercase tracking-wider">Chapter NEXT · TO BE CONTINUED</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface font-semibold mb-1">未来更多回忆 · 待续...</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-4 leading-relaxed">
+              还有春天的赏樱约定、下个冬天的初雪热可可，以及我们未完待续的漫长岁月。
+            </p>
+<!-- Illustrated Luminous Half-Open Wooden Door -->
+<div class="rounded-2xl p-4 bg-surface-container/60 border border-secondary-fixed/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-secondary shadow-sm border border-secondary-fixed/40">
+<span class="material-symbols-outlined text-[26px]">sensor_door</span>
+</div>
+<div>
+<div class="text-label-lg font-label-lg text-on-surface">一扇通向未来的小门</div>
+<div class="text-body-sm font-body-sm text-secondary">光芒一直在里面等你</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center hover:opacity-80 active:scale-95 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- Bottom Breathing Quote -->
+<div class="py-6 text-center space-y-1">
+<p class="text-body-sm font-body-sm text-on-surface-variant/60 font-serif italic">“时间会带走许多，却将爱一笔一划雕刻进生命。”</p>
+<div class="flex items-center justify-center gap-1 text-[11px] text-primary/70">
+<span>小小宇宙</span>
+<span>✦</span>
+<span>专属二人空间</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component: BottomNavBar) -->
+<!-- Destination count: 5. Active item: 我们 (Fifth item) -->
+<nav class="fixed bottom-0 left-0 w-full max-w-[412px] z-50 flex justify-around items-center px-space-sm pt-space-sm pb-space-md bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0_-4px_20px_-2px_rgba(145,132,186,0.08)]">
+<!-- Tab 1: 小屋 -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[22px]">cottage</span>
+<span class="text-label-sm font-label-sm mt-0.5">小屋</span>
+</button>
+<!-- Tab 2: 瞬间 -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[22px]">photo_library</span>
+<span class="text-label-sm font-label-sm mt-0.5">瞬间</span>
+</button>
+<!-- Tab 3: 信箱 -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[22px]">mail</span>
+<span class="text-label-sm font-label-sm mt-0.5">信箱</span>
+</button>
+<!-- Tab 4: 见面 -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[22px]">flight_takeoff</span>
+<span class="text-label-sm font-label-sm mt-0.5">见面</span>
+</button>
+<!-- Tab 5: 我们 (ACTIVE TAB) -->
+<button class="flex flex-col items-center justify-center text-primary font-semibold relative after:content-[''] after:w-1.5 after:h-1.5 after:rounded-full after:bg-secondary-fixed-dim after:mt-1 after:shadow-[0_0_8px_rgba(234,181,203,0.6)] active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">diversity_1</span>
+<span class="text-label-sm font-label-sm mt-0.5">我们</span>
+</button>
+</nav>
+</div>
+</body></html>

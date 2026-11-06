@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>写一封信 - 月亮邮局</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans & Noto Serif SC for romantic editorial feel -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "primary": "#605487",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e5e0ec",
+            "surface-dim": "#ddd8e4",
+            "surface-bright": "#fdf8ff",
+            "tertiary": "#735724",
+            "on-primary-fixed": "#1f1342",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-primary-fixed-variant": "#4b3f70",
+            "secondary-fixed-dim": "#edb8ce",
+            "surface-container-high": "#ebe6f2",
+            "background": "#fdf8ff",
+            "surface": "#fdf8ff",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-primary-container": "#fffbff",
+            "surface-container-low": "#f7f1fe",
+            "secondary-fixed": "#ffd8e7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "surface-container": "#f1ecf8",
+            "inverse-primary": "#cdbef8",
+            "on-surface": "#1c1a23",
+            "on-secondary-fixed-variant": "#623b4d",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-container": "#8e703a",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#7b5164",
+            "surface-tint": "#63578a",
+            "inverse-on-surface": "#f4effb",
+            "secondary-container": "#ffc8df",
+            "primary-fixed-dim": "#cdbef8",
+            "inverse-surface": "#312f38",
+            "on-surface-variant": "#48454e",
+            "tertiary-fixed": "#ffdea9",
+            "secondary": "#7c5265",
+            "on-background": "#1c1a23",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e8deff",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e0ec",
+            "outline-variant": "#cac4cf",
+            "on-secondary-fixed": "#301021",
+            "primary-container": "#796da1",
+            "outline": "#79757f",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "serif-letter": ["Noto Serif SC", "serif"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+    }
+    
+    /* Paper ruled lines */
+    .ruled-paper {
+      background-image: repeating-linear-gradient(
+        transparent,
+        transparent 27px,
+        rgba(121, 117, 127, 0.12) 27px,
+        rgba(121, 117, 127, 0.12) 28px
+      );
+      line-height: 28px;
+    }
+
+    /* Soft ambient subtle noise simulation */
+    .cotton-texture {
+      background-color: #fbf7f2;
+      box-shadow: 0 12px 36px -4px rgba(96, 84, 135, 0.08), 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Soft scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#f5eff9] text-on-surface antialiased font-body-md flex justify-center min-h-screen">
+<!-- Mobile Simulator Canvas Container (390px fixed container for preview integrity) -->
+<div class="w-full max-w-[390px] min-h-[844px] bg-[#f8f3fa] relative flex flex-col shadow-2xl overflow-x-hidden pb-28">
+<!-- Top Glow Overlay -->
+<div class="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-[#eadbef]/50 to-transparent pointer-events-none"></div>
+<!-- 1. Top App Bar / WeChat Custom Nav Header -->
+<header class="sticky top-0 z-40 bg-[#f8f3fa]/85 backdrop-blur-md px-4 pt-11 pb-3 flex items-center justify-between transition-all">
+<!-- Back Arrow -->
+<button aria-label="返回" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<!-- Center Title -->
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">写给未来的信</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-0.5 opacity-90">
+<span class="material-symbols-outlined text-[11px]" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+          月亮邮局 · 待寄出
+        </span>
+</div>
+<!-- Save Draft Button -->
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high/80 text-primary hover:bg-surface-container-highest text-label-md font-label-md flex items-center gap-1 border border-outline-variant/30 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[15px]">edit_note</span>
+        存草稿
+      </button>
+</header>
+<!-- Content Stream -->
+<main class="px-4 pt-2 flex flex-col gap-4 relative z-10">
+<!-- 2. Paper Themes Tab Capsules -->
+<section aria-label="信纸主题选择" class="pt-1">
+<div class="flex items-center justify-between mb-2 px-1">
+<span class="font-label-md text-label-md text-on-surface-variant/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">palette</span>
+            信纸笺样
+          </span>
+<span class="text-[11px] text-outline font-normal">已选用天然纤维纸</span>
+</div>
+<div class="grid grid-cols-3 gap-2 p-1 bg-surface-container/60 rounded-2xl border border-outline-variant/20 backdrop-blur-sm">
+<!-- Theme 1: 月牙星梦 -->
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 hover:bg-surface-container-highest/60 text-on-surface-variant group">
+<div class="w-5 h-5 rounded-full bg-gradient-to-tr from-[#605487] to-[#edb8ce] mb-1 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-white text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-label-sm font-medium">月牙星梦</span>
+</button>
+<!-- Theme 2: 落日余晖 -->
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 hover:bg-surface-container-highest/60 text-on-surface-variant group">
+<div class="w-5 h-5 rounded-full bg-gradient-to-br from-[#ffd8e7] via-[#ffdea9] to-[#7c5265] mb-1 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-white text-[12px]" style="font-variation-settings: 'FILL' 1;">wb_twilight</span>
+</div>
+<span class="font-label-sm text-label-sm font-medium">落日余晖</span>
+</button>
+<!-- Theme 3: 手作棉纸 (Active) -->
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-surface-container-lowest text-primary shadow-sm border border-secondary-fixed-dim/40 relative">
+<div class="w-5 h-5 rounded-full bg-[#e8ded3] mb-1 flex items-center justify-center border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold">手作棉纸</span>
+<div class="absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>
+</button>
+</div>
+</section>
+<!-- 3. Exquisite Letter Paper Writing Area -->
+<section class="cotton-texture rounded-3xl p-5 border border-[#e8ded3]/80 relative overflow-hidden transition-shadow duration-300">
+<!-- Postal Stamp / Postmark Watermark -->
+<div class="absolute top-4 right-4 pointer-events-none select-none opacity-40 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full border-2 border-dashed border-primary flex flex-col items-center justify-center rotate-[-12deg] p-1">
+<span class="text-[8px] tracking-widest text-primary uppercase font-bold">MOON POST</span>
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">markunread_mailbox</span>
+<span class="text-[7px] text-primary mt-0.5">2025.SPEC</span>
+</div>
+</div>
+<!-- Inner Parchment Header: Salutation -->
+<div class="mb-3 pt-1 space-y-2"><div class="flex items-center justify-between"><div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f2eae0] border border-[#e2d6c7] text-[#554a3e]"><span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span><span class="font-serif-letter text-[14px] font-semibold tracking-wide">致亲爱的念念：</span></div><span class="text-[11px] text-[#8e8275] font-serif-letter bg-[#f8f3fa]/85 px-2 py-0.5 rounded-full border border-[#e8ded3]/80">寄件人：小林</span></div><div class="flex items-center gap-2 text-[11px] text-[#8e8275] px-1 font-serif-letter"><span class="">写于 2024.05.20</span><span class="">·</span><span class="">预定开启：2025.06.01 儿童节</span></div></div>
+<!-- Letter Title Input -->
+<div class="mb-3 border-b border-[#ebdcca]/80 pb-2">
+<input class="w-full bg-transparent border-0 p-0 font-serif-letter font-headline-sm text-headline-sm text-on-surface placeholder:text-outline/50 focus:ring-0 focus:outline-none" placeholder="写下这封信的名字..." type="text" value="念念，这是写给五百天后的我们">
+</div>
+<!-- Ruled Paper Body Lines Area -->
+<div class="relative ruled-paper font-serif-letter min-h-[220px]">
+<textarea class="w-full bg-transparent border-0 p-0 text-on-surface text-[15px] leading-[28px] resize-none focus:ring-0 focus:outline-none font-serif-letter placeholder:text-[#9c9388]/60" placeholder="有些话当面说不出口，就让文字随月亮慢慢寄给你..." rows="7">今天走在回家的林荫路上，路灯突然亮起的那一瞬，我下意识想要掏出手机拍给你看。
+异地的这半年，距离被拉得很长，但又好像每次抬头看见同一个月牙，你就靠在我身边。
+把这些零碎又温柔的想法收进时光信箱，等儿童节我们见面的时候，亲手为你拆开。</textarea>
+</div>
+<!-- Letter Footer Widgets: Word Count & Romantic Sticker Insert -->
+<div class="mt-4 pt-3 border-t border-[#ebdcca]/80 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Mood Sticker Trigger -->
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#f1e6d9] hover:bg-[#ebdcca] text-[#6d5f50] text-label-md font-label-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-[15px] text-[#b3637e]" style="font-variation-settings: 'FILL' 1;">mood</span>
+<span class="">附上思念贴纸</span>
+</button>
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center text-[12px] shadow-xs cursor-pointer">
+              🌸
+            </div>
+</div>
+<!-- Word Count -->
+<div class="flex items-center gap-1 text-[11px] text-[#8e8275] font-serif-letter">
+<span class="material-symbols-outlined text-[13px]">ink_pen</span>
+<span class="">186 字</span>
+</div>
+</div>
+</section>
+<!-- 4. Delivery Mode & Capsule Time Setting Module -->
+<section class="bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/30 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] flex flex-col gap-3.5">
+<!-- Module Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[17px]">schedule_send</span>
+</div>
+<span class="font-headline-sm text-[16px] text-on-surface font-semibold">投递与封印方式</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary-fixed/40 px-2 py-0.5 rounded-full font-medium">双向加密密信</span>
+</div>
+<!-- Delivery Modes Radio Selector -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Option A: 立即送达 -->
+<div class="p-3 rounded-2xl border border-outline-variant/40 bg-surface flex flex-col justify-between cursor-pointer opacity-75 hover:opacity-100 transition-all">
+<div class="flex items-start justify-between mb-1">
+<div class="w-4 h-4 rounded-full border border-outline flex items-center justify-center">
+<!-- unchecked dot -->
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline">forward_to_inbox</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">立即送达</p>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">封缄即寄，开封即读</p>
+</div>
+</div>
+<!-- Option B: 未来开启 (Selected) -->
+<div class="p-3 rounded-2xl border-2 border-primary bg-primary-fixed/20 flex flex-col justify-between cursor-pointer relative shadow-sm">
+<div class="flex items-start justify-between mb-1">
+<div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[12px] font-bold">check</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-primary font-bold leading-tight">未来开启</p>
+<p class="font-body-sm text-[11px] text-primary/80 mt-0.5">时光胶囊 · 约定之期</p>
+</div>
+</div>
+</div>
+<!-- Unlocking Date Picker Card -->
+<div class="rounded-2xl p-3.5 bg-gradient-to-r from-[#2c2938] to-[#3a354c] text-white flex items-center justify-between shadow-md relative overflow-hidden">
+<!-- Background starlight accent -->
+<div class="absolute right-0 top-0 bottom-0 w-32 bg-radial from-secondary-fixed/15 to-transparent pointer-events-none"></div>
+<div class="flex items-center gap-3 z-10">
+<!-- Wax Seal Icon -->
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#9b7228] to-[#f4d187] p-0.5 shadow-md flex items-center justify-center shrink-0">
+<div class="w-full h-full rounded-full bg-[#6a4f1a] flex items-center justify-center border border-[#ffdea9]/40">
+<span class="material-symbols-outlined text-[#ffd885] text-[20px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-[11px] text-[#ffdea9] tracking-wider uppercase font-semibold">胶囊封缄日期</span>
+<span class="w-1 h-1 rounded-full bg-[#ffdea9]/60"></span>
+<span class="text-[11px] text-white/70">倒计时 68 天</span>
+</div>
+<div class="font-headline-sm text-[15px] font-semibold text-white tracking-tight mt-0.5 flex items-center gap-1">
+<span class="">2025年06月01日</span>
+<span class="text-[12px] font-normal text-[#edb8ce]">儿童节见面前夜 🌙</span>
+</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/90 z-10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</button>
+</div>
+</section>
+<!-- Romantic Hint Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/30 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] flex flex-col gap-3"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-xl bg-primary-fixed flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[17px]">timeline</span></div><span class="font-headline-sm text-[15px] text-on-surface font-semibold">信件时光生命周期</span></div><span class="text-[11px] text-primary/80 bg-primary-fixed/20 px-2 py-0.5 rounded-full font-medium">当前：第 3 阶段</span></div><div class="grid grid-cols-5 gap-1.5 pt-1 text-center"><div class="flex flex-col items-center gap-1 opacity-60"><div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant text-[12px]"><span class="material-symbols-outlined text-[15px]">edit_note</span></div><span class="text-[10px] leading-tight text-on-surface-variant font-medium">① 草稿箱</span></div><div class="flex flex-col items-center gap-1 opacity-60"><div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant text-[12px]"><span class="material-symbols-outlined text-[15px]">send</span></div><span class="text-[10px] leading-tight text-on-surface-variant font-medium">② 立即寄出</span></div><div class="flex flex-col items-center gap-1 relative"><div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-[12px] shadow-sm"><span class="material-symbols-outlined text-[15px]">hourglass_top</span></div><span class="text-[10px] leading-tight text-primary font-bold">③ 封印倒计</span><span class="w-1 h-1 rounded-full bg-primary mt-0.5"></span></div><div class="flex flex-col items-center gap-1 opacity-60"><div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant text-[12px]"><span class="material-symbols-outlined text-[15px]">lock_open</span></div><span class="text-[10px] leading-tight text-on-surface-variant font-medium">④ 到期开启</span></div><div class="flex flex-col items-center gap-1 opacity-60"><div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant text-[12px]"><span class="material-symbols-outlined text-[15px]">bookmark_heart</span></div><span class="text-[10px] leading-tight text-on-surface-variant font-medium">⑤ 永久珍藏</span></div></div><div class="mt-1 p-2.5 rounded-xl bg-surface-container/60 border border-outline-variant/20 flex items-center justify-between"><span class="text-[12px] text-on-surface-variant">状态说明：未来封印倒计时中（68天后可开启）</span><span class="material-symbols-outlined text-[16px] text-primary">verified</span></div></section><section class="bg-surface-container-lowest rounded-3xl p-4 border border-outline-variant/30 flex flex-col gap-2.5"><div class="flex items-center justify-between"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">notifications_active</span><span class="text-[13px] font-semibold text-on-surface">状态反馈演示</span></div><span class="text-[11px] text-outline">轻量 Toast 规范</span></div><div class="flex flex-col gap-2"><div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-high/80 border border-outline-variant/30 text-[12px]"><div class="flex items-center gap-2 text-on-surface"><span class="material-symbols-outlined text-primary text-[16px]">check_circle</span><span class="">信件已封缄并投入月亮时光胶囊（成功）</span></div><span class="text-[10px] text-primary font-medium bg-white/70 px-2 py-0.5 rounded-full">已寄出</span></div><div class="flex items-center justify-between p-2 rounded-xl bg-[#f8f3fa] border border-outline-variant/20 text-[11px] text-on-surface-variant"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[15px]">save</span><span class="">草稿已自动暂存至本地（2024.05.20）</span></div><span class="text-[10px] text-outline">自动保存</span></div><div class="flex items-center justify-between p-2 rounded-xl bg-[#ffdad6]/40 border border-[#ffdad6] text-[11px] text-[#ba1a1a]"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[15px]">error</span><span class="">星轨网络信号微弱，寄出受阻</span></div><button class="px-2 py-0.5 rounded-full bg-[#ba1a1a] text-white text-[10px] font-medium active:scale-95">重试</button></div></div></section><div class="px-2 py-1 flex items-center justify-center gap-2 text-on-surface-variant/70 text-body-sm text-[12px]">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+<span class="">月亮邮局信件将在设定的时刻由星光信使准时派送</span>
+</div>
+</main>
+<!-- 5. Fixed Bottom Primary Action Button -->
+<footer class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto p-4 bg-gradient-to-t from-[#f8f3fa] via-[#f8f3fa]/95 to-transparent z-50 backdrop-blur-xs">
+<button class="w-full h-[52px] rounded-full bg-gradient-to-r from-[#605487] via-[#796da1] to-[#9184ba] text-white font-label-lg text-[16px] font-semibold tracking-wide flex items-center justify-center gap-2 shadow-[0_10px_24px_-4px_rgba(96,84,135,0.4)] active:scale-[0.98] transition-all duration-200 border border-white/25">
+<span class="">寄出信件 · 投递月亮邮筒</span>
+<span class="text-[17px]">📮</span>
+</button>
+<!-- iOS Home Bar Offset -->
+<div class="h-2 w-32 bg-on-surface/20 rounded-full mx-auto mt-3"></div>
+</footer>
+</div>
+
+
+</body></html>

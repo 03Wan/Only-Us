@@ -1,0 +1,36 @@
+{
+  "name": "only-us-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "小小宇宙 Only Us 微信原生小程序",
+  "scripts": {
+    "check:native": "node scripts/check-native.cjs",
+    "assets": "node scripts/prepare-assets.cjs",
+    "assets:optimize": "node scripts/optimize-package-media.cjs",
+    "generate:views": "node scripts/convert-designs.cjs",
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/check-project.cjs && npm run typecheck",
+    "test": "node --test tests/*.test.cjs",
+    "qa:ui": "node scripts/qa-ui.cjs",
+    "qa:flows": "node scripts/qa-flows.cjs",
+    "qa:features": "node scripts/qa-features.cjs",
+    "qa:polish": "node scripts/qa-polish.cjs",
+    "qa:lamp-story": "node scripts/qa-lamp-story.cjs",
+    "qa:cards": "node scripts/qa-card-refinements.cjs",
+    "qa:cabin": "node scripts/qa-cabin-update.cjs",
+    "qa:profile": "node scripts/qa-profile-info.cjs",
+    "qa:data-only": "node scripts/qa-data-only.cjs",
+    "qa:static": "node scripts/qa-static.cjs"
+  },
+  "devDependencies": {
+    "@material-design-icons/svg": "^0.14.15",
+    "@material-symbols/svg-400": "^0.40.0",
+    "cheerio": "^1.1.0",
+    "miniprogram-api-typings": "^5.1.2",
+    "postcss": "^8.5.6",
+    "postcss-selector-parser": "^7.1.0",
+    "sharp": "^0.34.3",
+    "tailwindcss": "3.4.19",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "appid": "touristappid",
+  "projectname": "only-us",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": { "es6": true, "enhance": true, "postcss": true, "minified": true, "useCompilerPlugins": ["typescript"] }
+}

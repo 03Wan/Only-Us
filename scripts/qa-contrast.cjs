@@ -1,0 +1,4 @@
+const fs=require('fs'),assert=require('assert/strict');
+const pairs=[['muted','#6d6676','#fdf8ff'],['body','#60596c','#ffffff'],['primary','#605487','#e8deff'],['secondary','#694253','#edb8ce']];
+const lum=c=>{const a=c.match(/[a-f\d]{2}/gi).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return a[0]*.2126+a[1]*.7152+a[2]*.0722;};
+const values=pairs.map(([name,foreground,background])=>({name,foreground,background,ratio:(Math.max(lum(foreground),lum(background))+.05)/(Math.min(lum(foreground),lum(background))+.05)}));for(const x of values)assert.ok(x.ratio>=4.5,x.name);fs.writeFileSync('docs/qa-contrast.json',JSON.stringify({scope:'Selected shared text/background pairs only; excludes transparency, images and all combinations',values},null,2));console.log('Four selected shared text/background pairs meet 4.5:1.');

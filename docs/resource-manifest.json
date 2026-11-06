@@ -1,0 +1,1582 @@
+{
+  "pages": [
+    {
+      "id": 1,
+      "key": "moments",
+      "title": "平行时刻",
+      "route": "pages/moments/index",
+      "tab": 1,
+      "source": "stitch_only_us/_1/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_1/screen.png",
+          "sha256": "46ea0702502f22d58946751b7ea1651028f2ac68c3c88f5c7a7a7cd022dcfbcd"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "平行时刻",
+        "历史记录时间轴"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "favorite",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "按月筛选 expand_more",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "favorite",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "favorite",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_camera 记录今天 / 拍下此刻 flare",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 2,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "location_on",
+        "wb_sunny",
+        "air",
+        "auto_awesome",
+        "calendar_month",
+        "expand_more",
+        "subway",
+        "yard",
+        "arrow_forward_ios",
+        "directions_run",
+        "soup_kitchen",
+        "photo_camera",
+        "flare",
+        "cottage",
+        "photo_library",
+        "mail",
+        "flight_takeoff",
+        "diversity_1"
+      ]
+    },
+    {
+      "id": 2,
+      "key": "mailbox",
+      "title": "月亮邮局",
+      "route": "pages/mailbox/index",
+      "tab": 2,
+      "source": "stitch_only_us/_2/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_2/screen.png",
+          "sha256": "b51559e6041f2b2436bd38b06c496fb623b37b207a762ac40e5edab642f5879d"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "月亮邮局",
+        "来自小林的未来信件",
+        "念念收：昨晚做了一个关于未来的梦...",
+        "致念念的一封长信：关于我们一千零一个愿望"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "more_horiz",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "radio_button_checked",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "mark_email_unread 收到的信 (24)",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "send 寄出的信 (30)",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit_note 写一封信 · 寄存给未来的你 ✍️",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 2,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "radio_button_checked",
+        "dark_mode",
+        "mark_email_unread",
+        "send",
+        "lock_clock",
+        "lock",
+        "auto_awesome",
+        "drafts",
+        "mail",
+        "photo_library",
+        "edit_note",
+        "cottage",
+        "flight_takeoff",
+        "diversity_1"
+      ]
+    },
+    {
+      "id": 3,
+      "key": "cabin",
+      "title": "小屋",
+      "route": "pages/cabin/index",
+      "tab": 0,
+      "source": "stitch_only_us/_3/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_3/screen.png",
+          "sha256": "dea2ae039a2faecf4dfdd6be9d60f0302e4b35a31ce4fa70f11b8afeb6470600"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "云朵与森林的小屋"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "更多操作",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "关闭小程序",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "dayNightToggle",
+          "label": "dark_mode晚间月光",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "hotspotLamp",
+          "label": "切换台灯开关",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "hotspotPhotos",
+          "label": "直达回忆馆照片墙",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "hotspotEnvelope",
+          "label": "直达月亮邮局时光胶囊",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "hotspotCouple",
+          "label": "查看双人心灵状态",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "hugButton",
+          "label": "favorite 轻轻抱一下 今日已互抱 12 次",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit写便签",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 1,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "cottage",
+        "dark_mode",
+        "nights_stay",
+        "headphones",
+        "lightbulb",
+        "photo_camera",
+        "mark_email_unread",
+        "check_circle",
+        "diversity_1",
+        "battery_charging_full",
+        "auto_awesome",
+        "volunteer_activism",
+        "sticky_note_2",
+        "edit",
+        "flight_takeoff",
+        "photo_library",
+        "mail"
+      ]
+    },
+    {
+      "id": 4,
+      "key": "reunion",
+      "title": "下一站，见你",
+      "route": "pages/reunion/index",
+      "tab": 3,
+      "source": "stitch_only_us/_4/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_4/screen.png",
+          "sha256": "b40eeb9e079f566443833ccf545cc0489f57e525da65994146416eb72b913ca1"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "下一站，见你。",
+        "下次见面想做的事",
+        "过去见面的时光印记"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "check",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "done",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "done",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "done",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "add_circle 添加心愿",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "a",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 0,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "radio_button_checked",
+        "train",
+        "stars",
+        "schedule",
+        "verified",
+        "directions_railway",
+        "qr_code_2",
+        "format_list_bulleted",
+        "check",
+        "done",
+        "add_circle",
+        "history_edu",
+        "chevron_right",
+        "cottage",
+        "photo_library",
+        "mail",
+        "flight_takeoff",
+        "diversity_1"
+      ]
+    },
+    {
+      "id": 5,
+      "key": "us",
+      "title": "我们的故事",
+      "route": "pages/us/index",
+      "tab": 4,
+      "source": "stitch_only_us/_5/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_5/screen.png",
+          "sha256": "d64dc9bb077d12c2349e6178ae0955e62171327e9d40da8d11fd5f4a53750b78"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "我们的故事",
+        "相恋第",
+        "时光胶囊 · 历历在目",
+        "初次相识",
+        "正式在一起",
+        "第一次约会",
+        "第一次长途旅行",
+        "未来更多回忆 · 待续..."
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "favorite",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "more_horiz",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "trip_origin",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "add",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 0,
+      "cssImageCount": 5,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "trip_origin",
+        "auto_awesome",
+        "bookmark_heart",
+        "star",
+        "schedule",
+        "auto_stories",
+        "celebration",
+        "cake",
+        "menu_book",
+        "local_fire_department",
+        "water_drop",
+        "confirmation_number",
+        "pedal_bike",
+        "explore",
+        "door_open",
+        "auto_fix_high",
+        "sensor_door",
+        "add",
+        "cottage",
+        "photo_library",
+        "mail",
+        "flight_takeoff",
+        "diversity_1"
+      ]
+    },
+    {
+      "id": 6,
+      "key": "bind",
+      "title": "双人星光绑定",
+      "route": "subpackages/connection/bind/index",
+      "source": "stitch_only_us/_6/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_6/6.png",
+          "sha256": "4e0e3e38ac8111602f3ca65f2daa9af310e63e27efc61b0164d471b287002f36"
+        },
+        {
+          "file": "stitch_only_us/_6/screen-full.png",
+          "sha256": "18e2100670ce41efaa5107028a63564aa8c88fa1e1b425cff65ec45320b53e6e"
+        }
+      ],
+      "screenshotStatus": "available: screen-full.png is complete; prior 6.png is partially occluded",
+      "headings": [
+        "点亮属于我们的第一盏灯",
+        "从今天起，这个小小宇宙属于我们"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "state-btn-waiting",
+          "label": "1.待加入",
+          "action": "setDemoState('waiting')"
+        },
+        {
+          "tag": "button",
+          "id": "state-btn-request",
+          "label": "2.待确认",
+          "action": "setDemoState('request')"
+        },
+        {
+          "tag": "button",
+          "id": "state-btn-success",
+          "label": "3.已连通",
+          "action": "setDemoState('success')"
+        },
+        {
+          "tag": "button",
+          "id": "state-btn-error",
+          "label": "4.失效/错误",
+          "action": "setDemoState('error')"
+        },
+        {
+          "tag": "button",
+          "id": "tab-create-btn",
+          "label": "magic_button 生成密令",
+          "action": "switchPairMode('create')"
+        },
+        {
+          "tag": "button",
+          "id": "tab-join-btn",
+          "label": "key 输入加入",
+          "action": "switchPairMode('join')"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "refresh",
+          "action": "refreshCodeAction()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "content_copy 复制",
+          "action": "copyCodeAction()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "share 微信一键发送给 TA",
+          "action": "shareToPartner()"
+        },
+        {
+          "tag": "input",
+          "id": "partner-input",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "favorite 确认连接 · 融合同行",
+          "action": "confirmJoinPairing()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "close 暂不接受",
+          "action": "rejectPairRequest()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "handshake 确认配对并入住",
+          "action": "acceptPairRequest()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit_note 开启首次资料设置",
+          "action": "goToProfileSetup()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "autorenew 重新生成密令",
+          "action": "regenerateNewCode()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit 重新输入密令",
+          "action": "retryInputMode()"
+        }
+      ],
+      "imageCount": 0,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "trip_origin",
+        "tune",
+        "arrow_back_ios_new",
+        "cottage",
+        "auto_awesome",
+        "magic_button",
+        "key",
+        "timer",
+        "filter_vintage",
+        "refresh",
+        "content_copy",
+        "share",
+        "satellite_alt",
+        "close",
+        "handshake",
+        "celebration",
+        "edit_note",
+        "error",
+        "autorenew",
+        "edit",
+        "wifi_tethering",
+        "lock_clock",
+        "check_circle"
+      ]
+    },
+    {
+      "id": 7,
+      "key": "profile",
+      "title": "首次资料设置",
+      "route": "subpackages/connection/profile/index",
+      "source": "stitch_only_us/_7/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_7/screen.png",
+          "sha256": "68b57a8a9641e22a80f5479cbfbcd7f95e52b97b3c52ee334c09029278133d5d"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "首次资料设置"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_camera",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_camera",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "cabinNameInput",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "cancel",
+          "action": "document.getElementById('cabinNameInput').value=''"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "🪐 银河停泊处",
+          "action": "document.getElementById('cabinNameInput').value='银河停泊处'"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "🌙 月半小筑",
+          "action": "document.getElementById('cabinNameInput').value='月半小筑'"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "☕ 橘猫与热茶",
+          "action": "document.getElementById('cabinNameInput').value='橘猫与热茶'"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "🌅 第100个日落",
+          "action": "document.getElementById('cabinNameInput').value='第100个日落'"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "key 开启我们的小屋",
+          "action": "alert('恭喜！小屋创建成功，正在开启属于你们的小小宇宙✨')"
+        }
+      ],
+      "imageCount": 2,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "auto_awesome",
+        "done",
+        "photo_camera",
+        "auto_stories",
+        "cottage",
+        "cancel",
+        "lightbulb",
+        "key"
+      ]
+    },
+    {
+      "id": 8,
+      "key": "editor",
+      "title": "记录今天",
+      "route": "subpackages/moments/editor/index",
+      "source": "stitch_only_us/_8/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_8/screen.png",
+          "sha256": "fc3a9cf84537d46a5963497f8ae10d146c60b6d3b9c629dad134b9da63624961"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "平行时刻 · 记录今天"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "close 取消",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_camera 更换照片",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "切换排版",
+          "action": ""
+        },
+        {
+          "tag": "textarea",
+          "id": "",
+          "label": "下午三点的阳光正好落在一半的书桌上，店里的冰美式有淡淡的坚果香。戴上耳机听你昨晚推荐的那首歌，突然好想你，杭州此刻的风很温柔。",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "☕",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "🍃",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "💭",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "✨",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "更多 expand_more",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "bookmark_border 存为草稿",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "send 定格这一刻",
+          "action": ""
+        }
+      ],
+      "imageCount": 1,
+      "cssImageCount": 0,
+      "icons": [
+        "close",
+        "wb_sunny",
+        "location_on",
+        "favorite",
+        "photo_camera",
+        "auto_awesome",
+        "add_a_photo",
+        "edit_note",
+        "tag",
+        "expand_more",
+        "lock_open",
+        "sync_alt",
+        "edit_calendar",
+        "hourglass_top",
+        "replay",
+        "public",
+        "bookmark_border",
+        "send"
+      ]
+    },
+    {
+      "id": 9,
+      "key": "mood",
+      "title": "心情选择",
+      "route": "subpackages/connection/mood/index",
+      "source": "stitch_only_us/_9/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_9/9.png",
+          "sha256": "7f655fa487bd28f4b9da98922ba31b5b1d3b52bb5c5f9d255b36f50a2bb5993a"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "今天我的心情如何？"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "关闭",
+          "action": ""
+        },
+        {
+          "tag": "textarea",
+          "id": "",
+          "label": "今天喝到了好喝的奶茶，第一反应就是拍照发给你。",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "☕ 喝了甜水",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "🎧 听到了你的歌",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "✨ 正在看黄昏",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "check_circle确认保存",
+          "action": ""
+        }
+      ],
+      "imageCount": 1,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "radio_button_checked",
+        "headset",
+        "close",
+        "sentiment_very_satisfied",
+        "arrow_back_ios_new",
+        "air",
+        "cloud",
+        "bedtime",
+        "battery_2_bar",
+        "check",
+        "flutter",
+        "diversity_1",
+        "pan_tool",
+        "nightlight",
+        "pets",
+        "edit_note",
+        "cottage",
+        "check_circle"
+      ]
+    },
+    {
+      "id": 10,
+      "key": "compose",
+      "title": "写给未来的信",
+      "route": "subpackages/mail/compose/index",
+      "source": "stitch_only_us/_10/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_10/screen.png",
+          "sha256": "e54ef17b8f11214de40f71a476b2ceacdc9d3ca1ecd3788e5282d44f60571ef2"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "返回",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit_note 存草稿",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "star 月牙星梦",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "wb_twilight 落日余晖",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "check 手作棉纸",
+          "action": ""
+        },
+        {
+          "tag": "input",
+          "id": "",
+          "label": "",
+          "action": ""
+        },
+        {
+          "tag": "textarea",
+          "id": "",
+          "label": "今天走在回家的林荫路上，路灯突然亮起的那一瞬，我下意识想要掏出手机拍给你看。 异地的这半年，距离被拉得很长，但又好像每次抬头看见同一个月牙，你就靠在我身边。 把这些零碎又温柔的想法收进时光信箱，等儿童",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "mood 附上思念贴纸",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "calendar_month",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "重试",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "寄出信件 · 投递月亮邮筒 📮",
+          "action": ""
+        }
+      ],
+      "imageCount": 0,
+      "cssImageCount": 0,
+      "icons": [
+        "arrow_back",
+        "nightlight",
+        "edit_note",
+        "palette",
+        "star",
+        "wb_twilight",
+        "check",
+        "markunread_mailbox",
+        "favorite",
+        "mood",
+        "ink_pen",
+        "schedule_send",
+        "forward_to_inbox",
+        "hourglass_top",
+        "lock",
+        "calendar_month",
+        "timeline",
+        "send",
+        "lock_open",
+        "bookmark_heart",
+        "verified",
+        "notifications_active",
+        "check_circle",
+        "save",
+        "error"
+      ]
+    },
+    {
+      "id": 11,
+      "key": "waiting",
+      "title": "平行时刻 · 等待",
+      "route": "subpackages/moments/waiting/index",
+      "source": "stitch_only_us/_11/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_11/screen.png",
+          "sha256": "885780c3fe5d3a05b5e9dcbae02260e4fb15290c5906a4059e07718aa0aeccbb"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "平行时刻",
+        "温柔的默契守候"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "收藏",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "more_horiz",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "radio_button_checked",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "全部 128 天 chevron_right",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "cottage 小屋",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "photo_library 瞬间",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "mail 信箱",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "flight_takeoff 见面",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "diversity_1 我们",
+          "action": ""
+        }
+      ],
+      "imageCount": 5,
+      "cssImageCount": 0,
+      "icons": [
+        "favorite",
+        "more_horiz",
+        "radio_button_checked",
+        "location_on",
+        "bedtime",
+        "star",
+        "auto_awesome",
+        "cloud_sync",
+        "schedule",
+        "chevron_right",
+        "link",
+        "arrow_forward_ios",
+        "cottage",
+        "photo_library",
+        "mail",
+        "flight_takeoff",
+        "diversity_1"
+      ]
+    },
+    {
+      "id": 12,
+      "key": "locked",
+      "title": "未解锁信件",
+      "route": "subpackages/mail/locked/index",
+      "source": "stitch_only_us/_12/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_12/screen.png",
+          "sha256": "01196b137e5239b4f1643dc64fa908f1c3992c99b80ba91fd494b93f774caf84"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "月亮信件 · 时光胶囊",
+        "《写在第一次分开的夏天》",
+        "月光寄语"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "返回邮局",
+          "action": "history.back()"
+        },
+        {
+          "tag": "button",
+          "id": "touch-button",
+          "label": "favorite 轻抚信封（可感受心跳微震动）",
+          "action": "triggerHeartbeat()"
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "cottage 返回月亮邮局",
+          "action": "history.back()"
+        }
+      ],
+      "imageCount": 0,
+      "cssImageCount": 0,
+      "icons": [
+        "chevron_left",
+        "lock",
+        "auto_awesome",
+        "local_post_office",
+        "dark_mode",
+        "verified_user",
+        "event",
+        "nightlight",
+        "favorite",
+        "cottage"
+      ]
+    },
+    {
+      "id": 13,
+      "key": "letter",
+      "title": "已解锁信件",
+      "route": "subpackages/mail/letter/index",
+      "source": "stitch_only_us/_13/code.html",
+      "screenshots": [
+        {
+          "file": "stitch_only_us/_13/screen.png",
+          "sha256": "278d6f2ba17620133189639d487e5d733a379cc1c3898edb7db43fea06e347ac"
+        }
+      ],
+      "screenshotStatus": "available",
+      "headings": [
+        "小林亲笔信",
+        "《念念，这是写给五百天后的我们》"
+      ],
+      "controls": [
+        {
+          "tag": "button",
+          "id": "",
+          "label": "arrow_back",
+          "action": "window.history.back()"
+        },
+        {
+          "tag": "button",
+          "id": "favorite-btn",
+          "label": "favorite",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "save-btn",
+          "label": "bookmark_added 珍藏信件（永久留存）",
+          "action": ""
+        },
+        {
+          "tag": "button",
+          "id": "",
+          "label": "edit_note 给TA回一封信",
+          "action": ""
+        }
+      ],
+      "imageCount": 1,
+      "cssImageCount": 0,
+      "icons": [
+        "arrow_back",
+        "favorite",
+        "mark_email_read",
+        "lock_open",
+        "wb_twilight",
+        "auto_awesome",
+        "draw",
+        "photo_camera",
+        "flare",
+        "bookmark_added",
+        "edit_note"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAhre95TjV-4CYlG-SzlOFABKeRRQrKMHljNQ78T91EZV5MHTXaHbs9gvtXesqdgluJGOFgFeRVx4VEf9V7bDwXCMpTv0k2hRRPLJHgOlze8zeFiqSx8ED2mqXjurhppPVlI_xmgsKab6XvPSTd2TBVLVh4O2BABoD6llWq-iJ47DdzJfOW9x-NLEwZGk6UwzdMeiLrsJbM9t4D7lHWlOOqRe3CHW9ZAI71UIZ5wQA",
+      "local": "/assets/photos/photo-1958af5fb0ef.jpg",
+      "pages": [
+        1
+      ],
+      "description": "A warm, sunlit aesthetic flat-lay composition showing an artisanal iced coconut latte in a sleek glass on a light wooden cafe table next to an open notebook and fountain pen. Gentle afternoon sunlight streams through a large window, casting dreamy soft shadows with a comforting cream, mauve, and soft golden palette. Cinematic soft depth of field.",
+      "bytes": 27965,
+      "width": 512,
+      "height": 279,
+      "sha256": "08abbbe4731f3e0cc392539cf812b30486b025968007dea2b74a7fee05cf6906",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCLxN1ctRTFtwZzMJo2vxU2b3L8WsmVN-wU7109VFHh-xTnb5HQIj8Dc3sueqVrxKM0LBy7R5Nr0AG32s9n5ykbchWguCKbSeYHWvrrroKrrOhVs_fzHHdmUrcBhJVHw6HfZMj6NUelDu-MpZBVmOKM37dAemsphxA8N_zoOwik8IS6TioCIGkQo9LZ4_c1hyC8FF4HkutMAwfaFMHSowepfh_oAiB8-jP_ODvIw-I",
+      "local": "/assets/photos/photo-382554aedba8.jpg",
+      "pages": [
+        1
+      ],
+      "description": "An atmospheric viewpoint from an office high-rise window showing clear blue skies over contemporary city architecture, with a subtle couple acrylic standee and a ceramic mug resting on the clean wooden desk ledge. Soft gentle afternoon reflections and warm atmospheric daylight evoke a quiet poetic sanctuary within a busy day.",
+      "bytes": 31947,
+      "width": 512,
+      "height": 279,
+      "sha256": "b3a8d64b60925bf2088124fcc7486846909df6dede6cc59aa3901917319bf184",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCRMhg9hXd288p8TVea79Ek9gqGJbzRsmNHHvEUYvLiGjuw3iblFtZDhr0O6a5nBE9r9k8_wfn3NDOqH5UISDThsY1JLykF3igTqzwwpWB7BZVfwY7f4MaVDIIJu7EOoBDqm9VsqUBPS2KaUsnfk2eMfbj68wLvc6nUTsubGDUxXNCU3efrIjw2YVkPdBRZHgVJwNsrbb8LlImzUYGSJDWFJjclm2kkTt4vHH_Vvqg",
+      "local": "/assets/photos/photo-f4c8d1682bbe.jpg",
+      "pages": [
+        2
+      ],
+      "description": "A delicate and poetic hand-drawn storybook illustration of a whimsical retro moon mailbox placed upon fluffy pastel cloud banks under a starry lavender night sky. The mailbox has a glowing crescent moon mail slot emanating warm golden light. A tiny white dove with a soft pink wax-sealed envelope in its beak rests gently beside the mailbox, reflecting an intimate, serene long-distance romantic mood.",
+      "bytes": 36403,
+      "width": 512,
+      "height": 279,
+      "sha256": "c9e7f21f94da86566bd7dfbb8bf7012c0fa362cb3df08b44629414f5cb7da2d5",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBbgdHC8XmJR6wsPnj8jUY4BOQYL4iO5nAt6ZHn1_GJd3Buf4HGDmAybLvA5efjAfe-JZwv82t8n5dfZ6p2cDlp5PIvow7dzpxmg0TuXaTduAR2ue3QzoH9gU7kNPRa3OAdZXcM2irMLYOb0q4FKzD3ZwWMeC5lqJsc_bffi__18hdEwr6unipBsguX25SfTQ1jZTJZFp217Qud0r5F4HiW7UArhk8dEOGtcBkiqr0",
+      "local": "/assets/photos/photo-f17b885714ef.jpg",
+      "pages": [
+        2
+      ],
+      "description": "A vintage soft-focus Polaroid style photograph showing two hands wearing dainty couple rings intertwined under gentle golden hour sunlight in a serene park. Muted warm milk tea tone aesthetic aligned with editorial minimalism.",
+      "bytes": 25447,
+      "width": 512,
+      "height": 512,
+      "sha256": "f2590dd258b33aa51f1fec3d0385922584134d76931479b7570a5e6ae77ad63b",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBvtzc78Jb7UeF0pV27t4Qs8m80VSLDfQJV_XZmeTvemahVYJ_ccEuwS2SKhKvRVcdndjU6BgXfSOd4cDd1Z7d5tea3iGegTYDFU_qYFu3XVeIOkZt1EazOsLoMjabJFACfM4O6cdmowIbJKhiztSagTdtoScs6YU2xLAg8_e4fJ5RNdmuo0A60HudsS8QtZIJ5YGoP053Zpg5MENiFOND0ajS2S0sJPN9sw1kr1PA",
+      "local": "/assets/photos/photo-26002011e417.jpg",
+      "pages": [
+        3
+      ],
+      "description": "A charming cozy 2D couple cabin living room with arched window at twilight",
+      "bytes": 41496,
+      "width": 512,
+      "height": 286,
+      "sha256": "da8942e847421bd5b8cd6a0bba2ac7b924c661934e669aec161615547f8e0b8d",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBGlBpOLYcNsJRcEnyTCu5KTt4rMMkZvyKy5YSZxsiTQhEMKax6lRRikL5Mqu2M_sKOQOlhK2pWrUPDkOpf3V7vTkK2c0WAMEf2DpBLlLAfwE0FaUfSGq9utrD98LKvYmVUsqnvfMYL7uHN6xyQqqy0XEgd3G4gyTsT5IzYisQSC7jox_i3hGqwignvhXRwOBGupLPI3QGX-vQLPoqov_0JPfXHjdp3Q_tYpoc5kIA",
+      "local": "/assets/photos/photo-efef73cda4fb.jpg",
+      "pages": [
+        5
+      ],
+      "description": "HTML CSS background image",
+      "bytes": 42260,
+      "width": 512,
+      "height": 279,
+      "sha256": "57c4c5babbc9bcfce0661a892768a270c9f8695b9eb2a2c8a01e433842a3989d",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDeE465P8kJmVytGMmv2-fJNLIlSH6Aif8C4m1djAF4Fc9xyIBJroNuGdq7cToXy3xSHT5_m3fBD7Sxbu1y2qBw1ziSbqA_nvGPR6sMKiA4J6vmiuGc2so99qLRCoh1XGORBPu53JIlY3y_YJieWvK7PvW8ffDCfjj1bOaSqPi88VaVHMd8pU-XYRPZa7JhTqlROl-oTzaV--5BsuJNyOabTXaZazMDMPGSHBpuFiE",
+      "local": "/assets/photos/photo-a93f0749b777.jpg",
+      "pages": [
+        5
+      ],
+      "description": "HTML CSS background image",
+      "bytes": 42487,
+      "width": 512,
+      "height": 279,
+      "sha256": "1618729f596297f5213c417ac95f3fce223f15a1f5cd235f67051c6e8ef927d5",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJRyQ78GKRmd6kOtaG2sj0WY9Wpp5IBOeiySEXAsKMbZ1tZeSVEseaIF4nfpQ99PqbnG4ii85phjHG70nP18iSPbmyMx9OzvyuxicYTcNlcOJZ7-Q037VIOenICl0NlfS3RiEcviYnEjLADebHykkGQ_yIdJvwfWQ1Wuh0JToycTWLxoWqjuDrg7yDslUPPGMtqQecqckUxXDLUKt0IuHreuU31Z6TQXTi-4xAbOg",
+      "local": "/assets/photos/photo-1a2b73c967ca.jpg",
+      "pages": [
+        5
+      ],
+      "description": "HTML CSS background image",
+      "bytes": 43126,
+      "width": 512,
+      "height": 279,
+      "sha256": "eb37f25b7c2837010847da4efe57b0515d591c96b2a3484872683c0bdc048181",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBaOhlN0OkO8Ox2MFHeHIt8dbJM06CAzQ6f0TSjXvQPEapvk5sEaMFIkVAOrYLfyT8E0a2FAXp8pVIamkrjbifP7XXqkNmqNSAll83DlwtpHAizio6oWMZOXiOOk9Bu4ZlZVC5jZJvghV9XjBmK6hSttu7OFLxhxISWxAC7IwsE9BXxcjXxwxIl0AT4RnKD4GitpRBH0RiXPnVr0f7yoEPLMvR2fvu9gmqB8_Y-1-w",
+      "local": "/assets/photos/photo-7f41450b3c64.jpg",
+      "pages": [
+        5
+      ],
+      "description": "HTML CSS background image",
+      "bytes": 43172,
+      "width": 512,
+      "height": 279,
+      "sha256": "4b3da7975890940b533d9544a628a0fbfd844b241e34a53c29780ea700178ca5",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBBrE2pzKiEKBqo8U6FVK5GtaHq9VlfhAY7FgWjHCQOMN1t7j-WPCjpKLqUs_hKpXycSdWpdN_7SKxvOkgXJ5FhoKa3boSV7633K991Utca6b8kVcy0HYBc_C7njAAq8Ke9rfzVoyrHTTnqiG0OUsZWaLOntOAZJO9wmnU8uVzRrBOwQ9xZymcu0DcFptpadabNzc6Si5ZnXAAUR8oAY7vaPKur-CWTIJLUCLYgebA",
+      "local": "/assets/photos/photo-1d7717534e70.jpg",
+      "pages": [
+        5
+      ],
+      "description": "HTML CSS background image",
+      "bytes": 39851,
+      "width": 286,
+      "height": 512,
+      "sha256": "8ab81b64bad72044ee02ae3de140448bf76aae4e50a17376b5e2985eb9d18468",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuASpt4akpRR6zEMXlDR6wIdY1A3PtV2AvAHq-3Sy3muA75vZAVpU9R_g9TJ2Bd7dLXh5-6s7PVRPtDlHc6E7u22BZTEpNYdP0lV9QytqykSLxGUEkETBR-uk-aGhxlcs6LZUuqEuPrPBPF1RF7_B-54PT3Pj1oRUQO6228zrt5qcuMXmmXE4rba1RLSKJ3WyBigcIIsEJxcHfQsdTcXy1zQ7-xwl_G4CI7NEwHM9MY",
+      "local": "/assets/photos/photo-657ce8ae6c85.jpg",
+      "pages": [
+        7
+      ],
+      "description": "A soft pastel aesthetic digital portrait of a gentle young girl wearing a cozy knit sweater, bathed in warm moonlight tea-colored illumination, rendered in warm cream, muted lavender and blush pink illustration style.",
+      "bytes": 27001,
+      "width": 286,
+      "height": 512,
+      "sha256": "560f6e86da9a151493d320804458aea1586a3392815828afd04497ad63ec7e74",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuA34LGKcPmORG7TC4M-Rx_5PA4HJqSBtVUC2FipbsRhbmkrUpwb8j9xqw3lJ-VCAF8ptxmmeFKtIbYeSYUjlnyltKrU-ZFUQ-x6Mx0sXVUUsVBmwOTbSRJWJyxDv_9NGHd953n1GOROwAlltBAa6HbmWYqbm2eCjaf035flQZP3x-pszwKxOTWvjTw4StaUfRVw3P4Evd3uBhO6XbZSXXrL0RVfUX8broO7Lbozxdg",
+      "local": "/assets/photos/photo-799df0edd80e.jpg",
+      "pages": [
+        7
+      ],
+      "description": "A warm and gentle digital portrait illustration of a boy with soft brown hair looking tenderly, warm domestic lighting with creamy lavender tones and subtle romantic shadows.",
+      "bytes": 9932,
+      "width": 512,
+      "height": 279,
+      "sha256": "cf213fc3d41a310cae6dd24abf36826505c96f44bc071de476142595407db634",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuC6QkxZMjvUw9lV1EoKZdad8HZHzvLe8L8yGmnMYhmITgUR6WfF7tILW2sbP8mllBid46fDkgVNwjU4tUpYedlcDBtc2hpIGvq6K1epYH0DEw0LAMWyoW54UPC97drg9DSaOt5VQQhFObpctQrkOHrpJRRFdM-fisb1eT1gUqbr8LWyKPv4kmcvWb2ndMUhlZQnlsMGYMXjT9OGhroLxfg9XzoCyTvcWgTxcHhoodI",
+      "local": "/assets/photos/photo-a6ae9cfa3f8e.jpg",
+      "pages": [
+        8
+      ],
+      "description": "Warm aesthetic shot of an artisanal coffee cup with latte art placed on an aged wooden cafe table next to an open paper diary notebook. Sunlight streams in with warm golden hour morning light creating soft cozy shadows. Atmospheric creamy tones, calm and gentle romantic minimalism.",
+      "bytes": 33155,
+      "width": 512,
+      "height": 279,
+      "sha256": "0182b1f3a917ece9c8c83bbe8b68feb3cc36c42d68857f14ca20c330939d5b75",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuD0PHVbcRTJNpEU8LGUN0eoVEdQ4ZxFzivQHtHWUPKlrB8oCRIDA76jTMfCgaN3euWqQ2SzWyVeLsqSHkCTA6e7ZX5Tiu7TO604Htqc9Yv0EElO_myypA4i8JkB4JQCZ6-v-IxJX2jDu2Cmyy5AgIIuf4RfmfOXewuegWSn8Hca4Nqk8gDG8szLSDD-GM-54K-UbWqIn0P8UpX912Twy7f9Tbe8Da_gcZWWqUmZxo0",
+      "local": "/assets/photos/photo-32ce9417d325.jpg",
+      "pages": [
+        9
+      ],
+      "description": "A warm, dreamy aesthetic illustration of an intimate, softly lit bedroom cabin at twilight. A cozy plush rug, milk-tea colored cushions, ambient fairy lights, warm wooden nightstand with a steaming ceramic mug and a gentle moonbeam streaming through arched sheer curtained windows. Soft pastel purples, butter-cream tones, and gentle rose quartz glow.",
+      "bytes": 29746,
+      "width": 286,
+      "height": 512,
+      "sha256": "a6c4fb9cad46107fbeb92d66bac737b22f6577dc0a64025b0aab83844be58c01",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDQWvbHDEBFNBjNy_1hgdnLUbywsVYgrj3p-8JyJAvnrMeqHbZ4zi5L_mfJbUfTmZM4MateRR8kDFlG7rRbqgay1BO8OFyZqOpFE0KclyBIOfdb9b8_2E2DZskTAXCdqViUK-NItdMQkye1D1F1D4cv6W9yabDQR-AYJ7HSUvezvEn-eMMeZeW0GWjwO25OwAlNCa1-CLxZtV5ApXYgZalziC_5bo-xstuO3O4pl2I",
+      "local": "/assets/photos/photo-e2c3167a902e.jpg",
+      "pages": [
+        11
+      ],
+      "description": "An intimate warm afternoon shot inside a cozy sunlit cafe with gentle golden hour light casting soft diagonal shadows on a wooden table. A glass of iced raw coconut latte with condensation drops rests beside an open linen journal and sleek modern pen. The atmosphere evokes soft warmth, nostalgia, tactile editorial minimalism, and peaceful romantic serenity with muted lavender undertones.",
+      "bytes": 32646,
+      "width": 512,
+      "height": 279,
+      "sha256": "cc7899e3e35a71cb763a16e2f91815f2282dd2e6a4f00f44e21a5bbae8ab09dc",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDCoTnrfFPiSxfxPN9BLNM_su37se2Vo23xx3VCl3XypmjjxxhNqGrrgzgL8X2TlZkDVA6qHHL4xXywHvVgX5BrTUtItmCkUvVhnOlBCsVfS8sLuq1oinXyMsjqvCW_zfQFtFD-mGp7JN5d0XVYXZUlE4erckuyrenwfi2EAo4p04LI8IXBOyD1x88bJpkb4i3GzXRIOTQd2v1ptzZJkgNA1YbmY5j8w3H2QdpBJqo",
+      "local": "/assets/photos/photo-34db4b65b0c7.jpg",
+      "pages": [
+        11
+      ],
+      "description": "Editorial close up photograph of warm homemade pumpkin soup in an artisanal ceramic bowl on raw timber table with rustic bread roll, bathed in serene morning light, minimalist Nordic aesthetic, warm comforting cream tones.",
+      "bytes": 25928,
+      "width": 512,
+      "height": 279,
+      "sha256": "b7f4ad93281556bb4ed6933c1316a0393720b66e88fb43fde650df20d6dc875f",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuAsbRZpoCWZkoIxNLmn8m0CxxJyxUv1-W-xRjRnMU0OK0NjMd77zQ-I6tRLNe8QXcN4xOC4vTKqwi1AjLDSk9ZkvBRfTAfCvKZO93h-gtN2siBEtflPjbAmRoFzP3cA4OD0syBeCdx7SDA-ixg3trHZx6H4aepHxpPC5e6nfp8550H3aOovm-Dwz5cUfCuvb8lfSRv4CUibIl7Iqx5xtypLDmNAF0eIfOVSx_liz_g",
+      "local": "/assets/photos/photo-3aae291be792.jpg",
+      "pages": [
+        11
+      ],
+      "description": "Calm twilight city street shot through autumn ginkgo tree branches with softly illuminated storefronts and street lamps glowing softly, shot on vintage film camera, quiet dusk romantic atmosphere.",
+      "bytes": 49977,
+      "width": 512,
+      "height": 279,
+      "sha256": "55dc47f96abac3e9538c7b0c2c4c48aa4fc35f59635092c4bed6eaba44d64100",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDKlw2zz0Uv1cZS1YcAjZHXwgeymXCDFFCiEnxQsirM7ibGLvb6-QSc01zDZ910PUofKdZIXSQGZp0H-VawkDd1Qb-zR1yw5zwYxBnvS-SOK5YfBH0SBwvcJXZ6WUyT3YHGTfiVnyMiz_HvOKdTrXdubWd-PbVkDB9-6UcMHt3PFyPRhTswORiJlDUSooVYey024j5-A3pwHuW1jU0mm0nPEliiA-DX5DJk72Fl4Bc",
+      "local": "/assets/photos/photo-8aa05a3d81f5.jpg",
+      "pages": [
+        11
+      ],
+      "description": "Macro artistic photo of rain droplets sliding down transparent train window against soft blurred city lights at night, tranquil moody atmosphere in shades of muted twilight purple and soft ivory.",
+      "bytes": 28563,
+      "width": 512,
+      "height": 279,
+      "sha256": "516b4fd6d28bb5a20b8c0b3078aa8db8efcc409919bbe2ca262f1545af55cc18",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuBjeaDPdlZBkpmiAOwb0v2PoTRyW-i_Qhs8SHKoAfdxjrwr1xgHlWGCGzeR9Cu4480HWlCXNoN0FMe6DGIb0x1jbsbXppkc4fpHJ9exZ7jxRi9HH8ZMgvPTjjsSkUOuTSCH-E9-bMlpUOA871WY3ELpPmZrbWYFrwxm5D3nQsAG_cG_3ttPOg4HLEEJ_MaeAVyXxuh1ww6XkkEbme2c7-3mWI8hEXNLTAAAZomThGA",
+      "local": "/assets/photos/photo-6d2ecda746e7.jpg",
+      "pages": [
+        11
+      ],
+      "description": "Cozy bookstore interior with warm pendant lamps highlighting stacks of paperbacks and a sleeping tabby cat on an armchair, serene warm cream aesthetic, film grain texture.",
+      "bytes": 43268,
+      "width": 512,
+      "height": 279,
+      "sha256": "5c25b1ba5f48dd10fcbfdf234c28ea913e68ffaef84032bc91b225954b3748cb",
+      "status": "local"
+    },
+    {
+      "url": "https://lh3.googleusercontent.com/aida-public/AB6AXuDN6O_S4kSnug1_k3nuQ02q0-gW0oNKTwIoT7eqJcyoQpaETsrz6iCslYd-Pt1TArnYM0A6GAudCMFnTWdgOZnTm-fDuX0ZYNBFJPDv4bOqUhli2oLmtbovY7LFgYD3gGKYhbL2raxmUtQIKzMfjx5mAcxkMONvLV-0lmz5dU0glQlSrfLAZAv2-WyORrZItSCdfLnVs9ggj62CX2vg3JK6fxIU3LcanZumm2BKmrE",
+      "local": "/assets/photos/photo-79f0683cf50c.jpg",
+      "pages": [
+        13
+      ],
+      "description": "A warm, poetic candid Polaroid photograph of an affectionate young Asian couple standing together under gentle first winter snowfall. The scene is illuminated by glowing amber streetlamps and soft twilight dusk. They wear cozy knit scarves, smiling softly at the camera with gentle joy. The aesthetic is film grain, creamy tones, nostalgic pastel hues, and subtle editorial warmth.",
+      "bytes": 22375,
+      "width": 512,
+      "height": 279,
+      "sha256": "9378e931a3035d8822fae68702018c79cde50a5854a7227a00f0fc6e727a866c",
+      "status": "local"
+    }
+  ],
+  "font": "System CJK fallback; original Google font not bundled",
+  "iconSource": "@material-symbols/svg-400 (Apache-2.0)"
+}

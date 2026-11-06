@@ -1,0 +1,9 @@
+<view class="header" style="padding-top:{{top}}px;">
+  <view class="bar" style="height:{{barHeight}}px;padding-right:{{reserve}}px;">
+    <button class="brand" bindtap="lead" hover-class="pressed" aria-label="{{back ? '返回' : '打开小屋菜单'}}">
+      <text class="lead">{{back ? '‹' : '♡'}}</text><text class="title">{{title}}</text>
+    </button>
+    <button wx:if="{{settings && !back}}" class="settings" bindtap="openSettings" hover-class="pressed" aria-label="小屋设置"><image src="/assets/icons/tune-ad0e0b63.png" mode="aspectFit"/></button>
+  </view>
+</view>
+<view style="height:{{top + barHeight}}px;"></view>

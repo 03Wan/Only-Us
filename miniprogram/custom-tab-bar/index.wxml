@@ -1,0 +1,6 @@
+<view class="dock" wx:if="{{!editorOpen}}">
+  <button wx:for="{{tabs}}" wx:key="path" class="tab {{selected === index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}" aria-label="{{item.text}}">
+    <image src="/assets/tab/{{item.icon}}-{{selected === index ? 'active' : 'idle'}}.png" class="icon" mode="aspectFit"/>
+    <text>{{item.text}}</text><view class="dot" style="opacity:{{selected === index ? 1 : 0}};"></view>
+  </button>
+</view>

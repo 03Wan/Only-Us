@@ -1,0 +1,32 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),sharp=require('sharp');
+const {connect}=require('./cdp-local.cjs'),pause=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{
+ const s=await connect(t=>t.url.includes('/appservice/')),output=path.resolve('artifacts/lamp-story'),checks=[],layouts=[];fs.mkdirSync(output,{recursive:true});let saved,lighting,success=false;
+ const run=expression=>s.evaluate(expression),data=()=>run('getCurrentPages().slice(-1)[0].data');
+ const act=(action,value='')=>run(`getCurrentPages().slice(-1)[0].perform(${JSON.stringify(action)},${JSON.stringify(value)})`);
+ const fields=patch=>run(`getCurrentPages().slice(-1)[0].setData(${JSON.stringify(patch)});true`);
+ async function nav(key){await run(`new Promise(resolve=>wx.switchTab({url:'/pages/${key}/index',success:()=>resolve(true),fail:()=>resolve(false)}))`);await pause(700);for(let i=0;i<60;i++){if((await data())?.key===key)return;await pause(100);}throw new Error('Navigation '+key);}
+ async function capture(key,name,selector,measure=false){await pause(300);const r=await connect(t=>t.url.includes('/__pageframe__/pages/'+key+'/index'));try{
+  await r.send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await pause(200);
+  await r.evaluate(selector?`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'start'});window.scrollBy(0,-105);true`:'window.scrollTo(0,0);true');await pause(200);
+  const rect=await r.evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector||'.feature-sheet')}),b=e.getBoundingClientRect();return {left:b.left,top:b.top,width:b.width,height:b.height};})()`);
+  const shot=await r.send('Page.captureScreenshot',{format:'png',fromSurface:true});fs.writeFileSync(path.join(output,name+'.png'),Buffer.from(shot.data,'base64'));
+  if(measure)for(const [width,height]of [[320,568],[390,844],[430,932]]){await r.send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await pause(100);const result=await r.evaluate(`(()=>{const root=document.querySelector('.feature-overlay')||document.querySelector('.native-screen');const bad=[...root.querySelectorAll('wx-view,wx-text,wx-button,wx-input,wx-textarea')].filter(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&!['absolute','fixed'].includes(getComputedStyle(e).position)&&(r.left < -1||r.right > innerWidth+1);}).map(e=>e.className);const save=document.querySelector('.feature-save'),b=save?.getBoundingClientRect(),hit=b&&document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);const grid=document.querySelector('.qa-milestones'),tiles=grid?[...grid.children].map(e=>{const r=e.getBoundingClientRect();return {top:r.top,left:r.left,width:r.width};}):[];return {width:innerWidth,height:innerHeight,bad,saveClickable:!save||(b.top>=0&&b.bottom<=innerHeight&&(hit===save||save.contains(hit))),tiles};})()`);assert.equal(result.bad.length,0,JSON.stringify(result));assert.equal(result.saveClickable,true);if(result.tiles.length){assert.equal(result.tiles.length,4);assert.ok(Math.abs(result.tiles[0].top-result.tiles[1].top)<2);assert.ok(Math.abs(result.tiles[2].top-result.tiles[3].top)<2);}layouts.push({state:name,...result});}
+  return rect;
+ }finally{await r.send('Emulation.clearDeviceMetricsOverride').catch(()=>{});r.close();}}
+ try{
+  for(let i=0;i<80;i++){if(await run("typeof getCurrentPages==='function'&&typeof getCurrentPages().slice(-1)[0]?.saveFirstMet==='function'&&typeof wx.switchTab==='function'").catch(()=>false))break;await pause(200);}
+  saved=await run("wx.getStorageInfoSync().keys.filter(k=>k.startsWith('only-us:')).map(k=>[k,wx.getStorageSync(k)])");const backup='artifacts/qa-private-backups';fs.mkdirSync(backup,{recursive:true});fs.writeFileSync(path.join(backup,'lamp-story-'+Date.now()+'.json'),JSON.stringify(saved));
+  await nav('cabin');lighting=await run("({lampOn:getCurrentPages().slice(-1)[0].data.lampOn,daytime:getCurrentPages().slice(-1)[0].data.daytime})");await act('closeEditor');
+  const brightness={};
+  for(const daytime of [false,true]){await fields({daytime,lampOn:true});const mode=daytime?'day':'night';const rect=await capture('cabin','lamp-'+mode+'-on','#roomContainer');await act('lamp');assert.equal((await data()).lampOn,false);await capture('cabin','lamp-'+mode+'-off','#roomContainer');const crop={left:Math.ceil(rect.left+rect.width*.04),top:Math.ceil(rect.top+rect.height*.15),width:Math.floor(rect.width*.4),height:Math.floor(rect.height*.7)};for(const state of ['on','off']){const pixels=await sharp(path.join(output,'lamp-'+mode+'-'+state+'.png')).extract(crop).toBuffer();const stats=await sharp(pixels).stats();brightness[mode+'-'+state]=stats.channels.slice(0,3).reduce((n,c)=>n+c.mean,0)/3;}assert.ok(brightness[mode+'-off']<brightness[mode+'-on']*.8,JSON.stringify(brightness));}
+  checks.push('日间与夜间开关灯截图均有明显亮度差，关灯区域平均亮度低于开灯的80%');
+  await nav('us');await run("getCurrentPages().slice(-1)[0].saveFirstMet('2023-11-17')");assert.equal((await data()).firstMet,'2023-11-17');await capture('us','milestones','.qa-milestones',true);checks.push('初次相识日期可保存回显，四张纪念卡在三种手机宽度均为两行两列');
+  await act('story');await fields({storyTitle:'',storyContent:'',storyPhoto:'',storyDate:'2026-11-06',storyWeather:'晴',storyLocation:'',storyCaption:''});await capture('us','story-form',null,true);checks.push('故事表单元数据同排、照片入口上移，三种手机尺寸保存按钮可命中');success=true;
+  fs.writeFileSync(path.join(output,'brightness.json'),JSON.stringify(brightness,null,2));
+ }finally{
+  try{if(saved){await act('closeEditor');await nav('cabin');await run(`(()=>{for(const k of wx.getStorageInfoSync().keys)if(k.startsWith('only-us:'))wx.removeStorageSync(k);for(const [k,v]of ${JSON.stringify(saved)})wx.setStorageSync(k,v);const p=getCurrentPages().slice(-1)[0];p.onShow();p.setData(${JSON.stringify(lighting||{})});p.dismissFeedback();return true;})()`);const restored=await run("wx.getStorageInfoSync().keys.filter(k=>k.startsWith('only-us:')).map(k=>[k,wx.getStorageSync(k)])");assert.deepEqual(new Map(restored),new Map(saved));checks.push('所有原有缓存与小屋灯光状态均已恢复');}}
+  finally{s.close();fs.writeFileSync(path.join(output,'results.json'),JSON.stringify({success,checks,layouts},null,2));}
+ }
+ console.log(JSON.stringify({success,checks,layoutChecks:layouts.length},null,2));
+})().catch(e=>{console.error(e);process.exitCode=1;});

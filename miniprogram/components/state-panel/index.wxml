@@ -1,0 +1,6 @@
+<view wx:if="{{visible}}" class="feedback {{kind}}" style="top:{{top}}px;" role="status" aria-live="polite">
+  <image class="feedback-icon" src="{{kind === 'error' ? '/assets/icons/error-85d833a7.png' : '/assets/icons/check_circle-0218d471.png'}}" mode="aspectFit"/>
+  <text class="message">{{message}}</text>
+  <button class="feedback-button" wx:if="{{kind === 'error' && retryable}}" bindtap="retry">重试</button>
+  <button wx:if="{{kind === 'error'}}" class="feedback-button feedback-close" bindtap="dismiss" aria-label="关闭提示">×</button>
+</view>

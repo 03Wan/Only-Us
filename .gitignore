@@ -1,0 +1,20 @@
+node_modules/
+project.private.config.json
+/project.config.json
+/miniprogram/project.config.json
+miniprogram/config/local.ts
+cloudfunctions/**/node_modules/
+artifacts/
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Raw simulator reports can contain personal text and device-local paths.
+/docs/qa-*.json
+/docs/*-validation.json
+/docs/native-device-*.json
+/docs/runtime-validation.json
+/docs/responsive-validation.json

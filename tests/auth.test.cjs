@@ -1,0 +1,12 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const {requireIdentity,requireSpace,requireOwnedRecord,canReadLetterBody}=require('../cloudfunctions/gateway/auth.cjs');
+test('identity comes only from server OPENID',()=>{assert.throws(()=>requireIdentity({userId:'a'}),/UNAUTHENTICATED/);assert.equal(requireIdentity({OPENID:'a'}),'a');});
+const repository=(members=['a','b'],status='active',user={spaceId:'only-space'})=>({user:async()=>user,space:async()=>({memberOpenids:members,status})});
+test('unbound users cannot access a space',async()=>{await assert.rejects(()=>requireSpace('a',repository(['a','b'],'active',null)),/NOT_BOUND/);});
+test('third parties and invalid member lists are denied',async()=>{for(const members of [['b','c'],['a'],['a','a'],['a','b','c']])await assert.rejects(()=>requireSpace('a',repository(members)),/FORBIDDEN/);});
+test('inactive spaces revoke access',async()=>{await assert.rejects(()=>requireSpace('a',repository(['a','b'],'revoked')),/FORBIDDEN/);});
+test('both actual members can use the server-derived space',async()=>{assert.equal((await requireSpace('a',repository())).spaceId,'only-space');assert.equal((await requireSpace('b',repository())).spaceId,'only-space');});
+test('guessing another record ID cannot cross space boundaries',()=>{assert.throws(()=>requireOwnedRecord({spaceId:'other'},'only-space'),/FORBIDDEN/);});
+test('future letter recipient cannot read before server time',()=>{const l={status:'sent',authorOpenid:'a',recipientOpenid:'b',openAt:1000};assert.equal(canReadLetterBody(l,'b',999),false);assert.equal(canReadLetterBody(l,'b',1000),true);assert.equal(canReadLetterBody(l,'c',1001),false);});
+test('draft content remains private to the author',()=>{const l={status:'draft',authorOpenid:'a',recipientOpenid:'b',openAt:0};assert.equal(canReadLetterBody(l,'b',1000),false);assert.equal(canReadLetterBody(l,'a',1000),true);});

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>平行时刻等待状态 - 小小宇宙</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "primary": "#605487",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e5e0ec",
+            "surface-dim": "#ddd8e4",
+            "surface-bright": "#fdf8ff",
+            "tertiary": "#735724",
+            "on-primary-fixed": "#1f1342",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-primary-fixed-variant": "#4b3f70",
+            "secondary-fixed-dim": "#edb8ce",
+            "surface-container-high": "#ebe6f2",
+            "background": "#fdf8ff",
+            "surface": "#fdf8ff",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-primary-container": "#fffbff",
+            "surface-container-low": "#f7f1fe",
+            "secondary-fixed": "#ffd8e7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "surface-container": "#f1ecf8",
+            "inverse-primary": "#cdbef8",
+            "on-surface": "#1c1a23",
+            "on-secondary-fixed-variant": "#623b4d",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-container": "#8e703a",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#7b5164",
+            "surface-tint": "#63578a",
+            "inverse-on-surface": "#f4effb",
+            "secondary-container": "#ffc8df",
+            "primary-fixed-dim": "#cdbef8",
+            "inverse-surface": "#312f38",
+            "on-surface-variant": "#48454e",
+            "tertiary-fixed": "#ffdea9",
+            "secondary": "#7c5265",
+            "on-background": "#1c1a23",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e8deff",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e0ec",
+            "outline-variant": "#cac4cf",
+            "on-secondary-fixed": "#301021",
+            "primary-container": "#796da1",
+            "outline": "#79757f",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+            "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+            "label-sm": ["10px", {"lineHeight": "14px", "fontWeight": "500"}],
+            "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+            "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+            "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes gentlePulse {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 0.95; transform: scale(1.03); }
+    }
+    .animate-gentle-pulse {
+      animation: gentlePulse 4s ease-in-out infinite;
+    }
+    @keyframes slowFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .animate-slow-float {
+      animation: slowFloat 5s ease-in-out infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed min-h-screen flex justify-center">
+<!-- Mobile Viewport Shell (390px x 844px context) -->
+<div class="w-full max-w-[390px] min-h-screen bg-background relative flex flex-col pb-28">
+<!-- Top Safe Area + TopAppBar (Shared Component Standard) -->
+<header class="fixed top-0 left-0 w-full max-w-[390px] mx-auto z-50 flex items-center justify-between px-space-md pt-space-xl pb-space-sm bg-surface/80 backdrop-blur-md shadow-sm transition-all duration-200">
+<div class="flex items-center space-x-2">
+<button aria-label="收藏" class="w-8 h-8 rounded-full flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<span class="text-headline-sm font-headline-sm text-primary font-semibold tracking-wide">小小宇宙</span>
+</div>
+<!-- WeChat Capsule Simulation Area -->
+<div class="flex items-center space-x-1.5 bg-surface-container/70 border border-outline-variant/30 rounded-full px-2.5 py-1 text-on-surface-variant">
+<button class="flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+<span class="w-[1px] h-3 bg-outline-variant/50"></span>
+<button class="flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]">radio_button_checked</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas Content Area -->
+<main class="flex-1 px-margin pt-24 space-y-4">
+<!-- Section Header Banner with Synchronizing State -->
+<div class="flex items-start justify-between pt-1">
+<div>
+<div class="flex items-center space-x-2">
+<h1 class="text-headline-lg font-headline-lg text-on-surface">平行时刻</h1>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">不同的生活，同一份分享欲。</p>
+</div>
+<!-- Status Pill: 等待同步中 -->
+<div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-surface-container-high/80 border border-secondary-fixed/40 shadow-sm animate-slow-float">
+<span class="text-label-md font-label-md text-primary">等待同步中</span>
+<span class="text-[12px]">⏳</span>
+</div>
+</div>
+<!-- Dual Column Canvas: Parallel Moments Split -->
+<section class="grid grid-cols-2 gap-3 pt-1">
+<!-- Left Column: My Today (已上传) -->
+<article class="bg-surface-container-lowest rounded-2xl p-2.5 border border-primary/10 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] flex flex-col justify-between relative overflow-hidden group">
+<!-- Top subtle badge -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-1">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">我的今天</span>
+</div>
+<span class="px-1.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-medium leading-none">已记录</span>
+</div>
+<!-- Photo Container -->
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="An intimate warm afternoon shot inside a cozy sunlit cafe with gentle golden hour light casting soft diagonal shadows on a wooden table. A glass of iced raw coconut latte with condensation drops rests beside an open linen journal and sleek modern pen. The atmosphere evokes soft warmth, nostalgia, tactile editorial minimalism, and peaceful romantic serenity with muted lavender undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQWvbHDEBFNBjNy_1hgdnLUbywsVYgrj3p-8JyJAvnrMeqHbZ4zi5L_mfJbUfTmZM4MateRR8kDFlG7rRbqgay1BO8OFyZqOpFE0KclyBIOfdb9b8_2E2DZskTAXCdqViUK-NItdMQkye1D1F1D4cv6W9yabDQR-AYJ7HSUvezvEn-eMMeZeW0GWjwO25OwAlNCa1-CLxZtV5ApXYgZalziC_5bo-xstuO3O4pl2I"/>
+<!-- Time Tag overlay -->
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-inverse-surface/60 backdrop-blur-md text-surface text-[10px] font-label-sm tracking-wide">
+              14:28
+            </div>
+</div>
+<!-- Card Content / Caption -->
+<div class="mt-2.5 space-y-1">
+<p class="text-body-sm font-body-sm text-on-surface line-clamp-2 leading-relaxed">
+              下午在公司楼下买了生椰拿铁，阳光好舒服。
+            </p>
+<div class="flex items-center justify-between pt-1 border-t border-surface-container-highest/60 text-on-surface-variant">
+<span class="text-[11px] font-label-sm text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">location_on</span>
+                静安 · 晴 22°C
+              </span>
+<span class="material-symbols-outlined text-[14px] text-secondary active:scale-125 transition-transform" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+</article>
+<!-- Right Column: Partner's Today (等待状态 - 诗意陪伴，绝无催促) -->
+<article class="bg-surface-container-low/90 rounded-2xl p-2.5 border border-outline-variant/40 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.06)] flex flex-col justify-between relative overflow-hidden">
+<!-- Top subtle partner badge -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-1">
+<span class="w-2 h-2 rounded-full bg-outline-variant animate-gentle-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">TA的今天</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary/70 tracking-tight">星野漫游中</span>
+</div>
+<!-- Hand-drawn Dreamy Illustration Placeholder Area -->
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-gradient-to-b from-surface-container-high/60 via-surface-container-low to-secondary-fixed/20 border border-dashed border-primary/20 flex flex-col items-center justify-center p-3 text-center">
+<!-- Soft Celestial Visual Asset Placeholder -->
+<div class="relative w-20 h-20 mb-2 flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary-fixed-dim/20 rounded-full blur-xl animate-gentle-pulse"></div>
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-secondary-fixed/50 flex flex-col items-center justify-center shadow-sm animate-slow-float">
+<span class="material-symbols-outlined text-primary/80 text-[26px]">bedtime</span>
+<span class="text-[9px] text-tertiary font-label-sm mt-0.5">等待光晕</span>
+</div>
+<!-- Floating Little Stars -->
+<span class="material-symbols-outlined text-secondary-fixed-dim text-[14px] absolute -top-1 right-2 animate-pulse" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary/40 text-[10px] absolute bottom-1 left-2">auto_awesome</span>
+</div>
+<!-- Gentle Atmospheric Caption -->
+<p class="text-body-sm font-body-sm text-on-surface-variant/90 leading-tight px-1 font-medium">
+              另一份今天<br/>
+<span class="text-[11px] font-normal text-on-surface-variant/70">等它慢慢到来。</span>
+</p>
+<!-- Soft status pill inside card -->
+<div class="mt-3 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 border border-outline-variant/30 text-[10px] text-primary/80 flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"></span>
+<span>留白也是呼吸</span>
+</div>
+</div>
+<!-- Card Content / Gentle State Note -->
+<div class="mt-2.5 space-y-1">
+<p class="text-body-sm font-body-sm text-outline italic line-clamp-2 leading-relaxed">
+              对方还在经历TA的忙碌或小憩，不用打扰，晚些再来看看。
+            </p>
+<div class="flex items-center justify-between pt-1 border-t border-surface-container-highest/60 text-on-surface-variant">
+<span class="text-[11px] font-label-sm text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">cloud_sync</span>
+                等待重逢时刻
+              </span>
+<span class="material-symbols-outlined text-[14px] text-outline-variant">schedule</span>
+</div>
+</div>
+</article>
+</section>
+<!-- Reassuring Emotional Comfort Card (No Pushing / No Urgent Buttons) -->
+<section class="bg-surface-container-lowest rounded-2xl p-4 border border-secondary-fixed/40 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.06)] relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-secondary-fixed/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center shrink-0 text-primary mt-0.5 border border-primary/10">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</div>
+<div class="space-y-1">
+<h2 class="text-label-lg font-label-lg text-primary">温柔的默契守候</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              不用催促TA，让生活自然流淌。当TA记录下TA的今天时，宇宙两端会自动相遇。
+            </p>
+</div>
+</div>
+</section>
+<!-- History Timeline Module (历史平行瞬间) -->
+<section class="space-y-3 pt-1">
+<div class="flex items-center justify-between px-0.5">
+<div class="flex items-center space-x-1.5">
+<span class="text-headline-sm font-headline-sm text-on-surface">历史星轨</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">往昔双影</span>
+</div>
+<button class="text-label-md font-label-md text-primary flex items-center space-x-0.5 hover:opacity-80 transition-opacity">
+<span>全部 128 天</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+<!-- History Item 1: Yesterday's Pair -->
+<div class="bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/30 flex items-center space-x-3 shadow-sm">
+<div class="text-center w-10 shrink-0">
+<span class="text-display-lg font-display-lg text-primary leading-none block text-[18px]">19</span>
+<span class="text-label-sm font-label-sm text-outline block">10月</span>
+</div>
+<div class="h-8 w-[1px] bg-surface-container-highest"></div>
+<!-- Dual thumbnail preview -->
+<div class="flex items-center space-x-2 flex-1">
+<div class="relative w-11 h-11 rounded-lg overflow-hidden border border-outline-variant/30 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Editorial close up photograph of warm homemade pumpkin soup in an artisanal ceramic bowl on raw timber table with rustic bread roll, bathed in serene morning light, minimalist Nordic aesthetic, warm comforting cream tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCoTnrfFPiSxfxPN9BLNM_su37se2Vo23xx3VCl3XypmjjxxhNqGrrgzgL8X2TlZkDVA6qHHL4xXywHvVgX5BrTUtItmCkUvVhnOlBCsVfS8sLuq1oinXyMsjqvCW_zfQFtFD-mGp7JN5d0XVYXZUlE4erckuyrenwfi2EAo4p04LI8IXBOyD1x88bJpkb4i3GzXRIOTQd2v1ptzZJkgNA1YbmY5j8w3H2QdpBJqo"/>
+<span class="absolute bottom-0 inset-x-0 bg-primary/70 text-[8px] text-surface text-center font-label-sm py-0.5">我</span>
+</div>
+<div class="flex items-center justify-center text-outline-variant">
+<span class="material-symbols-outlined text-[14px]">link</span>
+</div>
+<div class="relative w-11 h-11 rounded-lg overflow-hidden border border-outline-variant/30 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Calm twilight city street shot through autumn ginkgo tree branches with softly illuminated storefronts and street lamps glowing softly, shot on vintage film camera, quiet dusk romantic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsbRZpoCWZkoIxNLmn8m0CxxJyxUv1-W-xRjRnMU0OK0NjMd77zQ-I6tRLNe8QXcN4xOC4vTKqwi1AjLDSk9ZkvBRfTAfCvKZO93h-gtN2siBEtflPjbAmRoFzP3cA4OD0syBeCdx7SDA-ixg3trHZx6H4aepHxpPC5e6nfp8550H3aOovm-Dwz5cUfCuvb8lfSRv4CUibIl7Iqx5xtypLDmNAF0eIfOVSx_liz_g"/>
+<span class="absolute bottom-0 inset-x-0 bg-secondary/80 text-[8px] text-surface text-center font-label-sm py-0.5">TA</span>
+</div>
+<div class="ml-1 flex-1 overflow-hidden">
+<p class="text-label-md font-label-md text-on-surface truncate">南瓜汤与银杏街道</p>
+<p class="text-body-sm font-body-sm text-outline truncate text-[11px]">两端都迎来了初秋微凉</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline-variant">arrow_forward_ios</span>
+</div>
+<!-- History Item 2: Day Before Yesterday -->
+<div class="bg-surface-container-lowest rounded-xl p-3 border border-outline-variant/30 flex items-center space-x-3 shadow-sm">
+<div class="text-center w-10 shrink-0">
+<span class="text-display-lg font-display-lg text-outline leading-none block text-[18px]">18</span>
+<span class="text-label-sm font-label-sm text-outline block">10月</span>
+</div>
+<div class="h-8 w-[1px] bg-surface-container-highest"></div>
+<!-- Dual thumbnail preview -->
+<div class="flex items-center space-x-2 flex-1">
+<div class="relative w-11 h-11 rounded-lg overflow-hidden border border-outline-variant/30 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro artistic photo of rain droplets sliding down transparent train window against soft blurred city lights at night, tranquil moody atmosphere in shades of muted twilight purple and soft ivory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKlw2zz0Uv1cZS1YcAjZHXwgeymXCDFFCiEnxQsirM7ibGLvb6-QSc01zDZ910PUofKdZIXSQGZp0H-VawkDd1Qb-zR1yw5zwYxBnvS-SOK5YfBH0SBwvcJXZ6WUyT3YHGTfiVnyMiz_HvOKdTrXdubWd-PbVkDB9-6UcMHt3PFyPRhTswORiJlDUSooVYey024j5-A3pwHuW1jU0mm0nPEliiA-DX5DJk72Fl4Bc"/>
+<span class="absolute bottom-0 inset-x-0 bg-primary/70 text-[8px] text-surface text-center font-label-sm py-0.5">我</span>
+</div>
+<div class="flex items-center justify-center text-outline-variant">
+<span class="material-symbols-outlined text-[14px]">link</span>
+</div>
+<div class="relative w-11 h-11 rounded-lg overflow-hidden border border-outline-variant/30 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Cozy bookstore interior with warm pendant lamps highlighting stacks of paperbacks and a sleeping tabby cat on an armchair, serene warm cream aesthetic, film grain texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjeaDPdlZBkpmiAOwb0v2PoTRyW-i_Qhs8SHKoAfdxjrwr1xgHlWGCGzeR9Cu4480HWlCXNoN0FMe6DGIb0x1jbsbXppkc4fpHJ9exZ7jxRi9HH8ZMgvPTjjsSkUOuTSCH-E9-bMlpUOA871WY3ELpPmZrbWYFrwxm5D3nQsAG_cG_3ttPOg4HLEEJ_MaeAVyXxuh1ww6XkkEbme2c7-3mWI8hEXNLTAAAZomThGA"/>
+<span class="absolute bottom-0 inset-x-0 bg-secondary/80 text-[8px] text-surface text-center font-label-sm py-0.5">TA</span>
+</div>
+<div class="ml-1 flex-1 overflow-hidden">
+<p class="text-label-md font-label-md text-on-surface truncate">雨夜电车与旧书店小猫</p>
+<p class="text-body-sm font-body-sm text-outline truncate text-[11px]">相隔千里，共读一页诗</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline-variant">arrow_forward_ios</span>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Shared Component Standard: 5 Items, "瞬间" Active) -->
+<nav class="fixed bottom-0 left-0 w-full max-w-[390px] mx-auto z-50 flex justify-around items-center px-space-sm pt-space-sm pb-space-md bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_-2px_rgba(145,132,186,0.08)]">
+<!-- 1. 小屋 (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">cottage</span>
+<span class="text-label-sm font-label-sm mt-0.5">小屋</span>
+</button>
+<!-- 2. 瞬间 (ACTIVE STATE from JSON style_active_navigation) -->
+<button class="flex flex-col items-center justify-center text-primary font-semibold relative after:content-[''] after:w-1.5 after:h-1.5 after:rounded-full after:bg-secondary-fixed-dim after:mt-1 after:shadow-[0_0_8px_rgba(234,181,203,0.6)] active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="text-label-sm font-label-sm mt-0.5">瞬间</span>
+</button>
+<!-- 3. 信箱 (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">mail</span>
+<span class="text-label-sm font-label-sm mt-0.5">信箱</span>
+</button>
+<!-- 4. 见面 (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">flight_takeoff</span>
+<span class="text-label-sm font-label-sm mt-0.5">见面</span>
+</button>
+<!-- 5. 我们 (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 font-normal hover:text-primary transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">diversity_1</span>
+<span class="text-label-sm font-label-sm mt-0.5">我们</span>
+</button>
+</nav>
+</div>
+</body></html>

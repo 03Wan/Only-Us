@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>小小宇宙 - 平行时刻</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e5e0ec",
+            "tertiary-fixed": "#ffdea9",
+            "secondary-fixed-dim": "#edb8ce",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#623b4d",
+            "surface": "#fdf8ff",
+            "on-background": "#1c1a23",
+            "on-error": "#ffffff",
+            "tertiary": "#735724",
+            "surface-tint": "#63578a",
+            "on-secondary-container": "#7b5164",
+            "on-surface": "#1c1a23",
+            "surface-container-low": "#f7f1fe",
+            "tertiary-container": "#8e703a",
+            "outline-variant": "#cac4cf",
+            "secondary-fixed": "#ffd8e7",
+            "surface-container": "#f1ecf8",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#f4effb",
+            "on-tertiary-container": "#fffbff",
+            "on-secondary-fixed": "#301021",
+            "surface-variant": "#e5e0ec",
+            "on-primary-fixed-variant": "#4b3f70",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-surface-variant": "#48454e",
+            "primary": "#605487",
+            "surface-container-high": "#ebe6f2",
+            "inverse-primary": "#cdbef8",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "secondary": "#7c5265",
+            "on-primary-container": "#fffbff",
+            "on-primary-fixed": "#1f1342",
+            "primary-fixed-dim": "#cdbef8",
+            "surface-bright": "#fdf8ff",
+            "on-tertiary-fixed": "#271900",
+            "background": "#fdf8ff",
+            "primary-container": "#796da1",
+            "primary-fixed": "#e8deff",
+            "outline": "#79757f",
+            "error-container": "#ffdad6",
+            "surface-dim": "#ddd8e4",
+            "inverse-surface": "#312f38",
+            "error": "#ba1a1a",
+            "secondary-container": "#ffc8df"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide scrollbars smoothly */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed min-h-screen flex justify-center">
+<!-- iPhone 390px Canvas Wrapper -->
+<div class="w-full max-w-[390px] min-h-screen bg-background relative flex flex-col pb-36 shadow-2xl">
+<!-- Top Status Bar & Custom WeChat App Bar -->
+<header class="fixed top-0 left-0 w-full max-w-[390px] mx-auto z-50 flex items-center justify-between px-space-md pt-space-xl pb-space-sm bg-surface/80 dark:bg-surface/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary dark:text-inverse-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<span class="text-headline-sm font-headline-sm text-primary dark:text-inverse-primary font-semibold tracking-wide">小小宇宙</span>
+</div>
+<!-- Right Capsule Simulation / Connection Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant shadow-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium tracking-tight">连线中 · 1,280 km</span>
+</div>
+</header>
+<!-- Main Content Container with Safe Margin -->
+<main class="flex-1 px-margin pt-24 space-y-5">
+<!-- Header Subtitle & Emotional Hook -->
+<section class="space-y-1">
+<div class="flex items-center justify-between">
+<h1 class="text-headline-md font-headline-md text-on-surface font-semibold tracking-tight">平行时刻</h1>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-label-sm font-label-sm">双向同步完成</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">不同的生活，同一份分享欲。</p>
+</section>
+<!-- Parallel Dual Cards (The Synchronized Hero Pattern) -->
+<section class="relative">
+<!-- Ambient Background Glow -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary-fixed/20 via-secondary-fixed/25 to-tertiary-fixed/20 rounded-[24px] blur-xl -z-10"></div>
+<div class="grid grid-cols-2 gap-3 items-stretch">
+<!-- Left Column: "我的今天 (念念 · 杭州)" -->
+<article class="bg-surface-container-lowest rounded-[20px] p-3 border border-outline-variant/30 flex flex-col justify-between shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)]">
+<div class="space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">我的今天</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-normal">14:28</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[13px] text-primary" data-icon="location_on">location_on</span>
+<span>念念 · 杭州</span>
+</div>
+<!-- Photo Area -->
+<div class="relative w-full aspect-[4/5] rounded-[14px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="A warm, sunlit aesthetic flat-lay composition showing an artisanal iced coconut latte in a sleek glass on a light wooden cafe table next to an open notebook and fountain pen. Gentle afternoon sunlight streams through a large window, casting dreamy soft shadows with a comforting cream, mauve, and soft golden palette. Cinematic soft depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhre95TjV-4CYlG-SzlOFABKeRRQrKMHljNQ78T91EZV5MHTXaHbs9gvtXesqdgluJGOFgFeRVx4VEf9V7bDwXCMpTv0k2hRRPLJHgOlze8zeFiqSx8ED2mqXjurhppPVlI_xmgsKab6XvPSTd2TBVLVh4O2BABoD6llWq-iJ47DdzJfOW9x-NLEwZGk6UwzdMeiLrsJbM9t4D7lHWlOOqRe3CHW9ZAI71UIZ5wQA"/>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-on-surface/60 backdrop-blur-md text-surface text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[11px]" data-icon="wb_sunny">wb_sunny</span>
+<span>26°C 晴朗</span>
+</div>
+</div>
+<!-- Note -->
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed pt-1">
+                下午写策划案写累了，在公司楼下买了你爱喝的生椰拿铁，阳光好舒服。
+              </p>
+</div>
+<!-- Reaction Tag -->
+<div class="pt-3 mt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>林林也心动</span>
+</span>
+<span class="text-label-sm font-label-sm text-outline">已存入空间</span>
+</div>
+</article>
+<!-- Right Column: "对方的今天 (小林 · 北京)" -->
+<article class="bg-surface-container-lowest rounded-[20px] p-3 border border-outline-variant/30 flex flex-col justify-between shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)]">
+<div class="space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">对方的今天</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-normal">14:35</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="location_on">location_on</span>
+<span>小林 · 北京</span>
+</div>
+<!-- Photo Area -->
+<div class="relative w-full aspect-[4/5] rounded-[14px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="An atmospheric viewpoint from an office high-rise window showing clear blue skies over contemporary city architecture, with a subtle couple acrylic standee and a ceramic mug resting on the clean wooden desk ledge. Soft gentle afternoon reflections and warm atmospheric daylight evoke a quiet poetic sanctuary within a busy day." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLxN1ctRTFtwZzMJo2vxU2b3L8WsmVN-wU7109VFHh-xTnb5HQIj8Dc3sueqVrxKM0LBy7R5Nr0AG32s9n5ykbchWguCKbSeYHWvrrroKrrOhVs_fzHHdmUrcBhJVHw6HfZMj6NUelDu-MpZBVmOKM37dAemsphxA8N_zoOwik8IS6TioCIGkQo9LZ4_c1hyC8FF4HkutMAwfaFMHSowepfh_oAiB8-jP_ODvIw-I"/>
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-on-surface/60 backdrop-blur-md text-surface text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[11px]" data-icon="air">air</span>
+<span>19°C 微风</span>
+</div>
+</div>
+<!-- Note -->
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed pt-1">
+                刚开完评审会，看到你的照片啦，北京今天降温，你要记得多喝温水。
+              </p>
+</div>
+<!-- Reaction Tag -->
+<div class="pt-3 mt-2 border-t border-surface-container-highest flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>念念已阅读</span>
+</span>
+<span class="text-label-sm font-label-sm text-outline">已存入空间</span>
+</div>
+</article>
+</div>
+<!-- Overlap Synchronized Capsule Anchor -->
+<div class="mt-3 bg-surface-container-low border border-secondary-fixed/50 rounded-full px-4 py-2.5 shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed-dim" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="text-label-md font-label-md text-on-surface-variant tracking-wide">
+            这一刻，我们的生活在平行宇宙里重叠了
+          </p>
+</div>
+</section>
+<!-- History Timeline Section -->
+<section class="space-y-3 pt-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="calendar_month">calendar_month</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface font-semibold">历史记录时间轴</h2>
+</div>
+<button class="flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-label-sm font-label-sm text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95">
+<span>按月筛选</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<div class="space-y-2.5">
+<!-- Timeline Item 1: Yesterday 05.19 -->
+<div class="bg-surface-container-lowest rounded-[18px] p-3.5 border border-outline-variant/20 shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-semibold text-label-sm font-label-sm">昨天 · 05.19</span>
+<span class="text-label-sm font-label-sm text-outline">双人共鸣度 98%</span>
+</div>
+<button class="w-6 h-6 rounded-full flex items-center justify-center text-secondary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<!-- Timeline Split Comparison -->
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low/70 rounded-[14px] p-2.5">
+<div class="space-y-1">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[12px]" data-icon="subway">subway</span>
+<span>杭州 · 念念</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium truncate">夜班地铁的晚霞</p>
+<p class="text-label-sm font-label-sm text-outline">“车窗镀上了橘粉色”</p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-2">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[12px]" data-icon="yard">yard</span>
+<span>北京 · 小林</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium truncate">宿舍阳台的风铃</p>
+<p class="text-label-sm font-label-sm text-outline">“听到了夏天的风声”</p>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline px-1">
+<span>已归档至「温柔傍晚」合集</span>
+<span class="text-primary font-medium flex items-center gap-0.5">
+                查看双图
+                <span class="material-symbols-outlined text-[13px]" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</span>
+</div>
+</div>
+<!-- Timeline Item 2: Day Before Yesterday 05.18 -->
+<div class="bg-surface-container-lowest rounded-[18px] p-3.5 border border-outline-variant/20 shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-semibold text-label-sm font-label-sm">前天 · 05.18</span>
+<span class="text-label-sm font-label-sm text-outline">日常能量交换</span>
+</div>
+<button class="w-6 h-6 rounded-full flex items-center justify-center text-outline-variant hover:text-secondary active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[16px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<!-- Timeline Split Comparison -->
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low/70 rounded-[14px] p-2.5">
+<div class="space-y-1">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-primary">
+<span class="material-symbols-outlined text-[12px]" data-icon="directions_run">directions_run</span>
+<span>杭州 · 念念</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium truncate">跑步打卡 5km</p>
+<p class="text-label-sm font-label-sm text-outline">“为你多跑了一公里”</p>
+</div>
+<div class="space-y-1 border-l border-outline-variant/30 pl-2">
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[12px]" data-icon="soup_kitchen">soup_kitchen</span>
+<span>北京 · 小林</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium truncate">煮了一碗番茄牛腩面</p>
+<p class="text-label-sm font-label-sm text-outline">“按照你的独家菜谱”</p>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline px-1">
+<span>已归档至「烟火气」合集</span>
+<span class="text-primary font-medium flex items-center gap-0.5">
+                查看双图
+                <span class="material-symbols-outlined text-[13px]" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (Record Today / Snap This Moment) -->
+<div class="fixed bottom-24 left-0 w-full max-w-[390px] mx-auto px-margin z-40 pointer-events-none flex justify-center">
+<button class="pointer-events-auto flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-secondary-fixed-dim to-primary text-on-primary shadow-[0_8px_24px_rgba(124,82,101,0.35)] active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="photo_camera" data-weight="fill" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+<span class="text-label-lg font-label-lg tracking-wide">记录今天 / 拍下此刻</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="flare">flare</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar (Semantic Shell, 5 destinations) -->
+<!-- Active Destination determined as index 1: '瞬间' (Parallel Moments screen) -->
+<nav class="fixed bottom-0 left-0 w-full max-w-[390px] mx-auto z-50 flex justify-around items-center px-space-sm pt-space-sm pb-space-md bg-surface/90 dark:bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 dark:border-outline-variant/20 shadow-[0_-4px_20px_-2px_rgba(145,132,186,0.08)]">
+<!-- 1. 小屋 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 font-normal hover:text-primary dark:hover:text-inverse-primary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="cottage">cottage</span>
+<span class="text-label-sm font-label-sm mt-0.5">小屋</span>
+</a>
+<!-- 2. 瞬间 (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-inverse-primary font-semibold relative after:content-[''] after:w-1.5 after:h-1.5 after:rounded-full after:bg-secondary-fixed-dim after:mt-1 after:shadow-[0_0_8px_rgba(234,181,203,0.6)] active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="photo_library" data-weight="fill" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="text-label-sm font-label-sm mt-0.5">瞬间</span>
+</a>
+<!-- 3. 信箱 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 font-normal hover:text-primary dark:hover:text-inverse-primary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="mail">mail</span>
+<span class="text-label-sm font-label-sm mt-0.5">信箱</span>
+</a>
+<!-- 4. 见面 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 font-normal hover:text-primary dark:hover:text-inverse-primary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="flight_takeoff">flight_takeoff</span>
+<span class="text-label-sm font-label-sm mt-0.5">见面</span>
+</a>
+<!-- 5. 我们 -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 font-normal hover:text-primary dark:hover:text-inverse-primary transition-colors active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="diversity_1">diversity_1</span>
+<span class="text-label-sm font-label-sm mt-0.5">我们</span>
+</a>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=390, height=844, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>双人星光绑定 - 小小宇宙</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "primary": "#605487",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e5e0ec",
+            "surface-dim": "#ddd8e4",
+            "surface-bright": "#fdf8ff",
+            "tertiary": "#735724",
+            "on-primary-fixed": "#1f1342",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-primary-fixed-variant": "#4b3f70",
+            "secondary-fixed-dim": "#edb8ce",
+            "surface-container-high": "#ebe6f2",
+            "background": "#fdf8ff",
+            "surface": "#fdf8ff",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-primary-container": "#fffbff",
+            "surface-container-low": "#f7f1fe",
+            "secondary-fixed": "#ffd8e7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "surface-container": "#f1ecf8",
+            "inverse-primary": "#cdbef8",
+            "on-surface": "#1c1a23",
+            "on-secondary-fixed-variant": "#623b4d",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-container": "#8e703a",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#7b5164",
+            "surface-tint": "#63578a",
+            "inverse-on-surface": "#f4effb",
+            "secondary-container": "#ffc8df",
+            "primary-fixed-dim": "#cdbef8",
+            "inverse-surface": "#312f38",
+            "on-surface-variant": "#48454e",
+            "tertiary-fixed": "#ffdea9",
+            "secondary": "#7c5265",
+            "on-background": "#1c1a23",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e8deff",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e0ec",
+            "outline-variant": "#cac4cf",
+            "on-secondary-fixed": "#301021",
+            "primary-container": "#796da1",
+            "outline": "#79757f",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #fdf8ff;
+      color: #1c1a23;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1;
+    }
+    @keyframes gentle-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    @keyframes halo-orbit {
+      0% { transform: rotate(0deg) scale(0.98); }
+      50% { transform: rotate(180deg) scale(1.02); }
+      100% { transform: rotate(360deg) scale(0.98); }
+    }
+    .animate-pulse-slow {
+      animation: gentle-pulse 3.5s ease-in-out infinite;
+    }
+    .animate-halo {
+      animation: halo-orbit 14s linear infinite;
+    }
+    /* Hide scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex justify-center items-center min-h-screen bg-surface-container-high p-0 sm:p-4">
+<!-- Mobile WeChat Mini Program Viewport Shell (390px x 844px) -->
+<div class="relative w-[390px] h-[844px] bg-background text-on-surface overflow-y-auto overflow-x-hidden flex flex-col shadow-[0_12px_45px_-6px_rgba(96,84,135,0.18)] rounded-[44px] border-[6px] border-surface-container-lowest">
+<!-- WeChat Mini Program Top Header & Status Capsule -->
+<header class="fixed top-0 left-0 w-[390px] z-50 flex items-center justify-between px-space-md pt-space-xl pb-space-sm bg-surface/85 backdrop-blur-md">
+<!-- Leading Brand Icon from JSON TopAppBar anchor -->
+<div class="flex items-center gap-1.5 text-primary active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary fill-icon" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-headline-sm font-headline-sm text-primary font-semibold tracking-wide">小小宇宙</span>
+</div>
+<!-- WeChat Native Right Capsule Simulation (Menu / Close buttons) -->
+<div class="flex items-center bg-surface-container/70 border border-outline-variant/40 rounded-full py-1 px-2.5 space-x-2 shadow-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_horiz</span>
+<div class="w-[1px] h-3 bg-outline-variant/60"></div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">trip_origin</span>
+</div>
+</header>
+<!-- Main Content Flow (Onboarding / Dual-binding transactional journey - BottomNavBar intentionally suppressed) -->
+<main class="flex-1 px-margin pt-[92px] pb-space-xl flex flex-col space-y-space-md">
+<!-- 1. Header Typography Anchor & Emotional Lead -->
+<div class="w-full bg-surface-container/90 backdrop-blur-sm rounded-2xl p-1.5 border border-outline-variant/30 flex items-center justify-between shadow-xs mb-1">
+  <div class="flex items-center gap-1 pl-1.5 text-label-sm font-label-sm text-on-surface-variant">
+    <span class="material-symbols-outlined text-[15px] text-primary">tune</span>
+    <span class="">演示状态:</span>
+  </div>
+  <div class="flex items-center gap-1 overflow-x-auto">
+    <button onclick="setDemoState('waiting')" id="state-btn-waiting" class="px-2 py-1 rounded-xl text-label-sm font-label-sm bg-surface-container-lowest text-primary shadow-xs font-semibold whitespace-nowrap transition-all">1.待加入</button>
+    <button onclick="setDemoState('request')" id="state-btn-request" class="px-2 py-1 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:text-primary whitespace-nowrap transition-all">2.待确认</button>
+    <button onclick="setDemoState('success')" id="state-btn-success" class="px-2 py-1 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:text-primary whitespace-nowrap transition-all">3.已连通</button>
+    <button onclick="setDemoState('error')" id="state-btn-error" class="px-2 py-1 rounded-xl text-label-sm font-label-sm text-on-surface-variant hover:text-primary whitespace-nowrap transition-all">4.失效/错误</button>
+  </div>
+</div><section class="text-center pt-space-xs pb-space-xs">
+<div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-fixed/50 text-secondary mb-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary fill-icon" style="font-variation-settings: 'FILL' 1;">arrow_back_ios_new</span>
+<span class="text-label-sm font-label-sm">双人星光绑定 · Only Us</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight font-bold">
+          点亮属于我们的第一盏灯
+        </h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+          两颗孤单星辰穿越空间向心共振，筑造私密数字小屋
+        </p>
+</section>
+<!-- 2. Dual Star Orbit & Cabin Silhouette Romantic Hero Card -->
+<section class="relative w-full rounded-[24px] bg-gradient-to-b from-surface-container-low via-surface-container-lowest to-surface-container p-5 overflow-hidden shadow-[0_4px_20px_-2px_rgba(145,132,186,0.10)] border border-secondary-fixed-dim/30"><!-- Ambient Glowing Starlight Backdrop -->
+<div class="absolute -top-12 -left-10 w-36 h-36 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-primary-fixed/40 blur-2xl pointer-events-none"></div>
+<div id="hero-success-glow" class="hidden absolute inset-0 bg-gradient-to-tr from-secondary-fixed/30 via-tertiary-fixed/35 to-primary-fixed/40 blur-xl pointer-events-none transition-opacity duration-500"></div>
+
+<div class="relative z-10 flex flex-col items-center py-2">
+  <!-- Illustration Stage: Orbiting Stars -->
+  <div class="relative w-64 h-32 flex items-center justify-center">
+    <!-- Pulsing Halo Orbit Track -->
+    <div class="absolute w-52 h-20 rounded-full border border-dashed border-primary/25 animate-halo pointer-events-none"></div>
+    
+    <!-- Star 1 (Me) -->
+    <div id="star-me" class="absolute left-4 top-5 flex flex-col items-center animate-pulse-slow transition-all duration-700 ease-out">
+      <div class="relative w-11 h-11 rounded-full bg-gradient-to-tr from-secondary-fixed-dim to-secondary-fixed flex items-center justify-center shadow-[0_0_16px_rgba(237,184,206,0.7)] border-2 border-surface-container-lowest">
+        <span class="text-label-md font-bold text-secondary">你</span>
+      </div>
+      <span class="text-label-sm font-label-sm text-primary mt-1 font-semibold">晴空 (我)</span>
+    </div>
+    
+    <!-- Central Cottage Light (Destination) -->
+    <div id="cabin-center" class="relative flex flex-col items-center z-10 transition-transform duration-500">
+      <div id="cabin-box" class="w-14 h-14 rounded-2xl bg-surface-container-lowest border border-secondary-fixed-dim/50 shadow-[0_0_24px_rgba(121,109,161,0.25)] flex items-center justify-center transition-all duration-500">
+        <span id="cabin-icon" class="material-symbols-outlined text-primary fill-icon text-[30px]" style="font-variation-settings: 'FILL' 1;">cottage</span>
+      </div>
+      <span id="cabin-label" class="text-label-sm font-label-sm text-secondary font-semibold mt-1">专属宇宙小屋</span>
+    </div>
+    
+    <!-- Star 2 (TA) -->
+    <div id="star-ta" class="absolute right-4 bottom-4 flex flex-col items-center animate-pulse-slow transition-all duration-700 ease-out" style="animation-delay: 1.6s;">
+      <div id="star-ta-avatar" class="relative w-11 h-11 rounded-full bg-gradient-to-bl from-primary-fixed to-primary-fixed-dim flex items-center justify-center shadow-[0_0_16px_rgba(205,190,248,0.7)] border-2 border-surface-container-lowest">
+        <span id="star-ta-inner" class="material-symbols-outlined text-primary fill-icon text-[22px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      </div>
+      <span id="star-ta-label" class="text-label-sm font-label-sm text-primary mt-1 font-semibold">TA (等待中)</span>
+    </div>
+    
+    <!-- Light Tether Line -->
+    <div id="tether-line" class="absolute w-36 h-[1.5px] bg-gradient-to-r from-secondary-fixed-dim via-primary to-primary-fixed-dim opacity-40 transition-all duration-500"></div>
+  </div>
+  
+  <!-- Dynamic Pairing Distance Indicator -->
+  <div id="pairing-status-badge" class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/80 border border-outline-variant/30 shadow-xs transition-all">
+    <span id="status-ping-dot" class="w-2 h-2 rounded-full bg-secondary-fixed-dim animate-ping"></span>
+    <span id="pairing-status-text" class="text-body-sm font-body-sm text-on-surface-variant font-medium">心率共鸣已就绪 · 等待星光锁合</span>
+  </div>
+</div></section>
+<!-- 3. Pairing Core Control Area (Tabs: Create or Join) -->
+<section class="bg-surface-container-lowest rounded-[24px] p-space-md shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] border border-outline-variant/20 flex flex-col"><!-- Tab Bar for Create/Join (visible during waiting or error mode) -->
+<div id="main-tab-bar" class="w-full grid grid-cols-2 p-1 bg-surface-container rounded-full mb-space-md">
+  <button class="py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 bg-surface-container-lowest text-primary shadow-xs font-semibold flex items-center justify-center gap-1" id="tab-create-btn" onclick="switchPairMode('create')">
+    <span class="material-symbols-outlined text-[18px]">magic_button</span>
+    <span class="">生成密令</span>
+  </button>
+  <button class="py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 text-on-surface-variant hover:text-primary font-normal flex items-center justify-center gap-1" id="tab-join-btn" onclick="switchPairMode('join')">
+    <span class="material-symbols-outlined text-[18px]">key</span>
+    <span class="">输入加入</span>
+  </button>
+</div>
+
+<!-- STATE 1: Waiting / Generation mode -->
+<div id="view-state-waiting" class="flex flex-col space-y-space-md">
+  <div class="flex flex-col items-center text-center px-space-xs">
+    <div class="flex items-center justify-between w-full mb-1.5">
+      <span class="text-body-sm font-body-sm text-on-surface-variant">专属一次性星光密令</span>
+      <!-- Countdown indicator -->
+      <div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded-full">
+        <span class="material-symbols-outlined text-[14px]">timer</span>
+        <span id="countdown-timer" class="">29:48 有效</span>
+      </div>
+    </div>
+    
+    <!-- Passcode Display Field with Refresh -->
+    <div class="w-full bg-surface-container-low rounded-2xl py-3 px-4 flex items-center justify-between border border-primary-fixed-dim/40 shadow-inner">
+      <div class="flex items-center space-x-2">
+        <span class="material-symbols-outlined text-primary text-[20px]">filter_vintage</span>
+        <span class="text-headline-md font-headline-md text-primary font-bold tracking-widest font-mono" id="invite-code-text">STAR-520-LOVE</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button title="随机生成新密令" onclick="refreshCodeAction()" class="w-8 h-8 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[18px]">refresh</span>
+        </button>
+        <button class="flex items-center gap-1 text-label-sm font-label-sm text-secondary-container bg-secondary px-2.5 py-1.5 rounded-xl hover:opacity-90 active:scale-95 transition-all" onclick="copyCodeAction()">
+          <span class="material-symbols-outlined text-[14px]">content_copy</span>
+          <span id="copy-btn-text" class="">复制</span>
+        </button>
+      </div>
+    </div>
+    <span class="text-label-sm font-label-sm text-on-surface-variant/70 mt-1.5">30分钟内有效 · 单次使用后立即销毁加密</span>
+  </div>
+  
+  <!-- Share Button with Soft Romantic Glow Gradient -->
+  <button class="w-full h-12 rounded-full bg-gradient-to-r from-secondary-fixed-dim via-primary to-primary-container text-on-primary text-label-lg font-label-lg font-semibold flex items-center justify-center gap-2 shadow-[0_6px_16px_rgba(234,181,203,0.35)] active:scale-95 transition-transform duration-200" onclick="shareToPartner()">
+    <span class="material-symbols-outlined text-[20px]">share</span>
+    <span class="">微信一键发送给 TA</span>
+  </button>
+  
+  <!-- Realtime Sync Pulse Line -->
+  <div class="flex items-center justify-center space-x-2 text-on-surface-variant/80">
+    <span class="material-symbols-outlined text-secondary-fixed-dim animate-pulse text-[18px]">satellite_alt</span>
+    <span class="text-body-sm font-body-sm">信号广播中，等待TA点亮或输入密令...</span>
+  </div>
+</div>
+
+<!-- Input Sub-tab for Join Mode -->
+<div id="view-state-input-join" class="hidden flex flex-col space-y-space-md">
+  <div class="flex flex-col px-space-xs">
+    <label class="text-body-sm font-body-sm text-on-surface-variant mb-1.5 text-center">输入对方发给你的 6 位邀请码或星空密令</label>
+    <div class="relative w-full">
+      <input class="w-full h-12 bg-surface-container-low rounded-2xl px-4 text-center font-mono text-headline-sm font-headline-sm text-primary tracking-wider placeholder:text-outline-variant placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-primary/40 border-0 shadow-inner uppercase" id="partner-input" maxlength="13" placeholder="例如：STAR-520-LOVE" type="text" value="">
+    </div>
+  </div>
+  <button class="w-full h-12 rounded-full bg-primary text-on-primary text-label-lg font-label-lg font-semibold flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(96,84,135,0.25)] active:scale-95 transition-transform duration-200" onclick="confirmJoinPairing()">
+    <span class="material-symbols-outlined text-[20px] fill-icon" style="font-variation-settings: 'FILL' 1;">favorite</span>
+    <span class="">确认连接 · 融合同行</span>
+  </button>
+  <p class="text-label-sm font-label-sm text-on-surface-variant text-center">
+    点击连接后双方将即时收到双向通知，完成空间激活
+  </p>
+</div>
+
+<!-- STATE 2: Pending Request Confirmation (念念申请加入) -->
+<div id="view-state-request" class="hidden flex flex-col space-y-3">
+  <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-secondary-fixed/30 border border-secondary-fixed-dim/40">
+    <div class="relative w-12 h-12 rounded-full bg-gradient-to-tr from-secondary-fixed to-secondary-fixed-dim flex items-center justify-center text-secondary font-bold text-[16px] shadow-sm flex-shrink-0">
+      <span class="">念</span>
+      <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-secondary rounded-full border-2 border-surface-container-lowest flex items-center justify-center">
+        <span class="material-symbols-outlined text-[10px] text-on-secondary">favorite</span>
+      </span>
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-1.5">
+        <span class="text-label-lg font-label-lg text-primary font-bold">念念</span>
+        <span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-secondary text-label-sm font-label-sm">申请加入小屋</span>
+      </div>
+      <p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">“我已输入密令，准备好开启属于我们的小小宇宙啦”</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-2 pt-1">
+    <button onclick="rejectPairRequest()" class="h-11 rounded-full border border-outline-variant/40 bg-surface-container-low text-on-surface-variant text-label-md font-label-md font-semibold active:scale-95 transition-all flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-[18px]">close</span>
+      <span class="">暂不接受</span>
+    </button>
+    <button onclick="acceptPairRequest()" class="h-11 rounded-full bg-gradient-to-r from-secondary-fixed-dim via-primary to-primary text-on-primary text-label-md font-label-md font-semibold active:scale-95 transition-all shadow-[0_4px_14px_rgba(96,84,135,0.22)] flex items-center justify-center gap-1.5">
+      <span class="material-symbols-outlined text-[18px] fill-icon" style="font-variation-settings: 'FILL' 1;">handshake</span>
+      <span class="">确认配对并入住</span>
+    </button>
+  </div>
+</div>
+
+<!-- STATE 3: Success Pair Connected -->
+<div id="view-state-success" class="hidden flex flex-col space-y-3.5 text-center">
+  <div class="py-1">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed/40 text-tertiary mb-2">
+      <span class="material-symbols-outlined text-[16px] text-tertiary fill-icon" style="font-variation-settings: 'FILL' 1;">celebration</span>
+      <span class="text-label-sm font-label-sm font-semibold">星辰交汇 · 羁绊缔结</span>
+    </div>
+    <h3 class="text-headline-md font-headline-md text-primary font-bold tracking-tight">从今天起，这个小小宇宙属于我们</h3>
+    <p class="text-body-sm font-body-sm text-on-surface-variant mt-1 leading-relaxed">已点亮 1 号灯火，两颗星宿已在私密空间完成向心共振</p>
+  </div>
+  <button onclick="goToProfileSetup()" class="w-full h-12 rounded-full bg-gradient-to-r from-secondary-fixed-dim via-primary to-primary text-on-primary text-label-lg font-label-lg font-semibold flex items-center justify-center gap-2 shadow-[0_6px_18px_rgba(96,84,135,0.28)] active:scale-95 transition-transform">
+    <span class="material-symbols-outlined text-[20px]">edit_note</span>
+    <span class="">开启首次资料设置</span>
+  </button>
+  <span class="text-label-sm font-label-sm text-on-surface-variant/70">双方可共同设置情侣纪念日与私密小屋装扮</span>
+</div>
+
+<!-- STATE 4: Expired or Error State -->
+<div id="view-state-error" class="hidden flex flex-col space-y-3">
+  <div class="p-3.5 rounded-2xl bg-error-container/50 border border-error/20 flex items-start gap-2.5">
+    <span class="material-symbols-outlined text-error text-[22px] flex-shrink-0 mt-0.5">error</span>
+    <div class="flex-1 text-left">
+      <span class="text-label-md font-label-md text-error font-semibold">密令失效或输入有误</span>
+      <p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">该星光密令已超出30分钟有效期，或密令已被使用/输入错误。</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-2 pt-1">
+    <button onclick="regenerateNewCode()" class="h-11 rounded-full bg-primary text-on-primary text-label-md font-label-md font-semibold active:scale-95 transition-all flex items-center justify-center gap-1 shadow-sm">
+      <span class="material-symbols-outlined text-[18px]">autorenew</span>
+      <span class="">重新生成密令</span>
+    </button>
+    <button onclick="retryInputMode()" class="h-11 rounded-full border border-primary/30 bg-surface-container-lowest text-primary text-label-md font-label-md font-semibold active:scale-95 transition-all flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-[18px]">edit</span>
+      <span class="">重新输入密令</span>
+    </button>
+  </div>
+</div></section>
+<!-- 4. Realtime Connection Sensing Card -->
+<section class="bg-surface-container-low rounded-2xl p-4 border border-outline-variant/30 flex items-start space-x-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-[20px] fill-icon" style="font-variation-settings: 'FILL' 1;">wifi_tethering</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-primary font-semibold">星波感应雷达</span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+              实时监测中
+            </span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+            已向宇宙天网发射星光共振信号。对方打开专属链接或输入密令时，星宿即可瞬间交汇。
+          </p>
+</div>
+</section>
+<!-- 5. Bottom Warm Reassurance Note -->
+<footer class="pt-1 pb-2 px-space-xs text-center">
+<div class="inline-flex items-center justify-center gap-1.5 text-on-surface-variant/80 mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">lock_clock</span>
+<span class="text-label-sm font-label-sm font-medium">双人专属保密机制</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70 leading-relaxed">
+          这是一个仅容纳两个人的私密世界，一旦连接成功，小屋将为你们永久守候。
+        </p>
+</footer>
+</main>
+<!-- Interactive Toast Notification -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface/90 text-inverse-on-surface px-4 py-2 rounded-full text-label-md font-label-md flex items-center gap-2 shadow-lg opacity-0 pointer-events-none transition-all duration-300 transform translate-y-3 z-50" id="toast-pill">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
+<span id="toast-text" class="">星光邀请码已复制到剪贴板</span>
+</div>
+</div>
+<!-- Inline Micro-Interactions Script -->
+<script>
+    function switchPairMode(mode) {
+      const createContent = document.getElementById('mode-create-content');
+      const joinContent = document.getElementById('mode-join-content');
+      const createBtn = document.getElementById('tab-create-btn');
+      const joinBtn = document.getElementById('tab-join-btn');
+
+      if (mode === 'create') {
+        createContent.classList.remove('hidden');
+        joinContent.classList.add('hidden');
+        
+        createBtn.className = "py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 bg-surface-container-lowest text-primary shadow-xs font-semibold flex items-center justify-center gap-1";
+        joinBtn.className = "py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 text-on-surface-variant hover:text-primary font-normal flex items-center justify-center gap-1";
+      } else {
+        createContent.classList.add('hidden');
+        joinContent.classList.remove('hidden');
+
+        joinBtn.className = "py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 bg-surface-container-lowest text-primary shadow-xs font-semibold flex items-center justify-center gap-1";
+        createBtn.className = "py-2 rounded-full text-label-lg font-label-lg transition-all duration-200 text-on-surface-variant hover:text-primary font-normal flex items-center justify-center gap-1";
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-pill');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = message;
+      toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+      }, 2400);
+    }
+
+    function copyCodeAction() {
+      const code = document.getElementById('invite-code-text').innerText;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          showToast('邀请密令 STAR-520-LOVE 已复制');
+        }).catch(() => {
+          showToast('已复制密令到剪贴板');
+        });
+      } else {
+        showToast('已复制密令到剪贴板');
+      }
+      const copyBtnText = document.getElementById('copy-btn-text');
+      copyBtnText.innerText = '已复制';
+      setTimeout(() => {
+        copyBtnText.innerText = '复制';
+      }, 2000);
+    }
+
+    function shareToPartner() {
+      showToast('正在打开微信好友分享卡片...');
+    }
+
+    function confirmJoinPairing() {
+      const input = document.getElementById('partner-input');
+      if (!input.value.trim()) {
+        showToast('请先输入TA发给你的邀请密令');
+        input.focus();
+        return;
+      }
+      showToast('正在感应匹配对方星光，小屋即将点亮...');
+    }
+  </script>
+
+
+</body></html>

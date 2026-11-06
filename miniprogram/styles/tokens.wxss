@@ -1,0 +1,12 @@
+page {
+  --color-background:#fdf8ff;
+  --color-primary:#605487;
+  --color-primary-soft:#e8deff;
+  --color-secondary:#694253;
+  --color-pink:#edb8ce;
+  --color-ink:#1c1a23;
+  --color-muted:#6d6676;
+  --color-border:#e5e0ec;
+  --card-radius:calc(38.462 * var(--layout-unit));
+  --page-margin:calc(30.769 * var(--layout-unit));
+}

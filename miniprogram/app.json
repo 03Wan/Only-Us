@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/cabin/index",
+    "pages/moments/index",
+    "pages/mailbox/index",
+    "pages/reunion/index",
+    "pages/us/index"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages/connection",
+      "pages": [
+        "bind/index",
+        "profile/index",
+        "mood/index"
+      ]
+    },
+    {
+      "root": "subpackages/moments",
+      "pages": [
+        "editor/index",
+        "waiting/index"
+      ]
+    },
+    {
+      "root": "subpackages/mail",
+      "pages": [
+        "compose/index",
+        "locked/index",
+        "letter/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "pageOrientation": "auto",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fdf8ff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#79757f",
+    "selectedColor": "#605487",
+    "backgroundColor": "#fdf8ff",
+    "list": [
+      {
+        "pagePath": "pages/cabin/index",
+        "text": "小屋"
+      },
+      {
+        "pagePath": "pages/moments/index",
+        "text": "瞬间"
+      },
+      {
+        "pagePath": "pages/mailbox/index",
+        "text": "信箱"
+      },
+      {
+        "pagePath": "pages/reunion/index",
+        "text": "见面"
+      },
+      {
+        "pagePath": "pages/us/index",
+        "text": "我们"
+      }
+    ]
+  },
+  "resizable": true,
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

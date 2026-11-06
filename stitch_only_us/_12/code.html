@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>未解锁信件 - 月亮邮局</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "primary": "#605487",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e5e0ec",
+            "surface-dim": "#ddd8e4",
+            "surface-bright": "#fdf8ff",
+            "tertiary": "#735724",
+            "on-primary-fixed": "#1f1342",
+            "tertiary-fixed-dim": "#e6c183",
+            "on-primary-fixed-variant": "#4b3f70",
+            "secondary-fixed-dim": "#edb8ce",
+            "surface-container-high": "#ebe6f2",
+            "background": "#fdf8ff",
+            "surface": "#fdf8ff",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#5c4210",
+            "on-primary-container": "#fffbff",
+            "surface-container-low": "#f7f1fe",
+            "secondary-fixed": "#ffd8e7",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "surface-container": "#f1ecf8",
+            "inverse-primary": "#cdbef8",
+            "on-surface": "#1c1a23",
+            "on-secondary-fixed-variant": "#623b4d",
+            "on-tertiary-fixed": "#271900",
+            "tertiary-container": "#8e703a",
+            "on-error-container": "#93000a",
+            "on-secondary-container": "#7b5164",
+            "surface-tint": "#63578a",
+            "inverse-on-surface": "#f4effb",
+            "secondary-container": "#ffc8df",
+            "primary-fixed-dim": "#cdbef8",
+            "inverse-surface": "#312f38",
+            "on-surface-variant": "#48454e",
+            "tertiary-fixed": "#ffdea9",
+            "secondary": "#7c5265",
+            "on-background": "#1c1a23",
+            "error": "#ba1a1a",
+            "primary-fixed": "#e8deff",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e0ec",
+            "outline-variant": "#cac4cf",
+            "on-secondary-fixed": "#301021",
+            "primary-container": "#796da1",
+            "outline": "#79757f",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.06); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.04); }
+      70% { transform: scale(1); }
+    }
+    .heartbeat-active {
+      animation: heartbeat 1.1s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    }
+    @keyframes starlight {
+      0%, 100% { opacity: 0.3; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    .starlight-particle {
+      animation: starlight 3s ease-in-out infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex justify-center items-start selection:bg-secondary-fixed">
+<!-- Mobile Viewport Wrapper (390 x 844 min-h) -->
+<div class="w-full max-w-[390px] min-h-[844px] bg-background relative flex flex-col justify-between overflow-x-hidden pb-8 shadow-2xl">
+<!-- Ambient Moonbeam Glow Layers -->
+<div class="absolute -top-16 -right-16 w-64 h-64 bg-secondary-fixed-dim/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/3 -left-20 w-72 h-72 bg-primary-fixed/35 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Header: Task/Sub-page navigation without global persistent BottomNavBar -->
+<header class="sticky top-0 z-40 bg-surface/85 backdrop-blur-md px-margin pt-11 pb-space-sm flex items-center justify-between border-b border-outline-variant/20">
+<button aria-label="返回邮局" class="flex items-center gap-1 text-primary active:scale-95 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined text-headline-sm" data-icon="chevron_left">chevron_left</span>
+<span class="font-label-lg text-label-lg">返回邮局</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-wide text-center">月亮信件 · 时光胶囊</h1>
+<!-- WeChat Capsule Placeholder / Action Placeholder -->
+<div class="w-16 flex items-center justify-end">
+<span class="material-symbols-outlined text-outline-variant" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="px-margin flex-1 flex flex-col pt-space-md pb-space-lg gap-space-lg">
+<!-- Core Night-Sky Violet Moonlight Card -->
+<div class="relative rounded-xl overflow-hidden bg-gradient-to-b from-[#25283b] via-[#303752] to-[#242738] text-white p-5 shadow-[0_12px_32px_-6px_rgba(48,55,82,0.32)] border border-white/10">
+<!-- Subtle Starry Dust Background Decor -->
+<div class="absolute top-4 left-6 w-1.5 h-1.5 bg-[#f2cc8d] rounded-full starlight-particle"></div>
+<div class="absolute top-10 right-10 w-2 h-2 bg-[#ead0db] rounded-full starlight-particle" style="animation-delay: 1.2s;"></div>
+<div class="absolute top-32 left-8 w-1 h-1 bg-white/70 rounded-full starlight-particle" style="animation-delay: 0.7s;"></div>
+<div class="absolute bottom-28 right-8 w-1.5 h-1.5 bg-[#f2cc8d] rounded-full starlight-particle" style="animation-delay: 2s;"></div>
+<!-- Top Pill Tag -->
+<div class="flex items-center justify-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15">
+<span class="material-symbols-outlined text-[#eab5cb] text-body-sm" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm tracking-wider text-[#ead0db]">星光守候中 · 尚未到达开启之日</span>
+</div>
+</div>
+<!-- Envelope Visual with Wax Seal -->
+<div class="mt-6 flex flex-col items-center relative">
+<!-- Ambient Halo behind Envelope -->
+<div class="absolute w-44 h-32 bg-[#eab5cb]/20 rounded-full blur-2xl top-4 pointer-events-none"></div>
+<!-- Stylized Lined Envelope Container -->
+<div class="w-64 h-40 bg-[#f7efe9] rounded-xl shadow-inner relative flex flex-col justify-between p-3 border border-[#9184ba]/30 transition-transform duration-300" id="envelope-visual">
+<!-- Envelope Flap Geometry (CSS Triangle/Fold look) -->
+<div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#ebe1d8] to-[#f4ebe3] clip-path [clip-path:polygon(0_0,100%_0,50%_100%)] border-b border-[#9184ba]/20"></div>
+<!-- Airmail Subtle Edge Stripes Accent -->
+<div class="w-full flex justify-between items-center z-10 opacity-70">
+<span class="font-label-sm text-label-sm tracking-widest text-[#7c5265]">MOON POST</span>
+<span class="material-symbols-outlined text-[#7c5265] text-body-md" data-icon="local_post_office">local_post_office</span>
+</div>
+<!-- Golden Embossed Moon Wax Seal -->
+<div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+<div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#f6d89e] via-[#deb669] to-[#9c772b] p-0.5 shadow-[0_6px_16px_rgba(222,182,105,0.45)] flex items-center justify-center">
+<div class="w-full h-full rounded-full border border-[#ffe9b8]/60 flex flex-col items-center justify-center bg-gradient-to-tr from-[#c89e49] to-[#f4d187]">
+<span class="material-symbols-outlined text-white drop-shadow-sm text-headline-md" data-icon="dark_mode" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+</div>
+</div>
+</div>
+<!-- Envelope Bottom Details -->
+<div class="w-full flex justify-between items-end z-10 pt-8 opacity-80">
+<div class="w-16 h-1 bg-[#9184ba]/20 rounded-full"></div>
+<div class="flex items-center gap-1 text-[#605487]">
+<span class="material-symbols-outlined text-body-sm" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm">永久封存</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Letter Metadata -->
+<div class="mt-6 text-center">
+<p class="font-label-md text-label-md text-secondary-fixed-dim tracking-wide">小林 寄给 念念</p>
+<h2 class="font-headline-md text-headline-md text-[#fffbff] mt-1 tracking-tight">《写在第一次分开的夏天》</h2>
+<div class="mt-2 inline-flex items-center gap-1.5 text-white/70">
+<span class="material-symbols-outlined text-label-md text-[#f2cc8d]" data-icon="event">event</span>
+<span class="font-body-sm text-body-sm">2025年06月01日 20:00 准时启封</span>
+</div>
+</div>
+<!-- Countdown Dashboard -->
+<div class="mt-5 rounded-lg bg-black/25 backdrop-blur-md border border-white/10 p-3.5 text-center">
+<p class="font-label-sm text-label-sm text-white/60 tracking-wider">倒计时看板</p>
+<div class="mt-1 flex items-center justify-center gap-1 text-[#f2cc8d] font-headline-md">
+<span class="font-headline-lg text-headline-lg tracking-tight font-bold">11</span>
+<span class="font-label-md text-label-md text-white/80 mr-1.5">天</span>
+<span class="font-headline-lg text-headline-lg tracking-tight font-bold">08</span>
+<span class="font-label-md text-label-md text-white/80 mr-1.5">小时</span>
+<span class="font-headline-lg text-headline-lg tracking-tight font-bold">45</span>
+<span class="font-label-md text-label-md text-white/80">分钟</span>
+</div>
+</div>
+</div>
+<!-- Poetic Calming Affirmation Card -->
+<div class="rounded-xl bg-surface-container-lowest p-5 border border-primary/10 shadow-[0_4px_20px_-2px_rgba(145,132,186,0.08)] flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5 text-headline-sm" data-icon="nightlight" data-weight="fill" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary font-semibold">月光寄语</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+            这封信还在等待属于它的时间。别着急，时光走得越慢，酿出的心事越甜。
+          </p>
+</div>
+</div>
+<!-- Interactive Touching Action -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-full h-12 rounded-full bg-gradient-to-r from-secondary-fixed-dim via-primary-container to-primary text-white font-label-lg flex items-center justify-center gap-2 shadow-[0_6px_16px_rgba(234,181,203,0.35)] active:scale-95 transition-all" id="touch-button" onclick="triggerHeartbeat()">
+<span class="material-symbols-outlined text-headline-sm transition-transform" data-icon="favorite" data-weight="fill" id="heart-icon" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span id="touch-text">轻抚信封（可感受心跳微震动）</span>
+</button>
+<p class="h-4 font-label-sm text-label-sm text-primary/70 transition-opacity opacity-0" id="touch-feedback">已传递一次温热的指尖轻抚 · 对方的小屋将收到感应</p>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="px-margin pt-2 pb-4 flex flex-col gap-3">
+<button class="w-full h-12 rounded-full bg-surface-container text-on-surface font-label-lg border border-outline-variant/30 flex items-center justify-center gap-1.5 active:scale-98 transition-transform" onclick="history.back()">
+<span class="material-symbols-outlined text-headline-sm text-primary" data-icon="cottage">cottage</span>
+<span>返回月亮邮局</span>
+</button>
+<div class="flex items-center justify-center gap-1.5 text-on-surface-variant/50">
+<span class="material-symbols-outlined text-label-sm" data-icon="lock">lock</span>
+<span class="font-label-sm text-label-sm">正文已安全加密并封存于时光节点</span>
+</div>
+</footer>
+</div>
+<!-- Lightweight Micro-Interaction Script -->
+<script>
+    let isTouching = false;
+    function triggerHeartbeat() {
+      const envelope = document.getElementById('envelope-visual');
+      const heartIcon = document.getElementById('heart-icon');
+      const touchBtn = document.getElementById('touch-button');
+      const feedback = document.getElementById('touch-feedback');
+      const touchText = document.getElementById('touch-text');
+
+      // Vibrate API if supported on device
+      if (navigator.vibrate) {
+        navigator.vibrate([80, 100, 80]);
+      }
+
+      envelope.classList.add('heartbeat-active');
+      heartIcon.classList.add('scale-125');
+      feedback.classList.remove('opacity-0');
+      feedback.classList.add('opacity-100');
+      touchText.innerText = '信封正在回应你的心跳...';
+
+      setTimeout(() => {
+        envelope.classList.remove('heartbeat-active');
+        heartIcon.classList.remove('scale-125');
+        touchText.innerText = '轻抚信封（可感受心跳微震动）';
+      }, 2200);
+
+      setTimeout(() => {
+        feedback.classList.remove('opacity-100');
+        feedback.classList.add('opacity-0');
+      }, 3500);
+    }
+  </script>
+</body></html>

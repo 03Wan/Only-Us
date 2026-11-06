@@ -1,0 +1,4 @@
+@import './styles/tokens.wxss';
+@import './styles/design.wxss';
+@import './styles/base.wxss';
+@import './styles/qa.wxss';

@@ -1,0 +1,7 @@
+.feedback { position:fixed;left:50%;transform:translateX(-50%);z-index:1800;display:flex;align-items:center;gap:9px;width:max-content;max-width:calc(100vw - 40px);padding:12px 16px;border:1px solid #e6dced;border-radius:18px;background:#fffcff;color:#685579;box-shadow:0 6px 24px #6b548a12;font-size:14px;line-height:1.65;box-sizing:border-box; }
+.feedback-icon { flex-shrink:0;width:19px;height:19px;opacity:.8; }
+.message { flex:1;min-width:0;overflow-wrap:anywhere; }
+.error { background:#fff7f8;border-color:#efdce2;color:#8a5364; }
+.feedback-button { flex-shrink:0;min-width:44px;min-height:44px;padding:0 5px;margin:-9px -5px;border:0;background:transparent;color:inherit;font-size:14px;line-height:44px; }
+.feedback-button::after { border:0; }
+.feedback-close { font-size:20px; }

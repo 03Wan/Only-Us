@@ -1,0 +1,1 @@
+{ "desc": "双人私密空间不参与微信页面搜索", "rules": [{ "action": "disallow", "page": "*" }] }

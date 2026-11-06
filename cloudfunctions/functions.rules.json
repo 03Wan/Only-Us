@@ -1,0 +1,1 @@
+{ "*": { "invoke": false }, "gateway": { "invoke": "auth != null" } }

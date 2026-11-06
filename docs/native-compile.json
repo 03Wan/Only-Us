@@ -1,0 +1,224 @@
+[
+  {
+    "file": "./components/app-header/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./components/state-panel/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./custom-tab-bar/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/cabin/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/mailbox/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/moments/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/reunion/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/us/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/bind/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/mood/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/profile/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/compose/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/letter/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/locked/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/moments/editor/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/moments/waiting/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./app.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./components/app-header/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./components/state-panel/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./custom-tab-bar/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/cabin/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/mailbox/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/moments/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/reunion/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./pages/us/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./styles/base.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./styles/design.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./styles/qa.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./styles/tokens.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/bind/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/mood/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/connection/profile/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/compose/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/letter/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/mail/locked/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/moments/editor/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/moments/waiting/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  }
+]

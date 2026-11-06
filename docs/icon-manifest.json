@@ -1,0 +1,1028 @@
+[
+  {
+    "file": "location_on-7fd93189.png",
+    "name": "location_on",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "wb_sunny-d6cc1085.png",
+    "name": "wb_sunny",
+    "color": "#fdf8ff",
+    "filled": false
+  },
+  {
+    "file": "favorite-876e38f1.png",
+    "name": "favorite",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "location_on-13369d57.png",
+    "name": "location_on",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "air-70a606fb.png",
+    "name": "air",
+    "color": "#fdf8ff",
+    "filled": false
+  },
+  {
+    "file": "favorite-2d506ed3.png",
+    "name": "favorite",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "auto_awesome-328ff686.png",
+    "name": "auto_awesome",
+    "color": "#edb8ce",
+    "filled": true
+  },
+  {
+    "file": "calendar_month-5205f342.png",
+    "name": "calendar_month",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "expand_more-345772f2.png",
+    "name": "expand_more",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "subway-93948508.png",
+    "name": "subway",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "yard-b7b7d347.png",
+    "name": "yard",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "arrow_forward_ios-052319ef.png",
+    "name": "arrow_forward_ios",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "favorite-d5737f7f.png",
+    "name": "favorite",
+    "color": "#cac4cf",
+    "filled": false
+  },
+  {
+    "file": "directions_run-f361efd4.png",
+    "name": "directions_run",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "soup_kitchen-54b22d28.png",
+    "name": "soup_kitchen",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "photo_camera-0b4bca83.png",
+    "name": "photo_camera",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "flare-75b90c0d.png",
+    "name": "flare",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "dark_mode-7349329a.png",
+    "name": "dark_mode",
+    "color": "#796da1",
+    "filled": true
+  },
+  {
+    "file": "mark_email_unread-02702783.png",
+    "name": "mark_email_unread",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "send-fbf68d3f.png",
+    "name": "send",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "lock_clock-1b76fe6e.png",
+    "name": "lock_clock",
+    "color": "#5c4210",
+    "filled": true
+  },
+  {
+    "file": "lock-8d347568.png",
+    "name": "lock",
+    "color": "#735724",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-80246fdf.png",
+    "name": "auto_awesome",
+    "color": "#301021",
+    "filled": true
+  },
+  {
+    "file": "drafts-f182fda8.png",
+    "name": "drafts",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "mail-7f0d1744.png",
+    "name": "mail",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "photo_library-81543b9e.png",
+    "name": "photo_library",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "edit_note-99e32b35.png",
+    "name": "edit_note",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "cottage-5955f0b4.png",
+    "name": "cottage",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "dark_mode-12b14477.png",
+    "name": "dark_mode",
+    "color": "#735724",
+    "filled": false
+  },
+  {
+    "file": "nights_stay-f67d20c6.png",
+    "name": "nights_stay",
+    "color": "#8e703a",
+    "filled": false
+  },
+  {
+    "file": "headphones-70e669bd.png",
+    "name": "headphones",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "lightbulb-553c628d.png",
+    "name": "lightbulb",
+    "color": "#f59e0b",
+    "filled": false
+  },
+  {
+    "file": "photo_camera-45c744cf.png",
+    "name": "photo_camera",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "mark_email_unread-49ea0323.png",
+    "name": "mark_email_unread",
+    "color": "#8e703a",
+    "filled": false
+  },
+  {
+    "file": "diversity_1-37d59738.png",
+    "name": "diversity_1",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "battery_charging_full-aa6ce1fc.png",
+    "name": "battery_charging_full",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-fb96fb2c.png",
+    "name": "auto_awesome",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "favorite-214b37af.png",
+    "name": "favorite",
+    "color": "#ffd8e7",
+    "filled": true
+  },
+  {
+    "file": "sticky_note_2-c05d4a0b.png",
+    "name": "sticky_note_2",
+    "color": "#735724",
+    "filled": false
+  },
+  {
+    "file": "edit-3d63afcd.png",
+    "name": "edit",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "flight_takeoff-474d0a7d.png",
+    "name": "flight_takeoff",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "train-cb383442.png",
+    "name": "train",
+    "color": "#e8deff",
+    "filled": false
+  },
+  {
+    "file": "stars-8941e2c2.png",
+    "name": "stars",
+    "color": "#ffdea9",
+    "filled": true
+  },
+  {
+    "file": "schedule-bde44a5e.png",
+    "name": "schedule",
+    "color": "#ffd8e7",
+    "filled": false
+  },
+  {
+    "file": "verified-52efa811.png",
+    "name": "verified",
+    "color": "#8e703a",
+    "filled": true
+  },
+  {
+    "file": "directions_railway-2686c9e8.png",
+    "name": "directions_railway",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "qr_code_2-62591c44.png",
+    "name": "qr_code_2",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "format_list_bulleted-919f539b.png",
+    "name": "format_list_bulleted",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "check-d216fb8a.png",
+    "name": "check",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "done-a76905d5.png",
+    "name": "done",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "add_circle-a5dbcc25.png",
+    "name": "add_circle",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "history_edu-f582c742.png",
+    "name": "history_edu",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "chevron_right-e5b7ce95.png",
+    "name": "chevron_right",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-42cfe1de.png",
+    "name": "auto_awesome",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "bookmark_heart-73b3a674.png",
+    "name": "bookmark_heart",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "star-5bbef3a6.png",
+    "name": "star",
+    "color": "#ffdea9",
+    "filled": true
+  },
+  {
+    "file": "favorite-d104306c.png",
+    "name": "favorite",
+    "color": "#edb8ce",
+    "filled": true
+  },
+  {
+    "file": "schedule-fd25fc4c.png",
+    "name": "schedule",
+    "color": "#edb8ce",
+    "filled": false
+  },
+  {
+    "file": "auto_stories-04e2cc3d.png",
+    "name": "auto_stories",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "celebration-319fc4ed.png",
+    "name": "celebration",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "cake-8177d80e.png",
+    "name": "cake",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "menu_book-e92cf9fd.png",
+    "name": "menu_book",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "menu_book-5d2fb1ef.png",
+    "name": "menu_book",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "local_fire_department-090861c0.png",
+    "name": "local_fire_department",
+    "color": "#271900",
+    "filled": false
+  },
+  {
+    "file": "water_drop-47bed4a1.png",
+    "name": "water_drop",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "confirmation_number-279f6947.png",
+    "name": "confirmation_number",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "pedal_bike-58082897.png",
+    "name": "pedal_bike",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "explore-4ecab57d.png",
+    "name": "explore",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "door_open-22ee7783.png",
+    "name": "door_open",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "auto_fix_high-232c0f3f.png",
+    "name": "auto_fix_high",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "sensor_door-5accc0f6.png",
+    "name": "sensor_door",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "add-54941d21.png",
+    "name": "add",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "tune-ad0e0b63.png",
+    "name": "tune",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "arrow_back_ios_new-0607529a.png",
+    "name": "arrow_back_ios_new",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "auto_awesome-b2fc24bc.png",
+    "name": "auto_awesome",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "magic_button-233db025.png",
+    "name": "magic_button",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "key-294f6599.png",
+    "name": "key",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "timer-bfdc3369.png",
+    "name": "timer",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "filter_vintage-05c1c5b7.png",
+    "name": "filter_vintage",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "refresh-01e6e9da.png",
+    "name": "refresh",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "content_copy-eb5d39e2.png",
+    "name": "content_copy",
+    "color": "#ffc8df",
+    "filled": false
+  },
+  {
+    "file": "share-c7640c5c.png",
+    "name": "share",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "satellite_alt-6d0c9428.png",
+    "name": "satellite_alt",
+    "color": "#edb8ce",
+    "filled": false
+  },
+  {
+    "file": "favorite-1a4af73f.png",
+    "name": "favorite",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "favorite-0070e4ed.png",
+    "name": "favorite",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "close-772a04c7.png",
+    "name": "close",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "handshake-4f972def.png",
+    "name": "handshake",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "celebration-d42bdfb6.png",
+    "name": "celebration",
+    "color": "#735724",
+    "filled": true
+  },
+  {
+    "file": "edit_note-75681015.png",
+    "name": "edit_note",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "error-30145307.png",
+    "name": "error",
+    "color": "#ba1a1a",
+    "filled": false
+  },
+  {
+    "file": "autorenew-5fbeb4db.png",
+    "name": "autorenew",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "wifi_tethering-167236eb.png",
+    "name": "wifi_tethering",
+    "color": "#7c5265",
+    "filled": true
+  },
+  {
+    "file": "lock_clock-c14b79d0.png",
+    "name": "lock_clock",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "photo_camera-5019a0da.png",
+    "name": "photo_camera",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "auto_stories-8f860706.png",
+    "name": "auto_stories",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "cottage-6b41a068.png",
+    "name": "cottage",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "cancel-7ebefc51.png",
+    "name": "cancel",
+    "color": "rgba(72,69,78,0.6)",
+    "filled": false
+  },
+  {
+    "file": "lightbulb-045903dc.png",
+    "name": "lightbulb",
+    "color": "#8e703a",
+    "filled": false
+  },
+  {
+    "file": "key-efbc7ba8.png",
+    "name": "key",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "wb_sunny-87ae7b82.png",
+    "name": "wb_sunny",
+    "color": "#623b4d",
+    "filled": true
+  },
+  {
+    "file": "location_on-bfc7f203.png",
+    "name": "location_on",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "photo_camera-842d7966.png",
+    "name": "photo_camera",
+    "color": "#1c1a23",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-6205f6d5.png",
+    "name": "auto_awesome",
+    "color": "rgba(253,248,255,0.9)",
+    "filled": false
+  },
+  {
+    "file": "add_a_photo-fe99107f.png",
+    "name": "add_a_photo",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "edit_note-1d94cea1.png",
+    "name": "edit_note",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "tag-81509453.png",
+    "name": "tag",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "favorite-65a499e0.png",
+    "name": "favorite",
+    "color": "#623b4d",
+    "filled": true
+  },
+  {
+    "file": "expand_more-3c49ac6f.png",
+    "name": "expand_more",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "lock_open-fbf0d74f.png",
+    "name": "lock_open",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "sync_alt-0a7e48f4.png",
+    "name": "sync_alt",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "edit_calendar-c9196360.png",
+    "name": "edit_calendar",
+    "color": "rgba(72,69,78,0.7)",
+    "filled": false
+  },
+  {
+    "file": "hourglass_top-3fc35b58.png",
+    "name": "hourglass_top",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-8ce0974b.png",
+    "name": "auto_awesome",
+    "color": "#735724",
+    "filled": true
+  },
+  {
+    "file": "replay-08ed68de.png",
+    "name": "replay",
+    "color": "#ba1a1a",
+    "filled": false
+  },
+  {
+    "file": "public-3a413830.png",
+    "name": "public",
+    "color": "rgba(72,69,78,0.6)",
+    "filled": false
+  },
+  {
+    "file": "bookmark_border-b4162879.png",
+    "name": "bookmark_border",
+    "color": "#1c1a23",
+    "filled": false
+  },
+  {
+    "file": "send-44b7bf54.png",
+    "name": "send",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "sentiment_very_satisfied-ff630384.png",
+    "name": "sentiment_very_satisfied",
+    "color": "#735724",
+    "filled": true
+  },
+  {
+    "file": "arrow_back_ios_new-e367cf57.png",
+    "name": "arrow_back_ios_new",
+    "color": "#e6c183",
+    "filled": false
+  },
+  {
+    "file": "air-7fce5d6e.png",
+    "name": "air",
+    "color": "#4a729a",
+    "filled": false
+  },
+  {
+    "file": "cloud-a54dfdde.png",
+    "name": "cloud",
+    "color": "#9bbad8",
+    "filled": false
+  },
+  {
+    "file": "bedtime-5f43f774.png",
+    "name": "bedtime",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "battery_2_bar-4a507381.png",
+    "name": "battery_2_bar",
+    "color": "#79757f",
+    "filled": false
+  },
+  {
+    "file": "flutter-6a775dd8.png",
+    "name": "flutter",
+    "color": "#edb8ce",
+    "filled": false
+  },
+  {
+    "file": "diversity_1-4150d8e0.png",
+    "name": "diversity_1",
+    "color": "#b05c43",
+    "filled": false
+  },
+  {
+    "file": "pan_tool-bcf369d1.png",
+    "name": "pan_tool",
+    "color": "#e2957e",
+    "filled": false
+  },
+  {
+    "file": "nightlight-ca1de066.png",
+    "name": "nightlight",
+    "color": "#3b486f",
+    "filled": true
+  },
+  {
+    "file": "pets-f7bcdf88.png",
+    "name": "pets",
+    "color": "#8795bd",
+    "filled": false
+  },
+  {
+    "file": "edit_note-cfd35b00.png",
+    "name": "edit_note",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "check_circle-cd96a6de.png",
+    "name": "check_circle",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "palette-4a45adba.png",
+    "name": "palette",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "star-6f978511.png",
+    "name": "star",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "wb_twilight-c52f6501.png",
+    "name": "wb_twilight",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "check-c9dd04d3.png",
+    "name": "check",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "markunread_mailbox-3b6d7bdc.png",
+    "name": "markunread_mailbox",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "mood-283714b7.png",
+    "name": "mood",
+    "color": "#b3637e",
+    "filled": true
+  },
+  {
+    "file": "ink_pen-60ccb099.png",
+    "name": "ink_pen",
+    "color": "#8e8275",
+    "filled": false
+  },
+  {
+    "file": "schedule_send-6d4bced7.png",
+    "name": "schedule_send",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "forward_to_inbox-61bffeb1.png",
+    "name": "forward_to_inbox",
+    "color": "#79757f",
+    "filled": false
+  },
+  {
+    "file": "hourglass_top-f46c3971.png",
+    "name": "hourglass_top",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "lock-bd0eb68c.png",
+    "name": "lock",
+    "color": "#ffd885",
+    "filled": true
+  },
+  {
+    "file": "timeline-ebfc858b.png",
+    "name": "timeline",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "edit_note-16160369.png",
+    "name": "edit_note",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "hourglass_top-12c20f36.png",
+    "name": "hourglass_top",
+    "color": "#ffffff",
+    "filled": false
+  },
+  {
+    "file": "lock_open-6b29203b.png",
+    "name": "lock_open",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "bookmark_heart-a2966017.png",
+    "name": "bookmark_heart",
+    "color": "#48454e",
+    "filled": false
+  },
+  {
+    "file": "verified-71e85d75.png",
+    "name": "verified",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "verified-9080dd21.png",
+    "name": "verified",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "location_on-fed77e89.png",
+    "name": "location_on",
+    "color": "#79757f",
+    "filled": false
+  },
+  {
+    "file": "bedtime-0b86a0c2.png",
+    "name": "bedtime",
+    "color": "rgba(96,84,135,0.8)",
+    "filled": false
+  },
+  {
+    "file": "star-ad00dcb9.png",
+    "name": "star",
+    "color": "#edb8ce",
+    "filled": true
+  },
+  {
+    "file": "auto_awesome-4e96073e.png",
+    "name": "auto_awesome",
+    "color": "rgba(96,84,135,0.4)",
+    "filled": false
+  },
+  {
+    "file": "cloud_sync-a45a3225.png",
+    "name": "cloud_sync",
+    "color": "#79757f",
+    "filled": false
+  },
+  {
+    "file": "schedule-be923f26.png",
+    "name": "schedule",
+    "color": "#cac4cf",
+    "filled": false
+  },
+  {
+    "file": "favorite-b1588444.png",
+    "name": "favorite",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "chevron_right-7ca1482d.png",
+    "name": "chevron_right",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "link-6b469ec1.png",
+    "name": "link",
+    "color": "#cac4cf",
+    "filled": false
+  },
+  {
+    "file": "arrow_forward_ios-070f1ff3.png",
+    "name": "arrow_forward_ios",
+    "color": "#cac4cf",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-ad935091.png",
+    "name": "auto_awesome",
+    "color": "#eab5cb",
+    "filled": true
+  },
+  {
+    "file": "local_post_office-d7c6f8a8.png",
+    "name": "local_post_office",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "dark_mode-f672c1da.png",
+    "name": "dark_mode",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "verified_user-5114d018.png",
+    "name": "verified_user",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "event-5e24678b.png",
+    "name": "event",
+    "color": "#f2cc8d",
+    "filled": false
+  },
+  {
+    "file": "nightlight-b291cd1d.png",
+    "name": "nightlight",
+    "color": "#605487",
+    "filled": true
+  },
+  {
+    "file": "lock-c19445a2.png",
+    "name": "lock",
+    "color": "rgba(72,69,78,0.5)",
+    "filled": false
+  },
+  {
+    "file": "mark_email_read-85a52c96.png",
+    "name": "mark_email_read",
+    "color": "#8e703a",
+    "filled": false
+  },
+  {
+    "file": "wb_twilight-d324b580.png",
+    "name": "wb_twilight",
+    "color": "rgba(96,84,135,0.7)",
+    "filled": false
+  },
+  {
+    "file": "auto_awesome-27c22e67.png",
+    "name": "auto_awesome",
+    "color": "#ffffff",
+    "filled": true
+  },
+  {
+    "file": "draw-062f8c5d.png",
+    "name": "draw",
+    "color": "#605487",
+    "filled": false
+  },
+  {
+    "file": "flare-a83afb76.png",
+    "name": "flare",
+    "color": "#7c5265",
+    "filled": false
+  },
+  {
+    "file": "bookmark_added-0dc7153c.png",
+    "name": "bookmark_added",
+    "color": "#ffd8e7",
+    "filled": false
+  }
+]
