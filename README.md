@@ -1,105 +1,150 @@
-# 小小宇宙 · Only Us
+# 此间有你 · Only Us
 
-使用 **TypeScript、WXML、WXSS** 开发的原生微信小程序，把两个人的日常装进一间温暖的小屋：分享心情、写信、收藏故事，记录下一次相见。
+此间有你是一款使用 TypeScript、WXML 和 WXSS 开发的原生微信小程序，为两个人提供记录心情、日常、信件和相聚计划的共同空间。
 
-**当前默认使用本机模式**，可以离线保存和查看自己的记录。跨设备共享需要自行配置微信云开发环境并部署 `gateway` 云函数；仓库中的云端实现已通过代码级测试，尚未完成真实双设备验收。
+项目默认运行在**本机模式**。本机记录保存在当前设备，不会自动同步给另一位用户。双人共享需要自行配置微信云开发环境并部署云函数；云端功能已通过代码级测试，尚未完成真实双设备及线上环境验收。
 
-| 日间暖阳 | 晚间月光 |
+| 日间模式 | 夜间模式 |
 | --- | --- |
-| ![白天小屋](miniprogram/assets/photos/cabin-day.jpg) | ![夜晚小屋](miniprogram/assets/photos/cabin-night.jpg) |
+| ![日间小屋](miniprogram/assets/photos/cabin-day.jpg) | ![夜间小屋](miniprogram/assets/photos/cabin-night.jpg) |
 
-## 功能
+## 功能概览
 
-| 页面 | 可以做什么 |
+| 模块 | 功能 |
 | --- | --- |
-| 小屋 | 切换太阳白天与月亮夜景、开关台灯，选择抱抱、捶背、摸头、牵手或揉肩，查看双方带表情的心情和见面倒计时 |
-| 瞬间 | 记录文字与照片、添加标签、收藏日常，按日期查看记录 |
-| 信箱 | 编写和保存草稿，选择立即送达或约定未来启封，查看与收藏信件 |
-| 见面 | 设置见面日期，编辑跨天车票，添加、修改与完成共同心愿 |
-| 我们 | 编辑相识、相恋、百天与周年日期，保存带照片、地点、天气和说明的故事 |
-| 小屋设置 | 修改昵称、头像与小屋名称；进入心情、故事、连接等功能，查看隐私与数据说明、关于小屋和项目主页 |
+| 小屋 | 查看双方资料、心情及相伴天数；切换日夜场景和灯光；记录互动次数；管理分类便签。 |
+| 瞬间 | 发布文字和照片，添加标签，按日期查看或收藏日常记录。 |
+| 信箱 | 编写信件、保存本机草稿，选择立即送达或约定未来启封。 |
+| 见面 | 设置见面日期，管理相见车票，以及添加、编辑和完成共同心愿。 |
+| 我们 | 管理相识、相恋、百天和周年日期，记录包含文字、照片、地点及天气的故事。 |
+| 设置 | 管理小屋资料、心情分享、账号与连接，查看隐私说明，并清除本机数据。 |
 
-相伴天数与相恋日期共用同一份数据；页面停留期间会刷新日期，跨午夜自动更新。百天与周年默认自动计算，也可分别修改。互动动作分别统计当日次数。
+云端模式下，双方需通过密令申请和确认建立连接。解绑后，原共同空间的数据保留，但双方无法继续通过账号访问；已获取的临时照片链接可能在其有效期内继续使用，最长约五分钟。
+
+## 技术栈
+
+- **客户端**：微信原生小程序、TypeScript、WXML、WXSS。
+- **云端**：微信云开发、CloudBase 数据库与云存储、Node.js 云函数。
+- **开发与测试**：Node.js、TypeScript、Node.js 内置测试运行器及微信开发者工具。
+
+## 环境要求
+
+- Node.js 22 或更高版本及 npm。
+- 支持 TypeScript 编译插件的微信开发者工具。
+- 使用云端功能时，需要自己的微信小程序 AppID 和云开发环境。
 
 ## 快速开始
 
-需要 Node.js 22 或更新版本，以及支持 TypeScript 编译插件的微信开发者工具。
+### 1. 获取代码并安装依赖
 
-```powershell
+```bash
 git clone https://github.com/03Wan/Only-Us.git
 cd Only-Us
 npm ci
+```
+
+### 2. 创建开发者工具配置
+
+根据操作系统复制配置模板：
+
+```powershell
+# Windows PowerShell
 Copy-Item project.config.example.json project.config.json
 ```
 
-在微信开发者工具中导入**仓库根目录**，将 `project.config.json` 中的 `appid` 改为自己的小程序 AppID，并保留 TypeScript 编译插件。小程序源码目录为 `miniprogram/`。本机模式不需要配置云环境，也不需要构建 npm。
+```bash
+# macOS / Linux
+cp project.config.example.json project.config.json
+```
 
-macOS / Linux 可用 `cp project.config.example.json project.config.json` 复制配置模板。实际 AppID、本机私有配置、依赖目录和测试备份不提交到仓库。
+在微信开发者工具中导入**仓库根目录**。小程序源码位于 `miniprogram/`，项目配置模板已启用 TypeScript 编译插件。使用自己的 AppID 时，请修改本机 `project.config.json` 中的 `appid`。
 
-## 本机与云端
+`project.config.json` 和开发者工具私有配置已由 `.gitignore` 排除，不应提交个人 AppID、密钥或其他环境凭据。
 
-| 项目 | 本机模式（默认） | 云端模式（需部署） |
-| --- | --- | --- |
-| 保存位置 | 当前设备的小程序缓存 | 配置的 CloudBase 环境 |
-| 双人共享 | 不会自动发送到另一台手机 | 确认绑定后访问共同空间 |
-| 未来信件 | 用于当前设备的本机记录 | 收件人按服务器时间校验启封权限 |
-| 记录迁移 | 保留本机资料与草稿 | 不会自动导入本机记录 |
+### 3. 运行本机模式
 
-云端接入：
+默认配置位于 `miniprogram/config/env.ts`：
 
-1. 按 [云开发说明](docs/CLOUDBASE.md) 准备自己的测试环境、集合、索引及访问规则。
-2. 在 `cloudfunctions/gateway` 执行 `npm ci`，再通过微信开发者工具部署 `gateway`。
-3. 修改 `miniprogram/config/env.ts`：设置 `mode: 'cloud'` 和自己的 `cloudEnvId`；需要上传照片时完成存储配置并启用 `storageEnabled`。
-4. 使用两个真实测试账号验证邀请确认、共享记录、隐私开关、未来信件、照片权限和断网恢复，再考虑正式使用。
+```ts
+export const environment = {
+  mode: 'local',
+  cloudEnvId: '',
+  gatewayFunction: 'gateway',
+  storageEnabled: false,
+};
+```
 
-云数据库和存储规则默认拒绝客户端直接读写，业务通过服务端身份与小屋成员校验。请勿通过开放数据库规则绕过权限检查。
+在开发者工具中编译并运行即可。本机模式无需部署云函数；本机记录和草稿不会自动迁移至云端。
+
+## 云端部署
+
+1. 准备独立的微信云开发测试环境，按[云开发接入说明](docs/CLOUDBASE.md)创建所需集合、索引，并配置数据库、存储和函数访问规则。如目标环境已有数据，应先备份并核对数据结构。
+2. 在 `cloudfunctions/gateway/` 安装云函数依赖，并通过微信开发者工具部署 `gateway`：
+
+   ```bash
+   cd cloudfunctions/gateway
+   npm ci
+   ```
+
+3. 将 `miniprogram/config/env.ts` 的 `mode` 设置为 `cloud`，填写自己的 `cloudEnvId`。需要上传图片时，完成云存储配置并启用 `storageEnabled`。
+4. 使用两个真实测试账号验证绑定、共享、隐私设置、未来信件、图片访问、解绑及异常恢复，再决定是否用于正式环境。
+
+云数据库与存储规则模板默认禁止客户端直接读写；共享业务通过网关进行微信身份、空间成员和记录权限校验。部署步骤、集合结构、兼容性限制及安全边界详见[云开发接入说明](docs/CLOUDBASE.md)。
 
 ## 开发与验证
 
-```powershell
-npm run check          # 项目结构、资源引用与 TypeScript
-npm test               # 本机、云端、日期、权限、交互与媒体体积测试
-npm run qa:static      # 扫描模板中的事件绑定与交互入口
-npm run check:native   # 使用已安装的微信官方 WXML/WXSS 编译器
+在仓库根目录执行：
+
+```bash
+npm run check          # 检查项目结构、资源引用及 TypeScript 类型
+npm test               # 运行自动化测试
+npm run qa:static      # 检查页面模板中的事件绑定与交互入口
+npm run check:native   # 使用微信官方编译器检查 WXML / WXSS
 ```
 
-`check:native` 可通过 `WECHAT_COMPILER_DIR` 指定含 `wcc.exe`、`wcsc.exe` 的目录；该检查需要安装微信开发者工具，不属于普通 Node.js 环境自带功能。
+`check:native` 需要安装微信开发者工具；也可以通过 `WECHAT_COMPILER_DIR` 指定包含 `wcc.exe` 和 `wcsc.exe` 的目录。其他模拟器交互检查可通过 `package.json` 中的 `qa:*` 脚本执行，具体依赖和环境要求请参阅对应脚本。模拟器与代码级测试不能替代真实设备及云环境验收。
 
-打开项目并启用开发者工具 CDP 端口 `9222` 后，可执行 `npm run qa:cabin` 验证模拟器中的实际点击、滚动、日夜亮度、心情保存和相伴天数。其他流程检查见 `package.json` 中的 `qa:*` 命令。模拟器结果不等同于实体手机或线上云环境验收。
+需要重新处理资源或生成页面时，可执行：
 
-测试产生的截图、原图及缓存备份仅存放在被 Git 忽略的 `artifacts/`。UI 测试会备份并恢复本机数据，建议使用独立测试环境。含用户记录的原始运行报告也不上传。
-
-### 资源与重新生成
-
-```powershell
-npm run assets:optimize  # 压缩插画和图标，检查发布媒体总量
-npm run generate:views  # 从设计稿重新生成，并重新应用交互、样式和资源优化
+```bash
+npm run assets:optimize
+npm run generate:views
 ```
 
-发布目录的图片与音频总量限制在 **200,000 字节以内**，测试会检查这一限制。原始设计在 `stitch_only_us/`，新增小屋日夜插画由 AI 基于现有插画编辑；图标来自 Material Symbols / Material Design Icons。来源与第三方依赖见 [素材说明](docs/THIRD-PARTY.md)。
+重新生成页面可能影响手工修改，执行后应检查差异并重新验证。发布包中的图片和音频总量由自动化测试检查；素材来源见[第三方与素材说明](docs/THIRD-PARTY.md)。
 
-## 目录
+## 项目结构
 
 ```text
 miniprogram/
   pages/                 五个主页面
-  subpackages/           资料、绑定、心情、编辑器和信件详情
-  shared/                页面控制器、日期、心情与互动逻辑
-  services/              本机数据、兼容处理和云调用
-  components/            导航与反馈组件
-  styles/                设计样式与公共布局
-  assets/                发布所需插画与图标
-cloudfunctions/          网关业务、身份校验及访问规则
-scripts/                 视图生成、资源优化、检查与模拟器验证
-tests/                   Node.js 自动测试
-docs/                    架构、接入说明及版本记录
-stitch_only_us/           原始设计文件
+  subpackages/           连接、资料、心情、瞬间与信件等二级页面
+  components/            公共组件
+  shared/                页面控制、日期、心情与交互逻辑
+  services/              本机存储、数据兼容与云端调用
+  styles/                公共样式
+  assets/                小程序使用的图片和图标
+cloudfunctions/
+  gateway/               云端业务网关与身份校验
+  *.rules.json           云开发访问规则模板
+scripts/                 页面生成、资源处理和质量检查脚本
+tests/                   自动化测试
+docs/                    架构、接入与验证文档
+stitch_only_us/          原始设计参考
 ```
 
 ## 数据与隐私
 
-本机缓存没有端到端加密；清理缓存或卸载可能造成记录丢失。云端模式下，关闭心情分享后不会向另一半返回心情内容及表情。未来信件通过服务器时间校验，删除记录遵守成员及作者权限。
+- 本机数据存放于设备的小程序存储，未提供端到端加密；清理缓存或卸载可能导致数据丢失。
+- 设置中的“清除本机数据”会清除本机模式的记录、草稿及可识别的专用关联照片，不会删除云端记录；部分历史缓存文件可能保留。
+- 云端模式下，共同空间的访问权限由服务端基于微信身份及空间成员关系校验。心情分享关闭时，对方不会收到该心情内容。
+- 云端未来信件由服务器时间控制收件人读取；本机模式的信件仅作为本机记录，不会投递至另一台设备。
+- 当前未提供账号注销、云端数据一键清空、订阅消息或后台推送。
 
-设置中可以查看“隐私与数据”及“关于小屋”。当前未实现账号注销、解绑和云端数据一键清空，也未接入订阅消息、后台推送、位置追踪或电量采集。
+## 相关文档
 
-更多说明：[架构](docs/ARCHITECTURE.md) · [数据兼容](docs/DATA_ONLY.md) · [小屋与心情更新](docs/CABIN_AND_MOOD_UPDATE.md) · [GitHub 项目主页](https://github.com/03Wan/Only-Us)
+- [项目架构](docs/ARCHITECTURE.md)
+- [云开发接入、兼容与备份](docs/CLOUDBASE.md)
+- [本机数据与兼容说明](docs/DATA_ONLY.md)
+- [第三方依赖与素材来源](docs/THIRD-PARTY.md)
+- [验证说明](docs/VALIDATION.md)

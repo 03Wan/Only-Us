@@ -12,7 +12,7 @@ interface ControllerData extends FeatureData {
   key:string; content:string; moodNote:string; mood:Mood; shareMood:boolean; mine:string;partner:string;cabinName:string;anniversary:string;today:string;tomorrow:string;loveDays:number;
   photo:string;photo2:string;avatar0:string;avatar1:string;stamp:string;layout:string;privateEnabled:boolean;privateNote:string;letterTitle:string;paper:number;delivery:'now'|'future';openAt:string;
   feedback:string;feedbackKind:string;pairState:string;pairMode:string;inviteCode:string;inviteInput:string;wishes:boolean[];wishCount:number;extraWishes:Wish[];hugs:number;note:string;daytime:boolean;lampOn:boolean;mailTab:string;retry:string;sentTitle:string;
-  cloudMode:boolean;bound:boolean;busy:boolean;loading:boolean;syncLabel:string;partnerMood:string;meetingDate:string;meetingDays:number;meetingLabel:string;anniversaryDays:number;hundredDate:string;yearDate:string;
+  cloudMode:boolean;bound:boolean;busy:boolean;loading:boolean;syncIssue:''|'binding'|'error';syncLabel:string;partnerMood:string;meetingDate:string;meetingDays:number;meetingLabel:string;anniversaryDays:number;hundredDate:string;yearDate:string;
   moments:RecordItem[];letters:RecordItem[];stories:RecordItem[];visibleMoments:RecordItem[];visibleLetters:RecordItem[];visibleStories:RecordItem[];favorites:string[];recordId:string;letterBody:string;letterLocked:boolean;recordLoaded:boolean;monthFilter:string;hasMore:boolean;moreHistory:boolean;selectedTag:string;
 }
 const notify=(title:string):void=>{wx.showToast({title,icon:'none',duration:2000});};
@@ -26,7 +26,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
     data:{...featureData,key,content:'',moodNote:'',mood:'',shareMood:true,mine:'',partner:'',cabinName:'',anniversary:'',today:dateString(),tomorrow:addDays(dateString(),1),loveDays:0,
       photo:'',photo2:'',avatar0:'',avatar1:'',stamp:'☕',layout:'双图并排',privateEnabled:true,privateNote:'',letterTitle:'',paper:2,delivery:'future',openAt:addDays(dateString(),1),
       feedback:'',feedbackKind:'success',pairState:'waiting',pairMode:'create',inviteCode:'',inviteInput:'',wishes:[false,false,false,false],wishCount:0,extraWishes:[],hugs:0,note:'',daytime:false,lampOn:true,mailTab:'received',retry:'',sentTitle:'',
-      cloudMode,bound:false,busy:false,loading:false,syncLabel:cloudMode?'正在连接云端':'本机模式 · 未连接对方',partnerMood:'对方尚未连接',meetingDate:'',meetingDays:0,meetingLabel:'尚未设置见面日期',anniversaryDays:0,hundredDate:'',yearDate:'',
+      cloudMode,bound:false,busy:false,loading:false,syncIssue:'',syncLabel:cloudMode?'正在连接云端':'本机模式 · 未连接对方',partnerMood:'对方尚未连接',meetingDate:'',meetingDays:0,meetingLabel:'尚未设置见面日期',anniversaryDays:0,hundredDate:'',yearDate:'',
       moments:[],letters:[],stories:[],visibleMoments:[],visibleLetters:[],visibleStories:[],favorites:[],recordId:'',letterBody:'',letterLocked:true,recordLoaded:false,monthFilter:'全部记录',hasMore:false,moreHistory:false,selectedTag:''},
     ...featureMethods,
     onLoad(options:{id?:string}={}) {
@@ -71,7 +71,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       try{
         const session=await callGateway<{bound:boolean;pairState:string}>('session');
         if(!this._alive||generation!==this._generation)return;
-        if(!session.bound){if(this.data.bound)this.clearSharedData();this.setData({bound:false,syncLabel:'请先完成双人绑定',pairState:session.pairState});return;}
+        if(!session.bound){if(this.data.bound)this.clearSharedData();this.setData({bound:false,syncIssue:'binding',syncLabel:'请先完成双人绑定',pairState:session.pairState});return;}
         this.setData({bound:true,pairState:session.pairState});
         const snapshot=await callGateway<SpaceSnapshot>('snapshot');
         for(const field of ['moments','letters','stories'] as const){const count=this.data[field].length;for(let offset=10;offset<count;offset+=10){const next=await callGateway<RecordItem[]>('list',{collection:field==='letters'?'letters_meta':field,offset});snapshot[field].push(...next);if(next.length<10)break;}}
@@ -79,9 +79,9 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
         this._version=snapshot.version;if(key!=='profile'||!this._formLoaded)this._avatarIds=[snapshot.profile.avatarMine||'',snapshot.profile.avatarPartner||''];
         const hydrated=await this.hydrate(snapshot);
         if(!this._alive||generation!==this._generation)return;
-        this.applySpace(hydrated);this.setData({syncLabel:'已连接云端 · 前台每15秒刷新'});
+        this.applySpace(hydrated);this.setData({syncIssue:'',syncLabel:'已连接云端 · 前台每15秒刷新'});
         await this.loadCloudLetter(generation);
-      }catch(error){if(this._alive&&generation===this._generation){this.setData({syncLabel:'同步失败 · 下拉重试'});this.feedback(error instanceof Error?error.message:'网络请求未完成','error','refresh');if(error instanceof GatewayError&&['FORBIDDEN','NOT_BOUND','UNAUTHENTICATED'].includes(error.code)){this.clearSharedData();}}}
+      }catch(error){if(this._alive&&generation===this._generation){this.setData({syncIssue:'error',syncLabel:'同步失败 · 下拉重试'});this.feedback(error instanceof Error?error.message:'网络请求未完成','error','refresh');if(error instanceof GatewayError&&['FORBIDDEN','NOT_BOUND','UNAUTHENTICATED'].includes(error.code)){this.clearSharedData();}}}
       finally{if(generation===this._generation){this._refreshing=false;if(this._alive)this.setData({loading:false});}}
     },
     async hydrate(snapshot:SpaceSnapshot):Promise<SpaceSnapshot>{

@@ -291,7 +291,7 @@ async function main() {
       const children=['image','input','switch'].includes(tag)?'':(node.children||[]).map(render).join('');
       return `<${tag} ${attrs}>${children}</${tag}>`;
     };
-    const headerTitle=page.tab===undefined?page.title:'小小宇宙';
+    const headerTitle=page.tab===undefined?page.title:'此间有你';
     const view=`<!-- Native reconstruction of stitch_only_us/_${page.id}; no Web HTML runtime. -->\n<app-header title="${headerTitle}" back="${page.tab===undefined?'{{true}}':'{{false}}'}"/>\n${render(shell[0])}\n<state-panel visible="{{!!feedback}}" message="{{feedback}}" kind="{{feedbackKind}}" binddismiss="dismissFeedback" bindretry="retryAction"/>\n`;
     put(path.join(nativeRoot,page.route+'.wxml'),require('./qa-views.cjs').applyPage(page.key,view));
     const relative=path.relative(path.dirname(path.join(nativeRoot,page.route)),path.join(nativeRoot,'shared/page-controller')).replace(/\\/g,'/');

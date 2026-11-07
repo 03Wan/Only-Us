@@ -338,3 +338,18 @@ page { --font-title:22px;--font-section:18px;--font-body:15px;--font-help:14px;f
 .feature-note-category-picker { display:flex;align-items:center;justify-content:space-between; }
 .feature-note-category-arrow { color:#9a8a9f; }
 .feature-note-category-custom { margin-top:8px; }
+
+/* Give the mood note header, text area and suggestions room to breathe. */
+.mood-note-card { padding:16px; }
+.mood-note-card > view:first-child { margin-bottom:12px; }
+.mood-note-card textarea { box-sizing:border-box;line-height:1.5;padding:12px; }
+.mood-note-card .mood-quick-options { margin-top:12px; }
+.cabin-mode-day image { filter:brightness(0) saturate(100%) invert(52%) sepia(24%) saturate(968%) hue-rotate(359deg) brightness(94%); }
+
+.mood-share-card { padding:16px; border:1px solid #eee5f4; border-radius:18px; background:#fff; }
+.mood-share-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.mood-share-title { display:flex; align-items:center; gap:10px; min-width:0; color:#44384e; font-size:15px; font-weight:600; }
+.mood-share-icon { display:flex; align-items:center; justify-content:center; width:36px; height:36px; flex-shrink:0; border-radius:50%; background:#f2ecf8; }
+.mood-share-icon image { width:21px; height:21px; }
+.mood-share-description,.mood-share-status { margin-top:10px; color:#7c6f86; font-size:12px; line-height:1.6; }
+.mood-share-status { margin-top:4px; color:#9a899f; }

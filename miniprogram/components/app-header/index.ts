@@ -1,6 +1,6 @@
 import { back, go } from '../../shared/routes';
 Component({
-  properties: { title: { type: String, value: '小小宇宙' }, back: { type: Boolean, value: false }, settings: Boolean },
+  properties: { title: { type: String, value: '此间有你' }, back: { type: Boolean, value: false }, settings: Boolean },
   data: { top: 24, barHeight: 44, reserve: 96, icon: '' },
   lifetimes: {
     attached() {
