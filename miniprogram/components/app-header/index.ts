@@ -23,7 +23,7 @@ Component({
     lead() {
       if(this.properties.back) {
         const pages=getCurrentPages();const route=pages[pages.length-1]?.route||'';
-        back(route.startsWith('subpackages/mail/')?'mailbox':route.startsWith('subpackages/moments/')?'moments':'cabin');
+        back(route.startsWith('subpackages/memories/')?'us':route.startsWith('subpackages/mail/')?'mailbox':route.startsWith('subpackages/moments/')?'moments':'cabin');
         return;
       }
       if(this.properties.settings) { this.openSettings(); return; }

@@ -29,6 +29,12 @@
         "locked/index",
         "letter/index"
       ]
+    },
+    {
+      "root": "subpackages/memories",
+      "pages": [
+        "index"
+      ]
     }
   ],
   "window": {

@@ -13,7 +13,7 @@ interface ControllerData extends FeatureData {
   photo:string;photo2:string;avatar0:string;avatar1:string;stamp:string;layout:string;privateEnabled:boolean;privateNote:string;letterTitle:string;paper:number;delivery:'now'|'future';openAt:string;
   affectionAnimating:boolean;affectionAnimationSymbol:string;affectionAnimationLabel:string;partnerAffectionText:string;partnerAffectionDate:string;feedback:string;feedbackKind:string;pairState:string;pairMode:string;inviteCode:string;inviteInput:string;wishes:boolean[];wishCount:number;extraWishes:Wish[];hugs:number;note:string;daytime:boolean;lampOn:boolean;mailTab:string;retry:string;sentTitle:string;
   cloudMode:boolean;bound:boolean;busy:boolean;loading:boolean;syncIssue:''|'binding'|'error';syncLabel:string;partnerMood:string;meetingDate:string;meetingDays:number;meetingLabel:string;anniversaryDays:number;hundredDate:string;yearDate:string;
-  moments:RecordItem[];letters:RecordItem[];stories:RecordItem[];visibleMoments:RecordItem[];visibleLetters:RecordItem[];visibleStories:RecordItem[];favorites:string[];recordId:string;letterBody:string;letterLocked:boolean;recordLoaded:boolean;monthFilter:string;hasMore:boolean;moreHistory:boolean;selectedTag:string;
+  moments:RecordItem[];letters:RecordItem[];stories:RecordItem[];visibleMoments:RecordItem[];visibleLetters:RecordItem[];visibleStories:RecordItem[];favorites:string[];recordId:string;letterBody:string;letterLocked:boolean;recordLoaded:boolean;monthFilter:string;hasMore:boolean;moreHistory:boolean;historyPage:number;historyPages:number;historyCount:number;selectedTag:string;
 }
 const notify=(title:string):void=>{wx.showToast({title,icon:'none',duration:2000});};
 const unique=():string=>`${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
@@ -27,10 +27,10 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       photo:'',photo2:'',avatar0:'',avatar1:'',stamp:'☕',layout:'双图并排',privateEnabled:true,privateNote:'',letterTitle:'',paper:2,delivery:'future',openAt:addDays(dateString(),1),
       affectionAnimating:false,affectionAnimationSymbol:'',affectionAnimationLabel:'',partnerAffectionText:'',partnerAffectionDate:'',feedback:'',feedbackKind:'success',pairState:'waiting',pairMode:'create',inviteCode:'',inviteInput:'',wishes:[false,false,false,false],wishCount:0,extraWishes:[],hugs:0,note:'',daytime:false,lampOn:true,mailTab:'received',retry:'',sentTitle:'',
       cloudMode,bound:false,busy:false,loading:false,syncIssue:'',syncLabel:cloudMode?'正在连接云端':'本机模式 · 未连接对方',partnerMood:'对方尚未连接',meetingDate:'',meetingDays:0,meetingLabel:'尚未设置见面日期',anniversaryDays:0,hundredDate:'',yearDate:'',
-      moments:[],letters:[],stories:[],visibleMoments:[],visibleLetters:[],visibleStories:[],favorites:[],recordId:'',letterBody:'',letterLocked:true,recordLoaded:false,monthFilter:'全部记录',hasMore:false,moreHistory:false,selectedTag:''},
+      moments:[],letters:[],stories:[],visibleMoments:[],visibleLetters:[],visibleStories:[],favorites:[],recordId:'',letterBody:'',letterLocked:true,recordLoaded:false,monthFilter:'全部记录',hasMore:false,moreHistory:key==='memories',historyPage:1,historyPages:1,historyCount:0,selectedTag:''},
     ...featureMethods,
     onLoad(options:{id?:string}={}) {
-      this._generation=0;this._version=0;this._localDataEpoch=currentLocalDataEpoch();this._alive=true;this._formLoaded=false;this._dirty=false;
+      this._generation=0;this._version=0;this._localDataEpoch=currentLocalDataEpoch();this._alive=true;this._formLoaded=false;
       this.setData({recordId:options.id||'',inviteCode:cloudMode?readLocal(fileKey('inviteCode'),''):this.data.inviteCode});
       this.loadAssets();
       if(key==='cabin'){this.setData({animationEnabled:readLocal('animationEnabled',true),soundEnabled:readLocal('soundEnabled',false)});const selected=readLocal(fileKey('affectionKind'),'hug');this.setData({affectionKind:affectionOptions.some(a=>a.kind===selected)?selected:'hug',daytime:readLocal(fileKey('daytime'),new Date().getHours()>=6&&new Date().getHours()<18)});}
@@ -42,7 +42,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
     onShow(){
       this._alive=true;if(key==='cabin')this.setData({daytime:readLocal(fileKey('daytime'),this.data.daytime),animationEnabled:readLocal('animationEnabled',true),soundEnabled:readLocal('soundEnabled',false)});const index=tabKeys.indexOf(key);if(index>=0)this.getTabBar?.()?.setData({selected:index,editorOpen:!!this.data.editorKind});
       this.setData({today:dateString(),tomorrow:addDays(dateString(),1)});this.updateDates();
-      if(cloudMode){void this.refresh();if(!this._timer)this._timer=setInterval(()=>{this.updateDates();void this.refresh();},15000);}else {this.refreshLocal();if(['cabin','us'].includes(key)&&!this._timer)this._timer=setInterval(()=>{if(this._alive&&!this.data.busy)this.refreshLocal();},15000);}
+      if(cloudMode){void this.refresh();if(!this._timer)this._timer=setInterval(()=>{this.updateDates();void this.refresh();},15000);}else {this.refreshLocal();if(['cabin','us','memories'].includes(key)&&!this._timer)this._timer=setInterval(()=>{if(this._alive&&!this.data.busy)this.refreshLocal();},15000);}
     },
     onHide(){this.stopSync();this.autosave();},
     onUnload(){this._destroyed=true;this.stopSync();this.autosave();},
@@ -91,11 +91,20 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       const stories=snapshot.stories.map(r=>({...r,photoIds:r.photos||[],photos:(r.photos||[]).map(id=>urls[id])}));
       return {...snapshot,stories,profile:{...snapshot.profile,avatarMine:urls[snapshot.profile.avatarMine||''],avatarPartner:urls[snapshot.profile.avatarPartner||'']},moments:snapshot.moments.map(r=>({...r,photos:(r.photos||[]).map(id=>urls[id])}))};
     },
-    filterRecords(){const d=this.data as ControllerData;const moments=d.moments.filter(r=>d.monthFilter==='全部记录'||r.dayKey?.startsWith(d.monthFilter));const letters=d.letters.filter(r=>d.mailTab==='sent'?r.mine:!r.mine);this.setData({visibleMoments:(d.moreHistory?moments:moments.slice(0,4)).map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleLetters:letters.map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleStories:d.moreHistory?d.stories:d.stories.slice(0,3),sentTitle:d.letters.find(r=>r.mine)?.title||'',hasMore:(key==='moments'?d.moments:key==='mailbox'?d.letters:d.stories).length>0&&(key==='moments'?d.moments:key==='mailbox'?d.letters:d.stories).length%10===0});},
+    filterRecords(){
+      const d=this.data as ControllerData;
+      const moments=d.moments.filter(r=>d.monthFilter==='全部记录'||r.dayKey?.startsWith(d.monthFilter));
+      const letters=d.letters.filter(r=>d.mailTab==='sent'?r.mine:!r.mine);
+      const rows=key==='moments'?moments:key==='mailbox'?letters:d.stories;
+      const pages=Math.max(1,Math.ceil(rows.length/5)),page=Math.min(Math.max(1,d.historyPage),pages);
+      const slice=(items:RecordItem[])=>d.moreHistory?items.slice((page-1)*5,page*5):items.slice(0,3);
+      const loaded=key==='moments'?d.moments:key==='mailbox'?d.letters:d.stories;
+      this.setData({visibleMoments:slice(moments).map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleLetters:slice(letters).map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleStories:slice(d.stories),historyPage:page,historyPages:pages,historyCount:rows.length,sentTitle:d.letters.find(r=>r.mine)?.title||'',hasMore:loaded.length>0&&loaded.length%10===0});
+    },
     loadLocalLetter(){if(!['letter','locked'].includes(key)||!this.data.recordId)return;const row=localRecords('letters').find(r=>r.id===this.data.recordId);if(row)this.setData({letterTitle:row.title||'',letterBody:row.content||'',openAt:row.openAt?dateString(new Date(row.openAt)):'',letterLocked:false,recordLoaded:true});else this.feedback('信件不存在或已删除','error');},
     async loadCloudLetter(generation:number){if(!['letter','locked'].includes(key)||!this.data.recordId)return;this.setData({letterBody:'',recordLoaded:false});try{const meta=await callGateway<{title:string;openAt:number;locked:boolean}>('letterMeta',{id:this.data.recordId});if(!this._alive||generation!==this._generation)return;this.setData({letterTitle:meta.title,openAt:dateString(new Date(meta.openAt)),letterLocked:meta.locked,recordLoaded:meta.locked});if(meta.locked)return;const result=await callGateway<{title:string;content:string;openAt:number;paper:number}>('readLetter',{id:this.data.recordId});if(!this._alive||generation!==this._generation)return;this.setData({letterTitle:result.title,letterBody:result.content,openAt:dateString(new Date(result.openAt)),paper:result.paper,letterLocked:false,recordLoaded:true});}catch(error){if(this._alive&&generation===this._generation){this.setData({letterLocked:true,recordLoaded:true});this.feedback(error instanceof Error?error.message:'信件加载失败','error','refresh');}}},
     autosave(){if(this._localDataEpoch!==currentLocalDataEpoch())return;try{if(key==='editor')this.persistMoment();if(key==='compose')this.persistLetter();}catch{this.feedback('草稿未能保存，请检查设备剩余空间','error');}},
-    onField(event:WechatMiniprogram.Input){const field=String(event.currentTarget.dataset.field);if(!['content','moodNote','mine','partner','cabinName','letterTitle','inviteInput','privateNote'].includes(field))return;this._dirty=true;this.setData({[field]:event.detail.value});if(key==='editor'||key==='compose')this.autosave();},
+    onField(event:WechatMiniprogram.Input){const field=String(event.currentTarget.dataset.field);if(!['content','moodNote','mine','partner','cabinName','letterTitle','inviteInput','privateNote'].includes(field))return;this.setData({[field]:event.detail.value});if(key==='editor'||key==='compose')this.autosave();},
     async onDate(event:WechatMiniprogram.PickerChange){const field=String(event.currentTarget.dataset.field),value=String(event.detail.value);if(!['anniversary','firstMet','hundredDate','yearDate','openAt','meetingDate'].includes(field))return;if(dayNumber(value)===null){this.feedback('日期无效','error');return;}if(['us','cabin'].includes(key)&&['firstMet','anniversary','hundredDate','yearDate'].includes(field)){await this.saveMilestone(field,value);return;}if(['hundredDate','yearDate'].includes(field))return;if(field!=='meetingDate'){this.setData({[field]:value});this.updateDates();}if(field==='meetingDate'){await this.saveMeeting(value);}else this.autosave();},
     async saveMeeting(value:string){if(this.data.busy)return;this.setData({busy:true});try{await this.commit('meeting',{date:value},()=>updateSpace({meetingDate:value}));this.feedback(cloudMode?'见面日期已保存到云端':'见面日期已保存在本机');}catch(e){this.feedback(e instanceof Error?e.message:'见面日期保存失败','error');}finally{if(!this._destroyed)this.setData({busy:false});}},
     onToggle(event:WechatMiniprogram.SwitchChange){const field=String(event.currentTarget.dataset.field);if(['shareMood','privateEnabled'].includes(field))this.setData({[field]:event.detail.value});this.autosave();},
@@ -137,7 +146,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
           case 'mood':if(['开心','平静','疲惫','想你','需要抱抱','想独处'].includes(value))this.setData({mood:value as Mood});break;
           case 'quickMood':this.setData({moodNote:value});break;
           case 'saveMood':if(!d.mood)throw new Error('请选择今天的心情');await this.commit('saveMood',{mood:d.mood,moodNote:d.moodNote,shareMood:d.shareMood},()=>updateSpace({mood:d.mood,moodNote:d.moodNote,shareMood:d.shareMood}));notify(cloudMode?'心情已保存到云端':'心情已保存在本机');back();break;
-          
+
           case 'pairMode':this.setData({pairMode:value});break;
           case 'newCode':if(cloudMode){const result=await writeGateway<{inviteCode:string;pairState:string}>('createInvite',{},0);writeLocal(fileKey('inviteCode'),result.inviteCode||'');this.setData({inviteCode:result.inviteCode||'',pairState:result.pairState,pairMode:'create'});}else throw new Error('尚未连接云服务，暂时无法生成绑定密令');break;
           case 'copyCode':if(d.inviteCode)wx.setClipboardData({data:d.inviteCode,success:()=>notify('密令已复制，请发给对方'),fail:()=>this.feedback('未能复制，请重试','error')});else this.feedback('请先点刷新图标生成密令','error');break;
@@ -166,7 +175,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
             let photos=[d.photo,d.photo2].filter(Boolean);if(cloudMode)photos=await Promise.all(photos.map(path=>this.uploadPhoto(path)));
             await this.commit('publishMoment',{content,photos,privateNote:d.privateNote,privateEnabled:d.privateEnabled,stamp:d.stamp},()=>{const rows=localRecords('moments'),existing=rows.find(r=>r.dayKey===dateString()&&r.mine);const row={id:existing?.id||unique(),mine:true,createdAt:existing?.createdAt||Date.now(),dayKey:dateString(),content,photos,stamp:d.stamp,privateNote:d.privateEnabled?d.privateNote:''};writeLocal('moments',[row,...rows.filter(r=>r.id!==row.id)]);});go('waiting');break;
           }
-          case 'mailTab':this.setData({mailTab:value});this.filterRecords();break;
+          case 'mailTab':this.setData({mailTab:value,historyPage:1,moreHistory:false});this.filterRecords();break;
           case 'paper':if(['0','1','2'].includes(value)){this.setData({paper:Number(value)});this.persistLetter();}break;
           case 'delivery':if(value==='now'||value==='future'){this.setData({delivery:value});this.persistLetter();}break;
           case 'sticker':this.setData({content:d.content+' 🌸'});this.persistLetter();break;
@@ -185,10 +194,12 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
           case 'previewMoment':{const row=d.moments.find(r=>r.id===value);if(!row){this.feedback('这张卡片是设计示例，请先发布自己的记录');break;}let note=row.privateNote||'';if(cloudMode){const detail=await callGateway<{privateNote:string;privateLocked:boolean}>('readMoment',{id:row.id});note=detail.privateLocked?'等双方都记录今天后再开启悄悄话':detail.privateNote;}wx.showModal({title:'这一刻的日常',content:(row.content||'')+(note?'\n\n悄悄话：'+note:''),showCancel:true,cancelText:'关闭',confirmText:'查看照片',success:r=>{if(r.confirm&&row.photos?.length)wx.previewImage({urls:row.photos,current:row.photos[0],fail:()=>this.feedback('照片预览失败','error')});}});break;}
           case 'photos':this.previewPhotos();break;
           case 'previewDraft':{const urls=[d.photo,d.photo2].filter(Boolean);if(urls.length)wx.previewImage({urls,current:urls[0],fail:()=>this.feedback('照片预览失败','error')});break;}
-          case 'month':{const months=['全部记录',...Array.from(new Set(d.moments.map(r=>r.dayKey?.slice(0,7)||'').filter(Boolean)))].slice(0,6);wx.showActionSheet({itemList:months,success:r=>{this.setData({monthFilter:months[r.tapIndex]});this.filterRecords();}});break;}
+          case 'month':{const months=['全部记录',...Array.from(new Set(d.moments.map(r=>r.dayKey?.slice(0,7)||'').filter(Boolean)))].slice(0,6);wx.showActionSheet({itemList:months,success:r=>{this.setData({monthFilter:months[r.tapIndex],historyPage:1,moreHistory:false});this.filterRecords();}});break;}
           case 'storyDetail':{const row=d.stories.find(r=>r.id===value);if(row)wx.showModal({title:'我们的回忆',content:row.content||'',showCancel:false});break;}
-          
-          case 'moreHistory':this.setData({moreHistory:!d.moreHistory});this.filterRecords();break;
+
+          case 'moreHistory':this.setData({moreHistory:!d.moreHistory,historyPage:1});this.filterRecords();break;
+          case 'historyPrev':this.setData({historyPage:Math.max(1,d.historyPage-1)});this.filterRecords();break;
+          case 'historyNext':this.setData({historyPage:Math.min(d.historyPages,d.historyPage+1)});this.filterRecords();break;
           case 'loadMore':await this.loadMore();break;
           case 'deleteRecord':this.confirmDelete(value.split(':')[0],value.split(':')[1]);break;
           default:this.feedback('这个入口尚未开发完成');
@@ -196,8 +207,6 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       }catch(error){this.feedback(error instanceof Error?error.message:'操作未完成，请重试','error',action==='sendLetter'||action==='publishMoment'?action:'');if(error instanceof GatewayError&&error.code==='CONFLICT'){this.setData({busy:false});await this.refresh();}}
       finally{if(!this._destroyed){this.setData({busy:false});this.getTabBar?.()?.setData({editorOpen:!!this.data.editorKind});}}
     },
-    editText(title:string,content:string,action:string){wx.showModal({title,editable:true,content,placeholderText:'留下一句温柔的话',success:r=>{if(r.confirm&&r.content?.trim()){void this.saveText(action,r.content.trim());}}});},
-    async saveText(action:string,value:string){if(this.data.busy)return;this.setData({busy:true});try{const d=this.data as ControllerData;if(value.length>(action==='addWish'?200:action==='story'?2000:1000))throw new Error('内容太长，请精简后保存');await this.commit(action,action==='note'?{note:value}:action==='addWish'?{text:value}:{content:value},()=>{if(action==='note')updateSpace({note:value});else if(action==='addWish')writeLocal('extraWishes',[...d.extraWishes,{id:unique(),text:value,done:false}]);else writeLocal('stories',[{id:unique(),mine:true,createdAt:Date.now(),content:value},...localRecords('stories')]);});this.feedback(cloudMode?'已保存到共同的小屋':'已保存在本机');}catch(error){this.feedback(error instanceof Error?error.message:'保存未完成','error');}finally{if(!this._destroyed)this.setData({busy:false});}},
     confirmDelete(collection:string,id:string){if(!id)return;wx.showModal({title:'删除这条记录？',content:'删除后将从共同列表中移除。',success:r=>{if(r.confirm)void this.removeRecord(collection,id);}});},
     async removeRecord(collection:string,id:string){if(this.data.busy)return;this.setData({busy:true});try{await this.commit(collection==='wish'?'deleteWish':'deleteRecord',collection==='wish'?{id}:{collection,id},()=>{if(collection==='wish')writeLocal('extraWishes',this.data.extraWishes.filter((w:Wish)=>w.id!==id));else{const storage=collection==='letters_meta'?'letters':collection;if(id==='legacy-story')writeLocal('legacyStoryHidden',true);writeLocal(storage,localRecords(storage).filter(r=>r.id!==id));}});this.feedback('记录已移除');}catch(error){this.feedback(error instanceof Error?error.message:'删除未完成','error');}finally{if(!this._destroyed)this.setData({busy:false});}},
     async loadMore(){if(!cloudMode){this.setData({moreHistory:true});this.filterRecords();return;}const collection=key==='moments'?'moments':key==='mailbox'?'letters_meta':'stories';const field=collection==='letters_meta'?'letters':collection;const rows=this.data[field as 'moments'|'letters'|'stories'];const result=await callGateway<RecordItem[]>('list',{collection,offset:rows.length});if(collection==='moments'||collection==='stories'){for(const row of result){row.photoIds=row.photos||[];row.photos=await Promise.all((row.photos||[]).map(async id=>(await callGateway<{url:string}>('fileUrl',{id})).url));}}this.setData({[field]:[...rows,...result.filter(r=>!rows.some((old:RecordItem)=>old.id===r.id))],moreHistory:true});this.filterRecords();this.setData({hasMore:result.length===10});},
@@ -221,4 +230,3 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
     previewPhotos(){const urls=this.data.moments.flatMap((r:RecordItem)=>r.photos||[]);if(urls.length)wx.previewImage({urls,current:urls[0]});else this.feedback('还没有自己的照片，去记录今天吧');},
   };
 }
-

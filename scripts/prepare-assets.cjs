@@ -4,7 +4,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const sharp = require('sharp');
 const cheerio = require('cheerio');
-const pages = require('./design-map.cjs');
+const pages = require('./design-map.cjs').filter(page => page.id <= 13);
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'miniprogram/assets/photos');
 fs.mkdirSync(out, { recursive: true });

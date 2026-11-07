@@ -76,5 +76,14 @@ function applyDesignPage(key,source){
 }
 function auditCss(source){return source.replace(/(?<![\w-])color: rgb\(121 117 127/g,'color: rgb(109 102 118').replace(/(?<![\w-])color: rgb\(124 82 101/g,'color: rgb(105 66 83').replace(/font-size:\s*calc\(([-\d.]+) \* var\(--layout-unit\)\)/g,(_,n)=>`font-size: max(14px, calc(${n} * var(--layout-unit)))`);}
 const applyPage=(key,source)=>require('./clean-live-views.cjs').cleanPage(key,applyDesignPage(key,source));
-module.exports={applyPage,auditCss};
-if(require.main===module){for(const p of require('./design-map.cjs')){const file='miniprogram/'+p.route+'.wxml';fs.writeFileSync(file,applyPage(p.key,fs.readFileSync(file,'utf8')));}const file='miniprogram/styles/design.wxss';fs.writeFileSync(file,auditCss(fs.readFileSync(file,'utf8')));}
+function pruneUnusedUtilities(source){
+ const path=require('node:path'),used=new Set();
+ function scan(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory()){if(entry.name!=='assets')scan(file);}else if(/\.(wxml|ts)$/.test(entry.name))for(const match of fs.readFileSync(file,'utf8').matchAll(/\bu\d+\b/g))used.add(match[0]);}}
+ scan(path.resolve(__dirname,'../miniprogram'));
+ const root=require('postcss').parse(source);
+ root.walkRules(rule=>{const match=rule.selector.match(/^\.(u\d+)(?::[\w()-]+)*$/);if(match&&!used.has(match[1]))rule.remove();});
+ root.walkAtRules(rule=>{if(rule.nodes&&!rule.nodes.some(node=>node.type!=='comment'))rule.remove();});
+ return root.toString();
+}
+module.exports={applyPage,auditCss,pruneUnusedUtilities};
+if(require.main===module){for(const p of require('./design-map.cjs')){const file='miniprogram/'+p.route+'.wxml';fs.writeFileSync(file,applyPage(p.key,fs.readFileSync(file,'utf8')));}const file='miniprogram/styles/design.wxss';fs.writeFileSync(file,pruneUnusedUtilities(auditCss(fs.readFileSync(file,'utf8'))));}

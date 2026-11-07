@@ -12,7 +12,7 @@ test.afterEach(()=>{for(const page of trackedPages)page.stopSync();trackedPages.
 function load(key,options){const opts=createPage(key);const page={...opts,data:structuredClone(opts.data),setData(patch){for(const [key,value] of Object.entries(patch)){const parts=key.split('.');let target=this.data;for(const part of parts.slice(0,-1))target=target[part];target[parts.at(-1)]=value;}}};page.onLoad(options);trackedPages.push(page);return page;}
 function reset(){storage.clear();navigation.length=0;storageFail=false;modalResult={confirm:true,content:'一条测试记录'};sheetIndex=0;}
 test('all thirteen page controllers initialise with empty business forms',()=>{reset();for(const key of ['cabin','moments','mailbox','reunion','us','bind','profile','editor','mood','compose','waiting','locked','letter']){const p=load(key);assert.equal(p.data.key,key);assert.equal(p.data.cloudMode,false);assert.equal(p.data.photo,'');assert.equal(p.data.content,'');assert.equal(p.data.letterTitle,'');assert.equal(p.data.avatar0,'');assert.match(p.data.syncLabel,/未连接对方/);}});
-test('only user-created wishes appear and completion persists',async()=>{reset();const p=load('reunion');assert.equal(p.data.wishRows.length,0);for(let i=0;i<4;i++)await p.saveText('addWish','心愿'+i);for(const row of p.data.wishRows)await p.perform('toggleWish',row.id);assert.equal(load('reunion').data.wishCount,4);await p.perform('toggleWish','missing');assert.equal(p.data.wishRows.length,4);});
+test('only user-created wishes appear and completion persists',async()=>{reset();const p=load('reunion');assert.equal(p.data.wishRows.length,0);for(let i=0;i<4;i++){await p.perform('addWish','');p.data.wishText='心愿'+i;await p.perform('saveFeature','');};for(const row of p.data.wishRows)await p.perform('toggleWish',row.id);assert.equal(load('reunion').data.wishCount,4);await p.perform('toggleWish','missing');assert.equal(p.data.wishRows.length,4);});
 test('moment publish persists a real record visible on a cached tab',async()=>{reset();const tab=load('moments'),p=load('editor');p.data.photo='/saved/user-photo.jpg';p.onField({currentTarget:{dataset:{field:'content'}},detail:{value:'今天的晚霞想分你一半'}});assert.equal(load('editor').data.content,p.data.content);await p.perform('publishMoment','');assert.equal(navigation.at(-1),'/subpackages/moments/waiting/index');tab.onShow();assert.equal(tab.data.moments.length,1);assert.equal(tab.data.visibleMoments[0].content,p.data.content);});
 test('future letter rejects expired or invalid dates with no success or write',async()=>{for(const date of ['2000-01-01','2027-02-30']){reset();const p=load('compose');Object.assign(p.data,{letterTitle:'我的信',content:'信的正文',openAt:date});await p.perform('sendLetter','');assert.equal(p.data.feedbackKind,'error');assert.equal(load('mailbox').data.letters.length,0);}});
 test('letter sending persists multiple readable letters and blocks repeat clicks',async()=>{reset();const p=load('compose');Object.assign(p.data,{letterTitle:'我的信',content:'第一封正文',delivery:'now'});await p.perform('sendLetter','');await p.perform('sendLetter','');assert.equal(load('mailbox').data.letters.length,1);p.data.content='第二封';await p.perform('sendLetter','');const box=load('mailbox');await box.perform('mailTab','sent');assert.equal(box.data.visibleLetters.length,2);const reader=load('letter',{id:box.data.visibleLetters[0].id});assert.equal(reader.data.letterBody,'第二封');});
@@ -23,7 +23,7 @@ test('cached tabs refresh profiles, while returning from a picker keeps edits',a
 test('mood and visibility refresh on cached cabin',async()=>{reset();const cabin=load('cabin'),mood=load('mood');mood.data.mood='开心';mood.data.moodNote='今天开心';mood.data.shareMood=false;await mood.perform('saveMood','');cabin.onShow();assert.equal(cabin.data.moodNote,'今天开心');assert.equal(readSpace().shareMood,false);});
 test('meeting date saves and countdown is computed from real calendar dates',async()=>{reset();const p=load('reunion'),date=addDays(dateString(),12);await p.saveMeeting(date);assert.equal(p.data.meetingDate,date);assert.equal(p.data.meetingDays,12);assert.equal(load('cabin').data.meetingDays,12);});
 test('failed meeting write leaves the committed date unchanged',async()=>{reset();const p=load('reunion');storageFail=true;await p.saveMeeting('2027-01-01');storageFail=false;assert.equal(p.data.meetingDate,'');assert.equal(p.data.feedbackKind,'error');});
-test('story creation is visible and real detail opens',async()=>{reset();const p=load('us');await p.saveText('story','我们的第一场电影');assert.equal(load('us').data.visibleStories[0].content,'我们的第一场电影');let shown;wx.showModal=o=>{shown=o;};await p.perform('storyDetail',p.data.stories[0].id);assert.equal(shown.content,'我们的第一场电影');wx.showModal=o=>o.success?.(modalResult);});
+test('story creation is visible and real detail opens',async()=>{reset();const p=load('us');await p.perform('story','');Object.assign(p.data,{storyTitle:'第一场电影',storyContent:'我们的第一场电影'});await p.perform('saveFeature','');assert.equal(load('us').data.visibleStories[0].content,'我们的第一场电影');let shown;wx.showModal=o=>{shown=o;};await p.perform('storyDetail',p.data.stories[0].id);assert.equal(shown.content,'我们的第一场电影');wx.showModal=o=>o.success?.(modalResult);});
 test('month filtering changes actual record set',async()=>{reset();storage.set('only-us:local:v2:moments',[{id:'a',dayKey:'2026-10-01'},{id:'b',dayKey:'2026-11-01'}]);const p=load('moments');sheetIndex=1;await p.perform('month','');assert.equal(p.data.visibleMoments.length,1);assert.equal(p.data.visibleMoments[0].id,'a');});
 test('favorite and deletion modify persisted records',async()=>{reset();const p=load('editor');Object.assign(p.data,{content:'我的日常',photo:'/saved/user-photo.jpg'});await p.perform('publishMoment','');const tab=load('moments'),id=tab.data.moments[0].id;await tab.perform('favoriteMoment',id);assert.ok(readSpace().favorites.includes(id));await tab.perform('favoriteMoment',id);assert.ok(!readSpace().favorites.includes(id));await tab.removeRecord('moments',id);assert.equal(load('moments').data.moments.length,0);});
 test('lamp and all five tab routes have concrete responses',async()=>{reset();const p=load('cabin'),before=p.data.lampOn;await p.perform('lamp','');assert.equal(p.data.lampOn,!before);for(const key of ['cabin','moments','mailbox','reunion','us'])await p.perform('route',key);assert.equal(navigation.length,5);await p.perform('refresh','');assert.equal(p.data.feedbackKind,'success');});
@@ -52,9 +52,9 @@ test('tag editor supports presets and custom tags, survives draft restore and ca
 
 test('repeated page feedback increments the notice token so the UI can restart dismissal',()=>{reset();const p=load('cabin');p.feedback('抱抱已记下');const first=p.data.feedbackToken;p.feedback('抱抱已记下');assert.equal(p.data.feedbackToken,first+1);});
 
-test('first acquaintance date saves from milestones and remains editable in profile',async()=>{reset();const us=load('us');assert.equal(us.data.firstMet,'');await us.saveFirstMet('2023-11-17');assert.equal(load('us').data.firstMet,'2023-11-17');const profile=load('profile');assert.equal(profile.data.firstMet,'2023-11-17');Object.assign(profile.data,{mine:'我',partner:'对方',cabinName:'我的小屋',anniversary:'2024-05-20',firstMet:'2023-11-18'});await profile.perform('saveProfile','');us.onShow();assert.equal(us.data.firstMet,'2023-11-18');assert.equal(us.data.anniversary,'2024-05-20');});
+test('first acquaintance date saves from milestones and remains editable in profile',async()=>{reset();const us=load('us');assert.equal(us.data.firstMet,'');await us.saveMilestone('firstMet','2023-11-17');assert.equal(load('us').data.firstMet,'2023-11-17');const profile=load('profile');assert.equal(profile.data.firstMet,'2023-11-17');Object.assign(profile.data,{mine:'我',partner:'对方',cabinName:'我的小屋',anniversary:'2024-05-20',firstMet:'2023-11-18'});await profile.perform('saveProfile','');us.onShow();assert.equal(us.data.firstMet,'2023-11-18');assert.equal(us.data.anniversary,'2024-05-20');});
 
-test('invalid, future and failed first acquaintance updates retain the saved date',async()=>{reset();const p=load('us');await p.saveFirstMet('2023-11-17');for(const date of ['2026-02-30',addDays(dateString(),1)]){await p.saveFirstMet(date);assert.equal(p.data.feedbackKind,'error');assert.equal(p.data.firstMet,'2023-11-17');}storageFail=true;await p.saveFirstMet('2023-12-01');storageFail=false;assert.equal(p.data.firstMet,'2023-11-17');assert.equal(p.data.busy,false);});
+test('invalid, future and failed first acquaintance updates retain the saved date',async()=>{reset();const p=load('us');await p.saveMilestone('firstMet','2023-11-17');for(const date of ['2026-02-30',addDays(dateString(),1)]){await p.saveMilestone('firstMet',date);assert.equal(p.data.feedbackKind,'error');assert.equal(p.data.firstMet,'2023-11-17');}storageFail=true;await p.saveMilestone('firstMet','2023-12-01');storageFail=false;assert.equal(p.data.firstMet,'2023-11-17');assert.equal(p.data.busy,false);});
 
 test('all four milestone pickers save independently and profile edits retain custom dates',async()=>{
   reset();const p=load('us');
@@ -129,4 +129,30 @@ test('batch deletion removes only authored local records and keeps shared data',
 test('selecting a photo larger than 1 MB can save it locally',async()=>{
  reset();const p=load('cabin'),oldChoose=wx.chooseMedia,oldFs=wx.getFileSystemManager;wx.chooseMedia=o=>o.success({tempFiles:[{tempFilePath:'large',size:4000000}]});wx.getFileSystemManager=()=>({saveFile:o=>o.success({savedFilePath:'saved-large'})});
  try{p.choosePhoto('avatar0');await new Promise(r=>setImmediate(r));assert.equal(p.data.avatar0,'saved-large');}finally{wx.chooseMedia=oldChoose;wx.getFileSystemManager=oldFs;}
+});
+
+test('history expands, paginates and collapses across all three record pages',async()=>{
+  for(const [key,storageKey,field] of [['moments','moments','visibleMoments'],['us','stories','visibleStories'],['mailbox','letters','visibleLetters']]){
+    reset();storage.set('only-us:local:v2:'+storageKey,Array.from({length:12},(_,i)=>({id:String(i),mine:true,dayKey:'2026-11-01'})));
+    const p=load(key);if(key==='mailbox')await p.perform('mailTab','sent');
+    assert.equal(p.data[field].length,3);await p.perform('moreHistory','');assert.equal(p.data[field].length,5);assert.equal(p.data.historyPages,3);
+    await p.perform('historyNext','');assert.equal(p.data[field][0].id,'5');await p.perform('historyNext','');assert.equal(p.data[field].length,2);
+    await p.perform('moreHistory','');assert.equal(p.data[field].length,3);assert.equal(p.data.historyPage,1);
+  }
+});
+
+test('weather picker saves and restores a story draft',async()=>{
+  reset();const p=load('us');await p.perform('story','');p.weatherChange({detail:{value:'2'}});assert.equal(p.data.storyWeather,'多云');
+  await p.perform('closeEditor','');const restored=load('us');await restored.perform('story','');assert.equal(restored.data.storyWeather,'多云');
+  restored.weatherChange({detail:{value:'0'}});assert.equal(restored.data.storyWeather,'');
+});
+
+
+test('dedicated memories page creates, edits and deletes stories and keeps pagination bounded',async()=>{
+  reset();storage.set('only-us:local:v2:stories',Array.from({length:7},(_,i)=>({id:'old-'+i,mine:true,title:'旧故事',content:'正文',dayKey:'2026-11-01'})));
+  const p=load('memories');assert.equal(p.data.visibleStories.length,5);await p.perform('historyNext','');assert.equal(p.data.visibleStories.length,2);
+  await p.perform('story','');Object.assign(p.data,{storyTitle:'新的一页',storyContent:'一起散步'});await p.perform('saveFeature','');assert.equal(p.data.stories.length,8);
+  const row=p.data.stories.find(r=>r.title==='新的一页');await p.perform('editStory',row.id);p.data.storyTitle='修改的一页';await p.perform('saveFeature','');assert.equal(load('us').data.stories[0].title,'修改的一页');
+  await p.removeRecord('stories',row.id);assert.equal(p.data.stories.length,7);assert.ok(p.data.visibleStories.length<=5);
+  await load('us').perform('route','memories');assert.equal(navigation.at(-1),'/subpackages/memories/index');
 });

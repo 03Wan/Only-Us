@@ -48,6 +48,12 @@
     "error": ""
   },
   {
+    "file": "./shared/feature-editor.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
     "file": "./subpackages/connection/bind/index.wxml",
     "kind": "wxml",
     "status": 0,
@@ -79,6 +85,12 @@
   },
   {
     "file": "./subpackages/mail/locked/index.wxml",
+    "kind": "wxml",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/memories/index.wxml",
     "kind": "wxml",
     "status": 0,
     "error": ""
@@ -205,6 +217,12 @@
   },
   {
     "file": "./subpackages/mail/locked/index.wxss",
+    "kind": "wxss",
+    "status": 0,
+    "error": ""
+  },
+  {
+    "file": "./subpackages/memories/index.wxss",
     "kind": "wxss",
     "status": 0,
     "error": ""

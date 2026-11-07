@@ -1,15 +1,16 @@
+const {readWxml}=require('./wxml-source.cjs');
 const fs=require('node:fs');
 const path=require('node:path');
 const assert=require('node:assert/strict');
 const map=require('./design-map.cjs');
 const app=JSON.parse(fs.readFileSync('miniprogram/app.json','utf8'));
 const routes=[...app.pages,...app.subpackages.flatMap(p=>p.pages.map(r=>p.root+'/'+r))];
-assert.equal(routes.length,13);assert.equal(new Set(routes).size,13);assert.equal(app.tabBar.list.length,5);
+assert.equal(routes.length,14);assert.equal(new Set(routes).size,14);assert.equal(app.tabBar.list.length,5);
 const allowed=new Set(['view','text','image','button','input','textarea','picker','switch','scroll-view','block','app-header','state-panel']);
 for(const page of map){
   assert.ok(routes.includes(page.route),`Missing route ${page.route}`);
   for(const ext of ['ts','wxml','wxss','json'])assert.ok(fs.existsSync(`miniprogram/${page.route}.${ext}`),`Missing ${page.route}.${ext}`);
-  const source=fs.readFileSync(`miniprogram/${page.route}.wxml`,'utf8');
+  const source=readWxml(`miniprogram/${page.route}.wxml`);
   for(const match of source.matchAll(/<([a-z][\w-]*)\b/g))assert.ok(allowed.has(match[1]),`Unsupported element ${match[1]}`);
   assert.ok(!/<(?:script|web-view|iframe)|\bonclick=|https?:\/\//.test(source),`Web dependency found in ${page.route}`);
   for(const img of source.matchAll(/src="(\/assets\/[^"{}]+)"/g))assert.ok(fs.existsSync(path.join('miniprogram',img[1])),`Missing image ${img[1]}`);
@@ -26,4 +27,4 @@ assert.ok(config.setting.useCompilerPlugins.includes('typescript'));
 assert.equal(config.miniprogramRoot,'miniprogram/');
 const assets=JSON.parse(fs.readFileSync('docs/resource-manifest.json','utf8'));
 assert.equal(assets.pages.length,13);assert.equal(assets.images.length,20);
-console.log('Verified 13 native routes, 5 tabs, local images, shared headers and TypeScript import configuration.');
+console.log('Verified 14 native routes, 5 tabs, local images, shared headers and TypeScript import configuration.');

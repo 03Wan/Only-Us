@@ -1,6 +1,7 @@
 export const routes = {
   cabin: '/pages/cabin/index', moments: '/pages/moments/index', mailbox: '/pages/mailbox/index',
   reunion: '/pages/reunion/index', us: '/pages/us/index',
+  memories: '/subpackages/memories/index',
   bind: '/subpackages/connection/bind/index', profile: '/subpackages/connection/profile/index',
   mood: '/subpackages/connection/mood/index', editor: '/subpackages/moments/editor/index',
   waiting: '/subpackages/moments/waiting/index', compose: '/subpackages/mail/compose/index',

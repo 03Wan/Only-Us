@@ -1,6 +1,6 @@
 {
   "budgetBytes": 200000,
-  "totalBytes": 169754,
+  "totalBytes": 190301,
   "passed": true,
   "files": [
     {
@@ -399,11 +399,6 @@
       "sha256": "b2a9f10e290c79b278e919441c301a5b50ef8f7bd31be15a266791a6fe4ffdd5"
     },
     {
-      "file": "icons/photo_library-81543b9e.png",
-      "bytes": 371,
-      "sha256": "26c6469d25da04a964714bfb329fbc4e633d639cf5a6f2046fa24314b98b0543"
-    },
-    {
       "file": "icons/public-3a413830.png",
       "bytes": 538,
       "sha256": "85fb404f667c16a3d0b055921cdee8c6eb8bd91657c457d313675c763a4ca592"
@@ -469,11 +464,6 @@
       "sha256": "4d9be272f431bd39a26ea37aec038927eac7585cbd3926c0d872658767872d80"
     },
     {
-      "file": "icons/stars-8941e2c2.png",
-      "bytes": 606,
-      "sha256": "42b2377403ac8e9807676ac0713feddbc2c6cbbf7318c88de043f70c896d1e16"
-    },
-    {
       "file": "icons/sticky_note_2-c05d4a0b.png",
       "bytes": 362,
       "sha256": "68c071d352bc459c0035c47b31f6037894090e5512de608e3c776c580286abe7"
@@ -492,11 +482,6 @@
       "file": "icons/timer-bfdc3369.png",
       "bytes": 602,
       "sha256": "cae488b115ebe1a1b9a56ba0e2422e528a4f7de03d42b1e4a31722c0ec370013"
-    },
-    {
-      "file": "icons/train-cb383442.png",
-      "bytes": 554,
-      "sha256": "32bb2032f8eafa71b758f811fbdb6226c1aac5da0c230b4dd329991531511836"
     },
     {
       "file": "icons/tune-ad0e0b63.png",
@@ -597,6 +582,16 @@
       "file": "photos/photo-f4c8d1682bbe.jpg",
       "bytes": 15374,
       "sha256": "51214791f025f629abf95a5ebcebaa51d59ec7a3be7a28050f5926f30a92b636"
+    },
+    {
+      "file": "backgrounds/anniversary-garden.jpg",
+      "bytes": 8409,
+      "sha256": "ade59149d61d58537c5f7f5e7a4419fa3f3af312e728c8a5d4f0a3cd24515223"
+    },
+    {
+      "file": "backgrounds/reunion-twilight.jpg",
+      "bytes": 13669,
+      "sha256": "40d251af2f0f84f29ddf99ec17dea40b334c28f7075676f18e959fe32cf434c1"
     }
   ]
 }

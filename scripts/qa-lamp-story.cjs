@@ -15,13 +15,13 @@ const {connect}=require('./cdp-local.cjs'),pause=ms=>new Promise(r=>setTimeout(r
   return rect;
  }finally{await r.send('Emulation.clearDeviceMetricsOverride').catch(()=>{});r.close();}}
  try{
-  for(let i=0;i<80;i++){if(await run("typeof getCurrentPages==='function'&&typeof getCurrentPages().slice(-1)[0]?.saveFirstMet==='function'&&typeof wx.switchTab==='function'").catch(()=>false))break;await pause(200);}
+  for(let i=0;i<80;i++){if(await run("typeof getCurrentPages==='function'&&typeof getCurrentPages().slice(-1)[0]?.saveMilestone==='function'&&typeof wx.switchTab==='function'").catch(()=>false))break;await pause(200);}
   saved=await run("wx.getStorageInfoSync().keys.filter(k=>k.startsWith('only-us:')).map(k=>[k,wx.getStorageSync(k)])");const backup='artifacts/qa-private-backups';fs.mkdirSync(backup,{recursive:true});fs.writeFileSync(path.join(backup,'lamp-story-'+Date.now()+'.json'),JSON.stringify(saved));
   await nav('cabin');lighting=await run("({lampOn:getCurrentPages().slice(-1)[0].data.lampOn,daytime:getCurrentPages().slice(-1)[0].data.daytime})");await act('closeEditor');
   const brightness={};
   for(const daytime of [false,true]){await fields({daytime,lampOn:true});const mode=daytime?'day':'night';const rect=await capture('cabin','lamp-'+mode+'-on','#roomContainer');await act('lamp');assert.equal((await data()).lampOn,false);await capture('cabin','lamp-'+mode+'-off','#roomContainer');const crop={left:Math.ceil(rect.left+rect.width*.04),top:Math.ceil(rect.top+rect.height*.15),width:Math.floor(rect.width*.4),height:Math.floor(rect.height*.7)};for(const state of ['on','off']){const pixels=await sharp(path.join(output,'lamp-'+mode+'-'+state+'.png')).extract(crop).toBuffer();const stats=await sharp(pixels).stats();brightness[mode+'-'+state]=stats.channels.slice(0,3).reduce((n,c)=>n+c.mean,0)/3;}assert.ok(brightness[mode+'-off']<brightness[mode+'-on']*.8,JSON.stringify(brightness));}
   checks.push('日间与夜间开关灯截图均有明显亮度差，关灯区域平均亮度低于开灯的80%');
-  await nav('us');await run("getCurrentPages().slice(-1)[0].saveFirstMet('2023-11-17')");assert.equal((await data()).firstMet,'2023-11-17');await capture('us','milestones','.qa-milestones',true);checks.push('初次相识日期可保存回显，四张纪念卡在三种手机宽度均为两行两列');
+  await nav('us');await run("getCurrentPages().slice(-1)[0].saveMilestone('firstMet','2023-11-17')");assert.equal((await data()).firstMet,'2023-11-17');await capture('us','milestones','.qa-milestones',true);checks.push('初次相识日期可保存回显，四张纪念卡在三种手机宽度均为两行两列');
   await act('story');await fields({storyTitle:'',storyContent:'',storyPhoto:'',storyDate:'2026-11-06',storyWeather:'晴',storyLocation:'',storyCaption:''});await capture('us','story-form',null,true);checks.push('故事表单元数据同排、照片入口上移，三种手机尺寸保存按钮可命中');success=true;
   fs.writeFileSync(path.join(output,'brightness.json'),JSON.stringify(brightness,null,2));
  }finally{

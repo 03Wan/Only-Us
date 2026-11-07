@@ -11,5 +11,6 @@ module.exports = [
   { id: 10, key: 'compose', title: '写给未来的信', route: 'subpackages/mail/compose/index' },
   { id: 11, key: 'waiting', title: '平行时刻 · 等待', route: 'subpackages/moments/waiting/index' },
   { id: 12, key: 'locked', title: '未解锁信件', route: 'subpackages/mail/locked/index' },
-  { id: 13, key: 'letter', title: '已解锁信件', route: 'subpackages/mail/letter/index' }
+  { id: 13, key: 'letter', title: '已解锁信件', route: 'subpackages/mail/letter/index' },
+  { id: 14, key: 'memories', title: '我们的回忆馆', route: 'subpackages/memories/index' }
 ];

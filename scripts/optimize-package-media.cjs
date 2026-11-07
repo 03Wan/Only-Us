@@ -8,11 +8,11 @@ async function optimizeMedia(){
  const preserve=(file,relative)=>{const dest=path.join(backup,relative);if(!fs.existsSync(dest)){fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(file,dest);}};
  let excluded=0;for(const name of fs.readdirSync(path.join(assets,'icons')))if(!used.has(name)){const file=path.join(assets,'icons',name);preserve(file,'icons/'+name);fs.unlinkSync(file);excluded++;}
  const files=[];let total=0,optimized=0;
- for(const folder of ['icons','tab','photos'])for(const name of fs.readdirSync(path.join(assets,folder))){
+ for(const folder of ['icons','tab','photos','backgrounds'])for(const name of fs.readdirSync(path.join(assets,folder))){
   const relative=folder+'/'+name,file=path.join(assets,relative);if(!/\.(png|jpe?g)$/i.test(name))continue;let buffer=fs.readFileSync(file);const before=buffer.length;
   if(known.get(relative)!==hash(buffer)){
    preserve(file,relative);
-   const image=sharp(buffer);buffer=folder==='photos'?await image.resize({width:640,withoutEnlargement:true}).jpeg({quality:64,mozjpeg:true}).toBuffer():await image.resize({width:48,height:48,fit:'inside',withoutEnlargement:true}).png({palette:true,colours:24,quality:80,effort:9}).toBuffer();
+   const image=sharp(buffer);buffer=['photos','backgrounds'].includes(folder)?await image.resize({width:640,withoutEnlargement:true}).jpeg({quality:64,mozjpeg:true}).toBuffer():await image.resize({width:48,height:48,fit:'inside',withoutEnlargement:true}).png({palette:true,colours:24,quality:80,effort:9}).toBuffer();
    fs.writeFileSync(file,buffer);optimized++;
   }
   total+=buffer.length;files.push({file:relative,bytes:buffer.length,sha256:hash(buffer)});

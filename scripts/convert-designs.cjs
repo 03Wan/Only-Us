@@ -8,7 +8,7 @@ const postcss = require('postcss');
 const tailwind = require('tailwindcss');
 const selectorParser = require('postcss-selector-parser');
 const sharp = require('sharp');
-const pages = require('./design-map.cjs');
+const pages = require('./design-map.cjs').filter(page => page.id <= 13);
 const root = path.resolve(__dirname, '..');
 const nativeRoot = path.join(root, 'miniprogram');
 const put = (f, content) => { fs.mkdirSync(path.dirname(f), { recursive:true }); fs.writeFileSync(f,content); };
@@ -318,7 +318,7 @@ async function main() {
   cssRoot.walkDecls(d=>{d.value=length(d.value);if(['font-variation-settings','--tw-ring-offset-shadow','--tw-ring-shadow','--tw-ring-color','--tw-ring-offset-color'].includes(d.prop))d.remove();});
   // Native transforms use the same CSS variables but do not rely on Tailwind's universal preflight.
   const vars=`page,view,text,image,button,input,textarea { --tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-gradient-from-position:0%;--tw-gradient-via-position:50%;--tw-gradient-to-position:100%;--tw-border-opacity:1;--tw-text-opacity:1;--tw-bg-opacity:1;--tw-shadow:0 0 #0000;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000; }\n`;
-  put(path.join(nativeRoot,'styles/design.wxss'),require('./qa-views.cjs').auditCss(vars+cssRoot.toString()));
+  put(path.join(nativeRoot,'styles/design.wxss'),require('./qa-views.cjs').pruneUnusedUtilities(require('./qa-views.cjs').auditCss(vars+cssRoot.toString())));
   put(path.join(root,'docs/utility-map.json'),JSON.stringify(Object.fromEntries(classes),null,2));
   const iconDir=path.join(nativeRoot,'assets/icons');fs.mkdirSync(iconDir,{recursive:true});
   for(const [filename,job]of iconJobs){
@@ -343,4 +343,3 @@ async function main() {
   console.log(`Generated ${pages.length} native pages, ${classes.size} styles, ${iconJobs.size} official icons.`);
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});
-

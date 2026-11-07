@@ -209,19 +209,19 @@ page { --font-title:22px;--font-section:18px;--font-body:15px;--font-help:14px;f
 .native-screen .cabin-mode-toggle { display:flex;align-items:center;justify-content:center;gap:5px;flex-shrink:0;min-height:36px;padding:7px 10px;border:1px solid #ebe2f4;border-radius:15px;background:#f2ecf8;color:#867095;font-size:11px;line-height:1.5;white-space:nowrap; }
 .cabin-mode-toggle image { width:16px;height:16px; }
 .native-screen .cabin-mode-day { background:#fff6e8;border-color:#f4e7d0;color:#a38755; }
-.cabin-summary-bottom { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;padding-top:17px;border-top:1px solid #f1eaf6; }
+.cabin-summary-bottom { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid #f1eaf6; }
 .cabin-summary-people { min-width:0;flex:1; }
 .cabin-summary-avatars { display:flex;align-items:center;margin-bottom:7px; }
 .cabin-summary-avatar { width:29px;height:29px;display:flex;align-items:center;justify-content:center;background:#e7dcf1;border:2px solid #fff;border-radius:50%;font-size:10px;color:#8b729e;overflow:hidden; }
 .cabin-summary-avatar-partner { margin-left:-8px;background:#f4e0e9;color:#ad8196; }
 .cabin-summary-avatar image { width:100%;height:100%; }
-.cabin-summary-names { color:#776086;font-size:13px;font-weight:600;line-height:1.6; }
-.cabin-summary-caption { margin-top:3px;color:#b1a0bd;font-size:10px;line-height:1.7; }
+.cabin-summary-names { color:#776086;font-size:16px;font-weight:600;line-height:1.6; }
+.cabin-summary-caption { margin-top:5px;color:#947da4;font-size:12px;line-height:1.7; }
 .cabin-summary-days { flex-shrink:0;text-align:right;min-width:110px; }
 .cabin-summary-count { display:flex;align-items:baseline;justify-content:flex-end;gap:5px;line-height:1.3; }
 .cabin-summary-count-label,.cabin-summary-count-unit { font-size:11px;color:#ad94ba; }
 .cabin-summary-count-number { font-size:34px;font-weight:600;letter-spacing:-1px;color:#856397; }
-.cabin-summary-since { margin-top:6px;font-size:10px;line-height:1.7;color:#b6a0c1; }
+.cabin-summary-since { margin-top:6px;font-size:13px;line-height:1.7;color:#b6a0c1; }
 @media (max-width:350px) { .cabin-summary { padding:16px; }.cabin-summary-top { gap:8px; }.cabin-summary-home { width:36px;height:36px; }.cabin-summary-title { font-size:18px; }.native-screen .cabin-mode-toggle { padding:7px 8px;font-size:10px; }.cabin-summary-count-number { font-size:29px; }.cabin-summary-days { min-width:96px; } }
 .cabin-affection-bar { display:flex;align-items:stretch;gap:0;margin:0 4px;border-radius:20px;background:linear-gradient(105deg,#76608e,#9a80b0);box-shadow:0 7px 15px #76558c17;color:#fff; }
 .native-screen #hugButton.cabin-affection-main { display:flex;align-items:center;justify-content:flex-start;gap:12px;flex:1;min-width:0;padding:10px 20px;min-height:56px;text-align:left;white-space:normal; }
@@ -353,3 +353,53 @@ page { --font-title:22px;--font-section:18px;--font-body:15px;--font-help:14px;f
 .mood-share-icon image { width:21px; height:21px; }
 .mood-share-description,.mood-share-status { margin-top:10px; color:#7c6f86; font-size:12px; line-height:1.6; }
 .mood-share-status { margin-top:4px; color:#9a899f; }
+
+.qa-history-controls { text-align: center; margin: 20rpx 0; }
+.qa-history-pages { display: flex; align-items: center; justify-content: center; gap: 20rpx; color: #786a91; font-size: 25rpx; }
+.qa-history-pages button[disabled] { opacity: .4; }
+.native-screen .cabin-pair-link { display:inline-flex; align-items:center; gap:5px; margin:7px 0 0; padding:5px 10px; border:0; border-radius:12px; background:#f3ebf8; color:#72548c; font-size:13px; line-height:1.6; min-height:34px; }
+.native-screen .cabin-pair-link::after { border:0; }
+
+.cabin-summary-identity { display:flex; align-items:center; gap:8px; min-width:0; }
+.cabin-summary-identity .cabin-summary-avatars { margin-bottom:0; flex-shrink:0; }
+.cabin-summary-identity .cabin-summary-names { min-width:0; }
+.reunion-hero { position:relative;overflow:hidden;border-radius:26px;padding:20px;color:#fff;background:#756889; }
+.reunion-hero-art,.reunion-hero-shade { position:absolute;inset:0;width:100%;height:100%; }
+.reunion-hero-shade { background:linear-gradient(180deg,rgba(62,46,84,.40),rgba(62,46,84,.14) 65%,rgba(62,46,84,.24)); }
+.reunion-hero-content { position:relative;z-index:1; }
+.reunion-hero-top { display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px; }
+.reunion-hero-chip { padding:5px 10px;border:1px solid #ffffff35;border-radius:20px;background:#ffffff1c; }
+.reunion-hero-people { max-width:40%;text-align:right; }
+.reunion-countdown { text-align:center;padding:24px 0 20px; }
+.reunion-countdown-label { font-size:15px;letter-spacing:1px; }
+.reunion-countdown-number { font-size:64px;font-weight:600;line-height:1.3;color:#fff0cd; }
+.reunion-countdown-unit { font-size:20px;margin-left:8px; }
+.reunion-countdown-date { font-size:14px;color:#f6eefe; }
+.reunion-hero-quote { text-align:center;font-size:13px;line-height:1.7;margin:0 6px 18px;color:#fff6ed; }
+.reunion-hero .qa-date-action { min-height:46px;margin-top:0;padding:10px 14px;border-radius:16px;background:#fff5ed;color:#655077;font-size:16px; }
+.memory-entry { margin:16px 0 0;padding:20px;border:1px solid #e8ddf0;border-radius:24px;background:linear-gradient(125deg,#fff,#f3eaf8); }
+.memory-entry-top { display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.memory-entry-title { font-size:22px;font-weight:600;color:#514061; }
+.memory-entry-subtitle { font-size:14px;color:#8a739b;margin-top:6px;line-height:1.7; }
+.memory-entry-count { font-size:13px;color:#8a739b;flex-shrink:0; }
+.memory-latest { margin-top:16px;padding:12px 0;border-top:1px solid #ece3f2; }
+.memory-latest-meta { color:#9b87ac;font-size:13px;margin-bottom:4px; }
+.memory-latest-title { color:#655075;font-size:16px;font-weight:600; }
+.memory-entry-actions { display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap; }
+.native-screen .memory-create { margin:0;padding:10px 16px;min-height:44px;border:0;border-radius:15px;background:#7c6299;color:#fff;font-size:15px;font-weight:600;line-height:1.6;display:flex;align-items:center;justify-content:center;gap:6px; }
+.native-screen .memory-create::after { border:0; }
+.native-screen .memory-browse { margin:0;padding:10px 12px;min-height:44px;border:1px solid #d9cce5;border-radius:15px;background:#fff9;color:#725b89;font-size:15px;line-height:1.6; }
+.memory-page { padding:16px 16px 40px; }
+.memory-page-intro { padding:10px 4px 20px; }
+.memory-page-kicker { color:#a48ab8;font-size:11px;letter-spacing:2px; }
+.memory-page-title { font-size:28px;font-weight:600;color:#514061;margin-top:6px; }
+.memory-page-description { font-size:15px;line-height:1.8;color:#8a739b;margin:8px 0 18px; }
+.memory-page-toolbar { display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;color:#8a739b;font-size:14px; }
+.memory-page .feature-story { margin-bottom:18px; }
+.memory-page .feature-story-title { font-size:21px; }
+.memory-page .feature-story-body { font-size:16px; }
+.memory-page .qa-history-pages { padding:12px 0; }
+@media (max-width:350px) { .cabin-summary-bottom { gap:8px; }.cabin-summary-days { min-width:88px; }.cabin-summary-names { font-size:15px; }.cabin-summary-since { font-size:12px; }.native-screen .cabin-pair-link { padding:5px 8px;font-size:12px; }.reunion-hero { padding:16px; } }
+
+.memory-story-excerpt { display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden; }
+.native-screen .memory-read { justify-content:flex-start;padding-left:0;min-height:40px; }
