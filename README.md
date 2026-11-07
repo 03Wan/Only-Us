@@ -148,3 +148,7 @@ stitch_only_us/          原始设计参考
 - [本机数据与兼容说明](docs/DATA_ONLY.md)
 - [第三方依赖与素材来源](docs/THIRD-PARTY.md)
 - [验证说明](docs/VALIDATION.md)
+
+## 许可证
+
+项目代码采用 [GNU Affero General Public License v3.0](LICENSE)（AGPL-3.0-only）。第三方素材及依赖遵循各自许可证，详见[素材与依赖](docs/THIRD-PARTY.md)。

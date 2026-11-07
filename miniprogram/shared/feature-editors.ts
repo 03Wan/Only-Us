@@ -1,14 +1,14 @@
 import { readLocal, writeLocal, updateSpace, readSpace, clearLocalData } from '../services/local-store';
 import { dateString, dayNumber } from './dates';
 import { environment } from '../config/env';
-import { writeGateway } from '../services/cloud';
+import { callGateway, writeGateway } from '../services/cloud';
 import type { RecordItem, Ticket, Wish, Note } from '../types/domain';
 import type { AffectionKind } from '../types/domain';
 import { affectionOptions } from './affection';
 import { moodEmoji } from './moods';
 
 export const emptyTicket = ():Ticket => ({train:'',from:'',to:'',date:dateString(),departure:'',arrival:'',arrivalDate:dateString(),seat:'',status:'待购票'});
-export const featureData = {editorKind:'',settingsSection:'menu',settingsScrollTop:0,moodEmoji:'',partnerMoodKind:'',partnerMoodEmoji:'',firstMet:'',customHundredDate:'',customYearDate:'',affectionKind:'hug',affectionLabel:'轻轻抱一下',affectionNoun:'抱抱',affectionSymbol:'♡',affectionCount:0,affectionCounts:{} as Partial<Record<AffectionKind,number>>,feedbackToken:0,noteDraft:'',noteCategory:'未分类',noteCategoryCustom:false,noteCategoryIndex:0,noteCategoryOptions:['未分类','自定义分类…'] as string[],noteFilter:'全部',notes:[] as Note[],visibleNotes:[] as Note[],noteCategories:[] as string[],tagDraft:'',tagOptions:['#想你的瞬间','#工作间隙','#今日午餐','#路过的晚霞'],editId:'',storyTitle:'',storyContent:'',storyDate:dateString(),storyLocation:'',storyWeather:'',storyCaption:'',storyPhoto:'',wishText:'',wishNote:'',wishRows:[] as Wish[],wishTotal:0,ticket:null as Ticket|null,ticketForm:emptyTicket(),ticketDuration:'',wishDetails:{} as Record<string,{text:string;note:string}>};
+export const featureData = {editorKind:'',settingsSection:'menu',settingsScrollTop:0,animationEnabled:true,soundEnabled:false,roleMine:'',rolePartner:'',moodEmoji:'',partnerMoodKind:'',partnerMoodEmoji:'',firstMet:'',customHundredDate:'',customYearDate:'',affectionKind:'hug',affectionLabel:'轻轻抱一下',affectionNoun:'抱抱',affectionSymbol:'♡',affectionCount:0,affectionCounts:{} as Partial<Record<AffectionKind,number>>,feedbackToken:0,noteDraft:'',noteCategory:'未分类',noteCategoryCustom:false,noteCategoryIndex:0,noteCategoryOptions:['未分类','自定义分类…'] as string[],noteFilter:'全部',notes:[] as Note[],visibleNotes:[] as Note[],noteCategories:[] as string[],tagDraft:'',tagOptions:['#想你的瞬间','#工作间隙','#今日午餐','#路过的晚霞'],editId:'',storyTitle:'',storyContent:'',storyDate:dateString(),storyLocation:'',storyWeather:'',storyCaption:'',storyPhoto:'',wishText:'',wishNote:'',wishRows:[] as Wish[],wishTotal:0,ticket:null as Ticket|null,ticketForm:emptyTicket(),ticketDuration:'',wishDetails:{} as Record<string,{text:string;note:string}>};
 const defaultNoteCategories=['未分类','日常','约定','提醒','纪念日','心情'];
 const draftKey=()=>environment.mode==='cloud'?`cloud:${environment.cloudEnvId}:storyDraft`:'storyDraft';
 const id=()=>`${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
@@ -16,6 +16,7 @@ const id=()=>`${Date.now()}-${Math.random().toString(36).slice(2,9)}`;
 // These editors use the same commit/refresh path as the existing native pages.
 export const featureMethods = {
   stopFeatureTouch(){},
+  settingsToggle(this:any,e:WechatMiniprogram.SwitchChange){const field=String(e.currentTarget.dataset.field),value=e.detail.value;if(!['animationEnabled','daytime','soundEnabled'].includes(field))return;try{const key=field==='daytime'&&environment.mode==='cloud'?`cloud:${environment.cloudEnvId}:daytime`:field;writeLocal(key,value);this.setData({[field]:value});}catch{this.feedback('设置未保存，请重试','error');}},
   async saveFirstMet(this:any,date:string){await this.saveMilestone('firstMet',date);},
   async saveMilestone(this:any,field:string,date:string){
     const fields:Record<string,string>={firstMet:'firstMet',anniversary:'anniversary',hundredDate:'customHundredDate',yearDate:'customYearDate'};
@@ -54,12 +55,44 @@ export const featureMethods = {
       case 'toggleWish':await this.perform('extraWish',value);return true;
       case 'ticket':this.setData({editorKind:'ticket',ticketForm:{...emptyTicket(),date:d.meetingDate||dateString(),arrivalDate:d.meetingDate||dateString(),...d.ticket}});return true;
       case 'ticketStatus':this.setData({'ticketForm.status':value});return true;
+      case 'exportData':{
+        this.setData({busy:true});try{
+          let data:any;
+          if(d.cloudMode){
+            if(!d.bound)throw new Error('请先完成双人绑定');
+            const snapshot:any=await callGateway('snapshot');
+            for(const collection of ['moments','letters_meta','stories']){
+              const rows:RecordItem[]=[];for(let offset=0;;offset+=10){const page=await callGateway<RecordItem[]>('list',{collection,offset});rows.push(...page);if(page.length<10)break;}
+              if(collection==='moments')for(const row of rows){const detail=await callGateway<any>('readMoment',{id:row.id});Object.assign(row,{privateNote:detail.privateNote,privateLocked:detail.privateLocked});}
+              if(collection==='letters_meta')for(const row of rows)if(!row.locked){const detail=await callGateway<any>('readLetter',{id:row.id});row.content=detail.content;}
+              snapshot[collection]=rows;
+            }
+            data={format:'only-us-text-export-v1',exportedAt:new Date().toISOString(),mode:'cloud',notice:'照片文件不包含在内；未启封信件正文和未开放私语不包含在内。',data:snapshot};
+          }else data={format:'only-us-text-export-v1',exportedAt:new Date().toISOString(),mode:'local',notice:'照片仅为本机路径，文件本身不包含在内。',data:{space:readSpace(),moments:readLocal('moments',[]),letters:readLocal('letters',[]),stories:readLocal('stories',[]),extraWishes:readLocal('extraWishes',[])}};
+          const path=wx.env.USER_DATA_PATH+'/only-us-export-'+Date.now()+'.json';
+          await new Promise<void>((resolve,reject)=>wx.getFileSystemManager().writeFile({filePath:path,data:JSON.stringify(data,null,2),encoding:'utf8',success:()=>resolve(),fail:reject}));
+          wx.shareFileMessage({filePath:path,fileName:'only-us-records.json',fail:()=>this.feedback('文件已生成，分享未完成','error')});
+        }finally{if(!this._destroyed)this.setData({busy:false});}return true;
+      }
+      case 'deletePersonal':wx.showModal({title:'批量删除我的记录？',content:d.cloudMode?'将删除你的昵称、头像、角色、心情、收藏和你发布的日常、故事、信件；共同内容和照片文件保留；删除的记录将不再显示。':'将删除这台设备上的个人昵称、头像、角色、心情、收藏及日常、故事、信件记录；共同内容和照片文件保留。',confirmText:'继续',confirmColor:'#b24f60',success:(res)=>{if(res.confirm)wx.showModal({title:'再次确认删除',content:'删除后无法在应用中恢复，建议先导出文字记录。',confirmText:'确认删除',confirmColor:'#b24f60',success:r=>{if(r.confirm)void this.perform('deletePersonalConfirmed','');}});}});return true;
+      case 'deletePersonalConfirmed':{
+        this.setData({busy:true});let deleted=0;try{
+          if(d.cloudMode){if(!d.bound)throw new Error('请先完成双人绑定');const all:{collection:string;id:string}[]=[];
+            for(const collection of ['moments','letters_meta','stories'])for(let offset=0;;offset+=10){const page=await callGateway<RecordItem[]>('list',{collection,offset});all.push(...page.filter(row=>row.mine).map(row=>({collection,id:row.id})));if(page.length<10)break;}
+            for(const row of all){const result=await writeGateway<{version:number}>('deleteRecord',row,this._version);this._version=result.version;deleted++;}
+            const result=await writeGateway<{version:number}>('clearPersonalState',{},this._version);this._version=result.version;
+          }else{for(const key of ['moments','letters','stories']){const rows=readLocal<RecordItem[]>(key,[]);const keep=rows.filter(row=>!row.mine);deleted+=rows.length-keep.length;writeLocal(key,keep);}writeLocal('legacyStoryHidden',true);const space=readSpace();updateSpace({profile:{...space.profile,mine:'',avatarMine:'',roleMine:''},mood:'',moodNote:'',shareMood:true,favorites:[]});}
+          this.setData({busy:false});if(d.cloudMode)await this.refresh();else this.refreshLocal();this.feedback(`已删除 ${deleted} 条个人记录`);
+        }catch(error){this.setData({busy:false});if(d.cloudMode)await this.refresh();else this.refreshLocal();throw new Error(`已删除 ${deleted} 条；${error instanceof Error?error.message:'操作中断，请重试'}`);}finally{if(!this._destroyed)this.setData({busy:false});}return true;
+      }
       case 'unlink':if(d.cloudMode&&d.bound)wx.showModal({title:'解除双人连接？',content:'原共同空间的数据会保留，双方将失去访问权限；已获取的临时照片链接最多约 5 分钟后失效。解除后可重新连接。',confirmText:'解除连接',confirmColor:'#b24f60',success:(res)=>{if(res.confirm)void this.perform('unlinkConfirmed','');}});return true;
       case 'unlinkConfirmed':if(!d.cloudMode||!d.bound)return true;this.setData({busy:true});try{await writeGateway('unlink',{},this._version);this._generation++;this._refreshing=false;this.clearSharedData();this.setData({syncIssue:'binding',syncLabel:'连接已解除',pairState:'waiting'});this.feedback('双人连接已解除');}finally{if(!this._destroyed)this.setData({busy:false});}return true;
-      case 'clearLocalData':wx.showModal({title:'清除本机数据？',content:'将删除本机模式的资料、记录、草稿及仅供其使用的关联照片，不会删除云端记录。历史缓存文件可能保留，此操作无法撤销。',confirmText:'清除本机',confirmColor:'#b24f60',success:(res)=>{if(res.confirm)void this.perform('clearLocalDataConfirmed','');}});return true;
-      case 'clearLocalDataConfirmed':this.setData({busy:true});try{const failures=await clearLocalData();wx.showModal({title:failures?'记录已清除，部分照片未删除':'本机数据已清除',content:failures?`${failures} 张关联照片未能删除，可在微信存储管理中清理。`:'本机记录及可识别的专用关联照片已清除；历史缓存文件可能保留，云端数据不受影响。',showCancel:false,success:()=>wx.reLaunch({url:'/pages/cabin/index'})});}finally{if(!this._destroyed)this.setData({busy:false});}return true;
-      case 'settings':this.setData({editorKind:'settings',settingsSection:'menu',settingsScrollTop:0});return true;
-      case 'settingsInfo':if(['menu','privacy','about','account'].includes(value))this.setData({settingsSection:value,settingsScrollTop:this.data.settingsScrollTop===0?1:0});return true;
+      case 'clearLocalData':wx.showModal({title:'清除这台设备上的数据？',content:'将删除这台设备上的资料、记录、草稿和关联照片，不影响共同小屋中的记录。历史缓存文件可能保留，此操作无法撤销。',confirmText:'确认清除',confirmColor:'#b24f60',success:(res)=>{if(res.confirm)void this.perform('clearLocalDataConfirmed','');}});return true;
+      case 'clearLocalDataConfirmed':this.setData({busy:true});try{const failures=await clearLocalData();wx.showModal({title:failures?'记录已清除，部分照片未删除':'设备上的数据已清除',content:failures?`${failures} 张关联照片未能删除，可在微信存储管理中清理。`:'这台设备上的记录及可识别的关联照片已清除；历史缓存文件可能保留，共同小屋中的记录不受影响。',showCancel:false,success:()=>wx.reLaunch({url:'/pages/cabin/index'})});}finally{if(!this._destroyed)this.setData({busy:false});}return true;
+      case 'settings':this.setData({editorKind:'settings',settingsSection:'menu',settingsScrollTop:0,animationEnabled:readLocal('animationEnabled',true),soundEnabled:readLocal('soundEnabled',false),daytime:readLocal(environment.mode==='cloud'?`cloud:${environment.cloudEnvId}:daytime`:'daytime',this.data.daytime)});return true;
+      case 'chooseRole':wx.showActionSheet({itemList:['默认','小猫 🐱','小熊 🐻','小兔 🐰','小狐狸 🦊'],success:res=>{const roles=['','🐱','🐻','🐰','🦊'];if(res.tapIndex>=0&&res.tapIndex<roles.length)void this.perform('saveRole',roles[res.tapIndex]);}});return true;
+      case 'saveRole':if(!['','🐱','🐻','🐰','🦊'].includes(value))return true;this.setData({busy:true});try{await this.commit('setRole',{role:value},()=>updateSpace({profile:{...readSpace().profile,roleMine:value}}));this.feedback('角色形象已保存');}finally{if(!this._destroyed)this.setData({busy:false});}return true;
+      case 'settingsInfo':if(['menu','privacy','about','account','home','reminders'].includes(value))this.setData({settingsSection:value,settingsScrollTop:this.data.settingsScrollTop===0?1:0});return true;
       case 'copyProjectUrl':wx.setClipboardData({data:'https://github.com/03Wan/Only-Us',success:()=>this.feedback('项目地址已复制')});return true;
       case 'settingsRoute':this.setData({editorKind:''});await this.perform('route',value);return true;
       case 'saveFeature':break;

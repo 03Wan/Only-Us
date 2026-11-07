@@ -30,9 +30,9 @@ function createService(repo,files,clock=Date.now,random=()=>crypto.randomBytes(1
   async function snapshot(id) {
     const {space}=await membership(repo,id),state=space.state;if(!state||space.schemaVersion!==1)fail('SCHEMA_REVIEW_REQUIRED');
     const me=space.memberOpenids.indexOf(id),partner=space.memberOpenids[1-me],mineMood=state.moods[id]||{},partnerMood=state.moods[partner]||{};
-    const result={bound:true,version:space.version,profile:{mine:state.names[me],partner:state.names[1-me],anniversary:state.anniversary,firstMet:state.firstMet||'',customHundredDate:state.customHundredDate||'',customYearDate:state.customYearDate||'',cabinName:state.cabinName,avatarMine:state.avatars[me],avatarPartner:state.avatars[1-me]},
+    const result={bound:true,version:space.version,profile:{mine:state.names[me],partner:state.names[1-me],anniversary:state.anniversary,firstMet:state.firstMet||'',customHundredDate:state.customHundredDate||'',customYearDate:state.customYearDate||'',cabinName:state.cabinName,avatarMine:state.avatars[me],avatarPartner:state.avatars[1-me],roleMine:state.roles?.[me]||'',rolePartner:state.roles?.[1-me]||''},
       mood:mineMood.mood||'',moodNote:mineMood.note||'',shareMood:mineMood.share!==false,partnerMood:partnerMood.share?(partnerMood.note||partnerMood.mood||'对方还没有记录心情'):'对方暂未分享心情',partnerMoodKind:partnerMood.share?(partnerMood.mood||''):'',note:state.note,notes:state.notes===undefined?(state.note?[{id:'legacy',content:state.note,category:'未分类'}]:[]):state.notes,meetingDate:state.meetingDate,
-      wishes:state.wishes,extraWishes:state.extraWishes,wishDetails:state.wishDetails||{},ticket:state.ticket||null,hugs:state.hugs.day===today(clock())?state.hugs.count:0,affectionDay:today(clock()),affectionCounts:state.affections?.day===today(clock())?state.affections.counts:{},favorites:state.favorites[id]||[]};
+      wishes:state.wishes,extraWishes:state.extraWishes,wishDetails:state.wishDetails||{},ticket:state.ticket||null,hugs:state.hugs.day===today(clock())?state.hugs.count:0,affectionDay:today(clock()),affectionCounts:state.affections?.day===today(clock())?state.affections.counts:{},partnerAffection:state.latestAffections?.[partner]||null,favorites:state.favorites[id]||[]};
     result.moments=await list(id,'moments',0);result.letters=await list(id,'letters_meta',0);result.stories=await list(id,'stories',0);
     await membership(repo,id);return result;
   }
@@ -88,12 +88,19 @@ function createService(repo,files,clock=Date.now,random=()=>crypto.randomBytes(1
           case 'saveProfile': {const anniversary=text(p.anniversary,10);day(anniversary);if(anniversary>today(now))fail('INVALID_DATE');state.names[me]=text(p.mine,16);state.names[1-me]=text(p.partner,16);state.cabinName=text(p.cabinName,24);state.anniversary=anniversary;
             if(p.firstMet!==undefined){if(p.firstMet!==''){day(p.firstMet);if(p.firstMet>today(now))fail('INVALID_DATE');}state.firstMet=p.firstMet;}
             for(const [index,value]of [[me,p.avatarMine],[1-me,p.avatarPartner]])if(value){requireOwnedRecord(await r.get('files',text(value,128)),spaceId);state.avatars[index]=value;}break;}
+          case 'clearPersonalState': {
+            state.names[me]='';state.avatars[me]='';
+            if(Array.isArray(state.roles))state.roles[me]='';
+            if(state.moods)delete state.moods[id];if(state.favorites)delete state.favorites[id];
+            if(state.latestAffections)delete state.latestAffections[id];break;
+          }
+          case 'setRole': {if(!['','🐱','🐻','🐰','🦊'].includes(p.role))fail('INVALID_INPUT');const roles=Array.isArray(state.roles)?state.roles.slice(0,2):['',''];roles[me]=p.role;state.roles=roles;break;}
           case 'saveMood': if(!moods.includes(p.mood)||typeof p.shareMood!=='boolean')fail('INVALID_INPUT');state.moods[id]={mood:p.mood,note:text(p.moodNote,300,true),share:p.shareMood};break;
-          case 'hug': if(state.hugs.day===today(now)&&now-(state.hugs.lastAt||0)<800)fail('TOO_FAST');state.hugs={day:today(now),count:(state.hugs.day===today(now)?state.hugs.count:0)+1,lastAt:now};break;
+          case 'hug': if(state.hugs.day===today(now)&&now-(state.hugs.lastAt||0)<800)fail('TOO_FAST');state.hugs={day:today(now),count:(state.hugs.day===today(now)?state.hugs.count:0)+1,lastAt:now};state.latestAffections={...state.latestAffections,[id]:{kind:'hug',createdAt:now}};break;
           case 'affection': {
             if(!['backPat','headPat','holdHands','shoulderRub'].includes(p.kind))fail('INVALID_INPUT');
             const current=state.affections?.day===today(now)?state.affections:{day:today(now),counts:{},lastAt:0};
-            if(now-current.lastAt<800)fail('TOO_FAST');state.affections={day:today(now),counts:{...current.counts,[p.kind]:(current.counts[p.kind]||0)+1},lastAt:now};break;
+            if(now-current.lastAt<800)fail('TOO_FAST');state.affections={day:today(now),counts:{...current.counts,[p.kind]:(current.counts[p.kind]||0)+1},lastAt:now};state.latestAffections={...state.latestAffections,[id]:{kind:p.kind,createdAt:now}};break;
           }
           case 'note': state.note=text(p.note,1000,true);break;
           case 'saveNote': {

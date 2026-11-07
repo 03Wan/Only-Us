@@ -25,6 +25,34 @@ test('selected interactions synchronize separate daily counts with idempotency a
   assert.equal((await f.call('c','affection',{kind:'headPat'},{version})).error,'NOT_BOUND');assert.equal((await f.call('a','affection',{kind:'invalid'},{version})).error,'INVALID_INPUT');f.advance(1000);ok(await f.call('b','affection',{kind:'headPat'},{version}));snapshot=ok(await f.call('a','snapshot'));assert.equal(snapshot.affectionCounts.headPat,1);assert.equal(snapshot.affectionCounts.backPat,1);f.advance(86400000);assert.deepEqual(ok(await f.call('b','snapshot')).affectionCounts,{});
 });
 
+test('the partner can see the latest affection across days, without seeing their own as received',async()=>{
+  const f=fixture();await f.pair();let version=ok(await f.call('a','hug',{}, {version:1})).version;
+  assert.equal(ok(await f.call('a','snapshot')).partnerAffection,null);
+  assert.deepEqual(ok(await f.call('b','snapshot')).partnerAffection,{kind:'hug',createdAt:f.now()});
+  f.advance(86400000);assert.equal(ok(await f.call('b','snapshot')).partnerAffection.kind,'hug');
+  version=ok(await f.call('b','affection',{kind:'headPat'},{version})).version;
+  assert.equal(ok(await f.call('a','snapshot')).partnerAffection.kind,'headPat');
+  assert.equal(ok(await f.call('b','snapshot')).partnerAffection.kind,'hug');
+  f.advance(1000);ok(await f.call('a','affection',{kind:'holdHands'},{version}));
+  assert.equal(ok(await f.call('b','snapshot')).partnerAffection.kind,'holdHands');
+});
+
+test('each member can choose a role without changing the other member',async()=>{
+  const f=fixture();await f.pair();let version=ok(await f.call('a','setRole',{role:'🐱'},{version:1})).version;
+  assert.equal(ok(await f.call('b','snapshot')).profile.rolePartner,'🐱');
+  version=ok(await f.call('b','setRole',{role:'🐻'},{version})).version;
+  const profile=ok(await f.call('a','snapshot')).profile;assert.equal(profile.roleMine,'🐱');assert.equal(profile.rolePartner,'🐻');
+  assert.equal((await f.call('a','setRole',{role:'invalid'},{version})).error,'INVALID_INPUT');
+});
+
+test('clearing personal state leaves the partner and shared space intact',async()=>{
+ const f=fixture();await f.pair();let version=ok(await f.call('a','saveProfile',{mine:'甲',partner:'乙',cabinName:'小屋',anniversary:'2024-01-01'},{version:1})).version;
+ version=ok(await f.call('a','saveMood',{mood:'开心',moodNote:'心情',shareMood:true},{version})).version;
+ version=ok(await f.call('b','saveMood',{mood:'平静',moodNote:'对方心情',shareMood:true},{version})).version;
+ ok(await f.call('a','clearPersonalState',{}, {version}));const a=ok(await f.call('a','snapshot')),b=ok(await f.call('b','snapshot'));
+ assert.equal(a.profile.mine,'');assert.equal(a.profile.partner,'乙');assert.equal(a.profile.cabinName,'小屋');assert.equal(a.mood,'');assert.equal(a.partnerMoodKind,'平静');assert.equal(b.partnerMoodKind,'');assert.equal(b.mood,'平静');
+});
+
 test('milestone dates synchronize separately and reject invalid or unauthorized updates',async()=>{
   const f=fixture();await f.pair();let version=1;
   for(const [field,date] of [['anniversary','2024-05-20'],['hundredDate','2024-08-28'],['yearDate','2025-05-21']])version=ok(await f.call('a','milestoneDate',{field,date},{version})).version;
