@@ -1,6 +1,8 @@
 import type { LocalSpace } from '../types/domain';
 import { dateString } from '../shared/dates';
 const prefix = 'only-us:local:v2:';
+let localDataEpoch=0;
+export const currentLocalDataEpoch=():number=>localDataEpoch;
 export const defaultSpace: LocalSpace = {
   profile: { mine: '', partner: '', anniversary: '', firstMet: '', cabinName: '' },
   mood: '', moodNote: '', shareMood: true,
@@ -34,4 +36,18 @@ export function readSpace(): LocalSpace {
 }
 export function updateSpace(patch: Partial<LocalSpace>): LocalSpace {
   const next = { ...readSpace(), ...patch }; writeLocal('space', next); return next;
+}
+
+// Only remove files referenced by local records and not by other stored data.
+export async function clearLocalData():Promise<number> {
+  const all=wx.getStorageInfoSync().keys, local=all.filter(k=>k.startsWith(prefix)||k.startsWith('only-us:mock:v1:'));
+  const paths=(keys:string[])=>{const found=new Set<string>();const visit=(v:any)=>{if(typeof v==='string')found.add(v);else if(Array.isArray(v))v.forEach(visit);else if(v&&typeof v==='object')Object.values(v).forEach(visit);};for(const key of keys)visit(wx.getStorageSync(key));return found;};
+  const localPaths=paths(local),otherPaths=paths(all.filter(k=>!local.includes(k)));
+  const saved=await new Promise<WechatMiniprogram.GetSavedFileListSuccessCallbackResult>((resolve,reject)=>wx.getFileSystemManager().getSavedFileList({success:resolve,fail:reject}));
+  const files=saved.fileList.map(f=>f.filePath).filter(path=>localPaths.has(path)&&!otherPaths.has(path));
+  localDataEpoch++;
+  for(const key of local)wx.removeStorageSync(key);
+  wx.setStorageSync(prefix+'dataOnly',true);
+  let failures=0;for(const filePath of files){try{await new Promise<void>((resolve,reject)=>wx.getFileSystemManager().removeSavedFile({filePath,success:()=>resolve(),fail:reject}));}catch{failures++;}}
+  return failures;
 }

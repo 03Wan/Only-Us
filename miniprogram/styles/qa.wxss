@@ -223,12 +223,12 @@ page { --font-title:22px;--font-section:18px;--font-body:15px;--font-help:14px;f
 .cabin-summary-count-number { font-size:34px;font-weight:600;letter-spacing:-1px;color:#856397; }
 .cabin-summary-since { margin-top:6px;font-size:10px;line-height:1.7;color:#b6a0c1; }
 @media (max-width:350px) { .cabin-summary { padding:16px; }.cabin-summary-top { gap:8px; }.cabin-summary-home { width:36px;height:36px; }.cabin-summary-title { font-size:18px; }.native-screen .cabin-mode-toggle { padding:7px 8px;font-size:10px; }.cabin-summary-count-number { font-size:29px; }.cabin-summary-days { min-width:96px; } }
-.cabin-affection-bar { display:flex;align-items:stretch;gap:0;margin:18px 4px;border-radius:24px;background:linear-gradient(105deg,#76608e,#9a80b0);box-shadow:0 7px 15px #76558c17;color:#fff; }
-.native-screen #hugButton.cabin-affection-main { display:flex;align-items:center;justify-content:center;gap:12px;flex:1;min-width:0;padding:12px 14px;min-height:68px;text-align:left;white-space:normal; }
+.cabin-affection-bar { display:flex;align-items:stretch;gap:0;margin:0 4px;border-radius:20px;background:linear-gradient(105deg,#76608e,#9a80b0);box-shadow:0 7px 15px #76558c17;color:#fff; }
+.native-screen #hugButton.cabin-affection-main { display:flex;align-items:center;justify-content:flex-start;gap:12px;flex:1;min-width:0;padding:10px 20px;min-height:56px;text-align:left;white-space:normal; }
 .cabin-affection-symbol { color:#ffdfec;font-size:28px;line-height:1; }
 .cabin-affection-label { font-size:15px;line-height:1.6;font-weight:600;letter-spacing:1px; }
 .cabin-affection-count { color:#e8ddef;font-size:10px;line-height:1.8; }
-.native-screen .cabin-affection-choose { display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 16px;min-height:48px;margin:11px 0;border-left:1px solid #ffffff38;font-size:11px;color:#f0e7f6;white-space:nowrap; }
+.native-screen .cabin-affection-choose { display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 14px;min-height:44px;margin:8px 0;border-left:1px solid #ffffff38;font-size:11px;color:#f0e7f6;white-space:nowrap; }
 .cabin-affection-pressed { opacity:.72; }
 .mood-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:2px; }
 .native-screen .mood-option { width:100%;min-width:0;min-height:136px;padding:15px 14px;border:1px solid #ece5f3;border-radius:21px;text-align:left;white-space:normal;background:#f6f2fa;color:#44384e; }
@@ -334,3 +334,7 @@ page { --font-title:22px;--font-section:18px;--font-body:15px;--font-help:14px;f
   .cabin-meeting-count { font-size:29px; }
   .feature-sheet-settings .feature-form { padding-left:14px;padding-right:14px; }
 }
+
+.feature-note-category-picker { display:flex;align-items:center;justify-content:space-between; }
+.feature-note-category-arrow { color:#9a8a9f; }
+.feature-note-category-custom { margin-top:8px; }

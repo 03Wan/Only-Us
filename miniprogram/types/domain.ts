@@ -5,6 +5,7 @@ export interface MomentDraft { content: string; photo: string; privateNote: stri
 export interface LetterDraft { title: string; content: string; paper: number; delivery: 'now' | 'future'; openAt: string; savedAt: number }
 export interface RecordItem { id:string; mine:boolean; createdAt:number; content?:string; title?:string; photos?:string[]; photoIds?:string[]; dayKey?:string; location?:string; weather?:string; caption?:string; openAt?:number; locked?:boolean; paper?:number; stamp?:string; favorite?:boolean; privateNote?:string }
 export interface Wish {id:string;text:string;done:boolean;note?:string}
+export interface Note {id:string;content:string;category:string}
 export interface Ticket {train:string;from:string;to:string;date:string;departure:string;arrival:string;arrivalDate:string;seat:string;status:string}
-export interface LocalSpace { profile: Profile; mood: Mood; moodNote: string; shareMood: boolean; hugs: number; affectionDay?:string; affectionCounts?:Partial<Record<AffectionKind,number>>; wishes: boolean[]; favorites: string[]; note: string; meetingDate?:string; hugDay?:string; ticket?:Ticket|null; wishDetails?:Record<string,{text:string;note:string}> }
+export interface LocalSpace { profile: Profile; mood: Mood; moodNote: string; shareMood: boolean; hugs: number; affectionDay?:string; affectionCounts?:Partial<Record<AffectionKind,number>>; wishes: boolean[]; favorites: string[]; note: string; notes?:Note[]; meetingDate?:string; hugDay?:string; ticket?:Ticket|null; wishDetails?:Record<string,{text:string;note:string}> }
 export interface SpaceSnapshot extends LocalSpace {bound:boolean;version:number;extraWishes:Wish[];partnerMood:string;partnerMoodKind?:Mood;moments:RecordItem[];letters:RecordItem[];stories:RecordItem[]}

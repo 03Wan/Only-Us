@@ -1,7 +1,7 @@
 import { featureData, featureMethods } from './feature-editors';
 import { affectionOptions } from './affection';
 import { routes, go, back, tabKeys, type RouteKey } from './routes';
-import { readLocal, writeLocal, readSpace, updateSpace } from '../services/local-store';
+import { readLocal, writeLocal, readSpace, updateSpace, defaultSpace, currentLocalDataEpoch } from '../services/local-store';
 import { environment } from '../config/env';
 import { callGateway, writeGateway, GatewayError, resolveCloudFile, clearCloudFiles } from '../services/cloud';
 import { dateString, dayNumber, calendarDays, loveDays, addDays, addYears, nextAnniversary } from './dates';
@@ -30,7 +30,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       moments:[],letters:[],stories:[],visibleMoments:[],visibleLetters:[],visibleStories:[],favorites:[],recordId:'',letterBody:'',letterLocked:true,recordLoaded:false,monthFilter:'全部记录',hasMore:false,moreHistory:false,selectedTag:''},
     ...featureMethods,
     onLoad(options:{id?:string}={}) {
-      this._generation=0;this._version=0;this._alive=true;this._formLoaded=false;this._dirty=false;
+      this._generation=0;this._version=0;this._localDataEpoch=currentLocalDataEpoch();this._alive=true;this._formLoaded=false;this._dirty=false;
       this.setData({recordId:options.id||'',inviteCode:cloudMode?readLocal(fileKey('inviteCode'),''):this.data.inviteCode});
       this.loadAssets();
       if(key==='cabin'){const selected=readLocal(fileKey('affectionKind'),'hug');this.setData({affectionKind:affectionOptions.some(a=>a.kind===selected)?selected:'hug',daytime:readLocal(fileKey('daytime'),new Date().getHours()>=6&&new Date().getHours()<18)});}
@@ -51,9 +51,14 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
     updateDates(){const d=this.data as ControllerData,today=dateString();this.setData({today,tomorrow:addDays(today,1),loveDays:loveDays(d.anniversary,today),anniversaryDays:nextAnniversary(d.anniversary,today),hundredDate:d.customHundredDate||addDays(d.anniversary,99),yearDate:d.customYearDate||(d.anniversary?addYears(d.anniversary,1):''),meetingDays:d.meetingDate?Math.max(0,calendarDays(today,d.meetingDate)):0,meetingLabel:!d.meetingDate?'尚未设置见面日期':d.meetingDate<today?'这次见面日期已到，期待下次相见':d.meetingDate===today?'就是今天':'距离相见'});},
     applySpace(s:SpaceSnapshot){
       const form=['profile','mood'].includes(key),applyForm=!form||!this._formLoaded;
-      const patch:Partial<ControllerData>={bound:s.bound,hugs:s.hugs,affectionCounts:s.affectionCounts||{},note:s.note,wishes:s.wishes,wishCount:s.wishes.filter(Boolean).length,extraWishes:s.extraWishes,ticket:s.ticket||null,wishDetails:s.wishDetails||{},meetingDate:s.meetingDate||'',partnerMood:s.partnerMood,partnerMoodKind:s.partnerMoodKind||'',favorites:s.favorites};
+      const patch:Partial<ControllerData>={bound:s.bound,hugs:s.hugs,affectionCounts:s.affectionCounts||{},note:s.note,notes:s.notes === undefined ? (s.note ? [{id:'legacy',content:s.note,category:'未分类'}] : []) : s.notes,wishes:s.wishes,wishCount:s.wishes.filter(Boolean).length,extraWishes:s.extraWishes,ticket:s.ticket||null,wishDetails:s.wishDetails||{},meetingDate:s.meetingDate||'',partnerMood:s.partnerMood,partnerMoodKind:s.partnerMoodKind||'',favorites:s.favorites};
       if(applyForm)Object.assign(patch,s.profile,{firstMet:s.profile.firstMet||'',customHundredDate:s.profile.customHundredDate||'',customYearDate:s.profile.customYearDate||'',avatar0:s.profile.avatarMine||'',avatar1:s.profile.avatarPartner||'',mood:s.mood,moodNote:s.moodNote,shareMood:s.shareMood});
       this.setData({...patch,moments:s.moments,letters:s.letters,stories:s.stories});this._formLoaded=true;this.updateDates();this.filterRecords();this.featureRefresh();
+    },
+    clearSharedData(){
+      clearCloudFiles();this._formLoaded=false;this._avatarIds=[];
+      this.applySpace({...defaultSpace,bound:false,version:0,extraWishes:[],partnerMood:'对方尚未连接',moments:[],letters:[],stories:[]});
+      this.setData({avatar0:'',avatar1:'',mine:'',partner:'',cabinName:'',anniversary:'',firstMet:'',customHundredDate:'',customYearDate:'',mood:'',moodNote:'',partnerMoodKind:'',letterBody:'',letterTitle:'',recordLoaded:false,photo:'',photo2:'',content:'',privateNote:'',noteDraft:'',ticketForm:{...featureData.ticketForm},editorKind:''});
     },
     refreshLocal(){
       const space=readSpace();this.applySpace({...space,bound:false,version:0,extraWishes:readLocal<Wish[]>('extraWishes',[]),partnerMood:'对方尚未连接',moments:localRecords('moments'),letters:localRecords('letters'),stories:localRecords('stories')});
@@ -66,8 +71,8 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
       try{
         const session=await callGateway<{bound:boolean;pairState:string}>('session');
         if(!this._alive||generation!==this._generation)return;
-        this.setData({bound:session.bound,pairState:session.pairState});
-        if(!session.bound){this.setData({syncLabel:'请先完成双人绑定',moments:[],letters:[],stories:[]});this.filterRecords();return;}
+        if(!session.bound){if(this.data.bound)this.clearSharedData();this.setData({bound:false,syncLabel:'请先完成双人绑定',pairState:session.pairState});return;}
+        this.setData({bound:true,pairState:session.pairState});
         const snapshot=await callGateway<SpaceSnapshot>('snapshot');
         for(const field of ['moments','letters','stories'] as const){const count=this.data[field].length;for(let offset=10;offset<count;offset+=10){const next=await callGateway<RecordItem[]>('list',{collection:field==='letters'?'letters_meta':field,offset});snapshot[field].push(...next);if(next.length<10)break;}}
         if(!this._alive||generation!==this._generation)return;
@@ -76,7 +81,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
         if(!this._alive||generation!==this._generation)return;
         this.applySpace(hydrated);this.setData({syncLabel:'已连接云端 · 前台每15秒刷新'});
         await this.loadCloudLetter(generation);
-      }catch(error){if(this._alive&&generation===this._generation){this.setData({syncLabel:'同步失败 · 下拉重试'});this.feedback(error instanceof Error?error.message:'网络请求未完成','error','refresh');if(error instanceof GatewayError&&['FORBIDDEN','NOT_BOUND','UNAUTHENTICATED'].includes(error.code)){clearCloudFiles();this.setData({bound:false,moments:[],letters:[],stories:[],letterBody:'',recordLoaded:false});this.filterRecords();}}}
+      }catch(error){if(this._alive&&generation===this._generation){this.setData({syncLabel:'同步失败 · 下拉重试'});this.feedback(error instanceof Error?error.message:'网络请求未完成','error','refresh');if(error instanceof GatewayError&&['FORBIDDEN','NOT_BOUND','UNAUTHENTICATED'].includes(error.code)){this.clearSharedData();}}}
       finally{if(generation===this._generation){this._refreshing=false;if(this._alive)this.setData({loading:false});}}
     },
     async hydrate(snapshot:SpaceSnapshot):Promise<SpaceSnapshot>{
@@ -88,7 +93,7 @@ export function createPage(key:RouteKey):WechatMiniprogram.Page.Options<Controll
     filterRecords(){const d=this.data as ControllerData;const moments=d.moments.filter(r=>d.monthFilter==='全部记录'||r.dayKey?.startsWith(d.monthFilter));const letters=d.letters.filter(r=>d.mailTab==='sent'?r.mine:!r.mine);this.setData({visibleMoments:(d.moreHistory?moments:moments.slice(0,4)).map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleLetters:letters.map(r=>({...r,favorite:d.favorites.includes(r.id)})),visibleStories:d.moreHistory?d.stories:d.stories.slice(0,3),sentTitle:d.letters.find(r=>r.mine)?.title||'',hasMore:(key==='moments'?d.moments:key==='mailbox'?d.letters:d.stories).length>0&&(key==='moments'?d.moments:key==='mailbox'?d.letters:d.stories).length%10===0});},
     loadLocalLetter(){if(!['letter','locked'].includes(key)||!this.data.recordId)return;const row=localRecords('letters').find(r=>r.id===this.data.recordId);if(row)this.setData({letterTitle:row.title||'',letterBody:row.content||'',openAt:row.openAt?dateString(new Date(row.openAt)):'',letterLocked:false,recordLoaded:true});else this.feedback('信件不存在或已删除','error');},
     async loadCloudLetter(generation:number){if(!['letter','locked'].includes(key)||!this.data.recordId)return;this.setData({letterBody:'',recordLoaded:false});try{const meta=await callGateway<{title:string;openAt:number;locked:boolean}>('letterMeta',{id:this.data.recordId});if(!this._alive||generation!==this._generation)return;this.setData({letterTitle:meta.title,openAt:dateString(new Date(meta.openAt)),letterLocked:meta.locked,recordLoaded:meta.locked});if(meta.locked)return;const result=await callGateway<{title:string;content:string;openAt:number;paper:number}>('readLetter',{id:this.data.recordId});if(!this._alive||generation!==this._generation)return;this.setData({letterTitle:result.title,letterBody:result.content,openAt:dateString(new Date(result.openAt)),paper:result.paper,letterLocked:false,recordLoaded:true});}catch(error){if(this._alive&&generation===this._generation){this.setData({letterLocked:true,recordLoaded:true});this.feedback(error instanceof Error?error.message:'信件加载失败','error','refresh');}}},
-    autosave(){try{if(key==='editor')this.persistMoment();if(key==='compose')this.persistLetter();}catch{this.feedback('草稿未能保存，请检查设备剩余空间','error');}},
+    autosave(){if(this._localDataEpoch!==currentLocalDataEpoch())return;try{if(key==='editor')this.persistMoment();if(key==='compose')this.persistLetter();}catch{this.feedback('草稿未能保存，请检查设备剩余空间','error');}},
     onField(event:WechatMiniprogram.Input){const field=String(event.currentTarget.dataset.field);if(!['content','moodNote','mine','partner','cabinName','letterTitle','inviteInput','privateNote'].includes(field))return;this._dirty=true;this.setData({[field]:event.detail.value});if(key==='editor'||key==='compose')this.autosave();},
     async onDate(event:WechatMiniprogram.PickerChange){const field=String(event.currentTarget.dataset.field),value=String(event.detail.value);if(!['anniversary','firstMet','hundredDate','yearDate','openAt','meetingDate'].includes(field))return;if(dayNumber(value)===null){this.feedback('日期无效','error');return;}if(['us','cabin'].includes(key)&&['firstMet','anniversary','hundredDate','yearDate'].includes(field)){await this.saveMilestone(field,value);return;}if(['hundredDate','yearDate'].includes(field))return;if(field!=='meetingDate'){this.setData({[field]:value});this.updateDates();}if(field==='meetingDate'){await this.saveMeeting(value);}else this.autosave();},
     async saveMeeting(value:string){if(this.data.busy)return;this.setData({busy:true});try{await this.commit('meeting',{date:value},()=>updateSpace({meetingDate:value}));this.feedback(cloudMode?'见面日期已保存到云端':'见面日期已保存在本机');}catch(e){this.feedback(e instanceof Error?e.message:'见面日期保存失败','error');}finally{if(!this._destroyed)this.setData({busy:false});}},

@@ -31,7 +31,7 @@ function createService(repo,files,clock=Date.now,random=()=>crypto.randomBytes(1
     const {space}=await membership(repo,id),state=space.state;if(!state||space.schemaVersion!==1)fail('SCHEMA_REVIEW_REQUIRED');
     const me=space.memberOpenids.indexOf(id),partner=space.memberOpenids[1-me],mineMood=state.moods[id]||{},partnerMood=state.moods[partner]||{};
     const result={bound:true,version:space.version,profile:{mine:state.names[me],partner:state.names[1-me],anniversary:state.anniversary,firstMet:state.firstMet||'',customHundredDate:state.customHundredDate||'',customYearDate:state.customYearDate||'',cabinName:state.cabinName,avatarMine:state.avatars[me],avatarPartner:state.avatars[1-me]},
-      mood:mineMood.mood||'',moodNote:mineMood.note||'',shareMood:mineMood.share!==false,partnerMood:partnerMood.share?(partnerMood.note||partnerMood.mood||'对方还没有记录心情'):'对方暂未分享心情',partnerMoodKind:partnerMood.share?(partnerMood.mood||''):'',note:state.note,meetingDate:state.meetingDate,
+      mood:mineMood.mood||'',moodNote:mineMood.note||'',shareMood:mineMood.share!==false,partnerMood:partnerMood.share?(partnerMood.note||partnerMood.mood||'对方还没有记录心情'):'对方暂未分享心情',partnerMoodKind:partnerMood.share?(partnerMood.mood||''):'',note:state.note,notes:state.notes===undefined?(state.note?[{id:'legacy',content:state.note,category:'未分类'}]:[]):state.notes,meetingDate:state.meetingDate,
       wishes:state.wishes,extraWishes:state.extraWishes,wishDetails:state.wishDetails||{},ticket:state.ticket||null,hugs:state.hugs.day===today(clock())?state.hugs.count:0,affectionDay:today(clock()),affectionCounts:state.affections?.day===today(clock())?state.affections.counts:{},favorites:state.favorites[id]||[]};
     result.moments=await list(id,'moments',0);result.letters=await list(id,'letters_meta',0);result.stories=await list(id,'stories',0);
     await membership(repo,id);return result;
@@ -77,6 +77,10 @@ function createService(repo,files,clock=Date.now,random=()=>crypto.randomBytes(1
         else {const partner=await r.get('users',space.requestedBy);if(partner?.spaceId)fail('ALREADY_BOUND');
           await r.set('users',space.requestedBy,{...(partner||{}),spaceId:user.spaceId});await r.set('spaces',user.spaceId,{...space,status:'active',memberOpenids:[id,space.requestedBy],requestedBy:'',version:1});
           await r.set('invites',space.inviteId,{...invite,used:true});result={pairState:'success'};}
+      }else if(event.action==='unlink') {
+        const {spaceId,space}=await membership(r,id);if(event.version!==space.version)fail('CONFLICT');
+        for(const member of space.memberOpenids){const user=await r.get('users',member);if(!user||user.spaceId!==spaceId)fail('SCHEMA_REVIEW_REQUIRED');await r.set('users',member,{...user,spaceId:''});}
+        await r.set('spaces',spaceId,{...space,status:'unlinked',version:space.version+1,unlinkedAt:now});result={unlinked:true};
       }else {
         const {spaceId,space}=await membership(r,id);if(space.schemaVersion!==1||!space.state)fail('SCHEMA_REVIEW_REQUIRED');if(event.version!==space.version)fail('CONFLICT');
         const state=JSON.parse(JSON.stringify(space.state)),me=space.memberOpenids.indexOf(id);let recordId='';
@@ -92,6 +96,13 @@ function createService(repo,files,clock=Date.now,random=()=>crypto.randomBytes(1
             if(now-current.lastAt<800)fail('TOO_FAST');state.affections={day:today(now),counts:{...current.counts,[p.kind]:(current.counts[p.kind]||0)+1},lastAt:now};break;
           }
           case 'note': state.note=text(p.note,1000,true);break;
+          case 'saveNote': {
+            const rows=state.notes===undefined?(state.note?[{id:'legacy',content:state.note,category:'未分类'}]:[]):state.notes;
+            const content=text(p.content,1000),category=text(p.category,20);if(p.id){const row=rows.find(x=>x.id===p.id);if(!row)fail('INVALID_INPUT');Object.assign(row,{content,category});}else{if(rows.length>=100)fail('LIMIT_REACHED');rows.unshift({id:operationId,content,category});}state.notes=rows;state.note=rows[0]?.content||'';break;
+          }
+          case 'deleteNote': {const rows=state.notes===undefined?(state.note?[{id:'legacy',content:state.note,category:'未分类'}]:[]):state.notes;if(!rows.some(x=>x.id===p.id))fail('INVALID_INPUT');state.notes=rows.filter(x=>x.id!==p.id);state.note=state.notes[0]?.content||'';break;}
+          case 'deleteNoteCategory': {const category=text(p.category,20);if(category==='未分类')fail('INVALID_INPUT');const rows=state.notes===undefined?(state.note?[{id:'legacy',content:state.note,category:'未分类'}]:[]):state.notes;state.notes=rows.map(x=>x.category===category?{...x,category:'未分类'}:x);break;}
+          case 'deleteTicket': state.ticket=null;break;
           case 'meeting': day(p.date);state.meetingDate=p.date;break;
           case 'firstMet': day(p.date);if(p.date>today(now))fail('INVALID_DATE');state.firstMet=p.date;break;
           case 'milestoneDate': {
